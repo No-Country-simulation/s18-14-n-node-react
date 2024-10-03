@@ -1,0 +1,23 @@
+{
+  "name": "s18-14-n-node-react",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "front:install": "cd client && npm install",
+    "front:uninstall": "cd client && npm uninstall",
+    "front:lint": "cd client && npm run lint",
+    "front:test": "cd client && npm run test",
+    "back:install": "cd server && npm install",
+    "back:uninstall": "cd server && npm uninstall",
+    "back:lint": "cd server && npm run lint",
+    "back:test": "cd server && npm run test",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "s18-14-n-node-react",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "husky": "^9.1.6"
+  }
+}
