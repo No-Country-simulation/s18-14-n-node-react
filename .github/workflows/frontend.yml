@@ -5,11 +5,11 @@ on:
     branches: 
       - main
     paths:
-      - '/client/**'
+      - 'client/**'
   pull_request:
     branches: ["*"]
     paths:
-      - '/client/**'
+      - 'client/**'
 
 jobs:
   Testing:
