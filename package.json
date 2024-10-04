@@ -14,9 +14,9 @@
     "back:uninstall": "cd server && npm uninstall",
     "back:lint": "cd server && npm run lint",
     "back:test": "cd server && npm run test",
-    "dev:dev": "cd server && npm run dev",
-    "dev:build": "cd server && npm run build",
-    "dev:start": "cd server && npm run start",
+    "back:dev": "cd server && npm run dev",
+    "back:build": "cd server && npm run build",
+    "back:start": "cd server && npm run start",
     "prepare": "husky"
   },
   "keywords": [],
