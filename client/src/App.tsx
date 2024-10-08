@@ -5,7 +5,7 @@ import { ThemeProvider } from './components/theme-provider'
 import Home from './views/Home'
 import HomeMain from './components/home/HomeMain'
 import Auth from './views/Auth'
-import SIgnIn from './components/auth/SIgnIn'
+import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
 
 // Auth
@@ -29,7 +29,7 @@ function App() {
       children: [
         {
           path: '/login',
-          element: <SIgnIn />
+          element: <SignIn />
         },
         {
           path: '/register',
