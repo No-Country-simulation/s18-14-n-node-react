@@ -1,5 +1,5 @@
 
-import { SeccionNavBar } from "../SeccionesNavbar/SeccionNavbar";
+import { SeccionNavBar } from "../SeccionesNavbar/SeccionNavBar";
 import { BotonSecondary } from "../Botones/BotonSecondary";
 import { BotonPrimary } from "../Botones/BotonPrimary";
 
