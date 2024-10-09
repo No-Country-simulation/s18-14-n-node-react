@@ -1,5 +1,5 @@
 export class WelcomeService {
   static welcome() {
-    return { msg: '¡Bienvenido!' }
+    return { msg: 'Welcome!' }
   }
 }

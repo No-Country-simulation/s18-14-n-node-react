@@ -35,7 +35,7 @@ export default class App {
       }),
     )
 
-    this.app.use('/', AppRoutes.routes)
+    this.app.use('/api/v1', AppRoutes.routes)
     this.app.use(AppHandlers.handlers.routeNotFound)
     this.app.use(AppHandlers.handlers.error)
 
