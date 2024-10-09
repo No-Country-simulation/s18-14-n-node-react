@@ -13,7 +13,7 @@ export const verifyDto = ({ body, params, query }: Params) => {
         res.locals = { ...res.locals, params: paramsParsed }
       }
       if (query) {
-        const queryParsed = params.parse(req.params)
+        const queryParsed = query.parse(req.params)
         res.locals = { ...res.locals, query: queryParsed }
       }
 
@@ -25,7 +25,7 @@ export const verifyDto = ({ body, params, query }: Params) => {
 }
 
 type Params = {
-  body: ZodSchema
-  query: ZodSchema
-  params: ZodSchema
+  body?: ZodSchema
+  query?: ZodSchema
+  params?: ZodSchema
 }
