@@ -20,7 +20,7 @@ describe('Testing App', () => {
     it(`Should get "Hello World!" message`, async () => {
       const { statusCode, body } = await api.get('/api/v1')
       expect(statusCode).toBe(200)
-      expect(body.message).toEqual('Welcome!')
+      expect(body.msg).toEqual('Welcome!')
     })
   })
 
