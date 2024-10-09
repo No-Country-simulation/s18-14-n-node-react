@@ -20,7 +20,7 @@ export default class App {
             callback(new Error('Not allowed by CORS'))
           }
         },
-        methods: 'GET,POST,PUT,DELETE',
+        methods: 'GET,POST,PUT,DELETE,PATCH',
         preflightContinue: true,
         optionsSuccessStatus: 204,
         credentials: true,
@@ -34,7 +34,6 @@ export default class App {
       }),
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     this.app.use('/api/v1', AppRoutes.routes)
 
     return this.app
