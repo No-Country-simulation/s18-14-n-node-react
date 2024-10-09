@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import AppRoutes from './routes'
+import AppHandlers from './handlers'
 
 export default class App {
   public readonly app = express()
@@ -35,6 +36,8 @@ export default class App {
     )
 
     this.app.use('/api/v1', AppRoutes.routes)
+    this.app.use(AppHandlers.handlers.routeNotFound)
+    this.app.use(AppHandlers.handlers.error)
 
     return this.app
   }
