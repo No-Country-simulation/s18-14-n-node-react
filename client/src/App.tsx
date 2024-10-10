@@ -5,8 +5,12 @@ import { ThemeProvider } from './components/theme-provider'
 import Home from './views/Home'
 import HomeMain from './components/home/HomeMain'
 import Auth from './views/Auth'
-import SIgnIn from './components/auth/SIgnIn'
+import SignIn from './components/auth/SignIn'
 import SignUp from './components/auth/SignUp'
+import Navigation from './views/Navigation'
+import Receps from './components/navigation/Receps'
+import SavedReceps from './components/navigation/SavedReceps'
+import Profile from './components/navigation/Profile'
 
 // Auth
 
@@ -19,7 +23,7 @@ function App() {
       element: <Home />,
       children: [
         {
-          path: '/',
+          path: '/Home',
           element: <HomeMain />
         }
       ]
@@ -29,14 +33,35 @@ function App() {
       children: [
         {
           path: '/login',
-          element: <SIgnIn />
+          element: <SignIn />
         },
         {
           path: '/register',
           element: <SignUp />
         }
       ]
-    }
+    },
+    {
+      element: <Navigation />,
+      children:[
+        {
+          path: '/Profile',
+          element:<Profile />
+        },
+        {
+          path: '/Receps',
+          element:<Receps />
+        },
+        {
+          path: '/RecepsSaved',
+          element:<SavedReceps />
+        },
+        {
+          path: '/Configuration',
+          element:<></>
+        }
+      ]
+    },
   ])
 
   return (
