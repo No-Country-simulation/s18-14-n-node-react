@@ -13,7 +13,7 @@ export const verifyDto = ({ body, params, query }: Params) => {
         res.locals = { ...res.locals, params: paramsParsed }
       }
       if (query) {
-        const queryParsed = query.parse(req.params)
+        const queryParsed = query.parse(req.query)
         res.locals = { ...res.locals, query: queryParsed }
       }
 
