@@ -2,13 +2,14 @@ import { PrismaClient, Roles } from '@prisma/client'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import { envs } from '../../config'
-import { IAuth } from './auth.interface'
+import { IAuth, IChangePassword } from './auth.interface'
 import HttpErr from '../../errors/HttpErr'
+import { IPayload } from '../../user'
 
 const prisma = new PrismaClient()
 
 export class AuthService {
-  static async login(data: IAuth) {
+  static async login(data: IAuth): Promise<{ accessToken: string }> {
     let userFound
     const accessSecret = envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'secret'
 
@@ -22,7 +23,7 @@ export class AuthService {
 
     if (!match) throw new HttpErr(401, 'Unauthorized', 'Password does not match!')
 
-    const payload = {
+    const payload: IPayload = {
       id: userFound.id,
       role: userFound.role,
     }
@@ -32,7 +33,7 @@ export class AuthService {
     return { accessToken }
   }
 
-  static async register(data: IAuth) {
+  static async register(data: IAuth): Promise<void> {
     const userFound = await prisma.user.findUnique({
       where: { email: data.email },
     })
@@ -48,6 +49,30 @@ export class AuthService {
         role: Roles.CLIENT,
       },
     })
-    return { msg: 'New user registered' }
+  }
+
+  static async changePassword(id: string, data: IChangePassword): Promise<void> {
+    const userFound = await prisma.user.findUnique({
+      where: { id: id },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    const match = await bcrypt.compare(data.currentPassword, userFound.password)
+
+    if (!match) throw new HttpErr(403, 'Forbidden', 'The current password is invalid!')
+
+    const equal = data.newPassword === data.currentPassword
+
+    if (equal) throw new HttpErr(409, 'Conflict', 'The new password is equal!')
+
+    const hash = await bcrypt.hash(data.newPassword, 10)
+
+    await prisma.user.update({
+      where: { id: userFound.id },
+      data: {
+        password: hash,
+      },
+    })
   }
 }
