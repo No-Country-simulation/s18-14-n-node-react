@@ -3,10 +3,11 @@ import { Controller } from '../../types'
 import { CreateCategory } from './category.dto'
 
 export class CategoryController {
-  static createCategory: Controller = (req, res, next) => {
+  static createCategory: Controller = async (_req, res, next) => {
     try {
-      const category = req.body as CreateCategory
-      const newCategory = CategoryService.createCategory(category)
+      const dto = res.locals.body as CreateCategory
+      const newCategory = await CategoryService.createCategory(dto)
+
       res.status(201).json(newCategory)
     } catch (error) {
       next(error)
