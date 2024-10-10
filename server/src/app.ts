@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import AppRoutes from './routes'
+import AppHandlers from './handlers'
 
 export default class App {
   public readonly app = express()
@@ -20,7 +21,7 @@ export default class App {
             callback(new Error('Not allowed by CORS'))
           }
         },
-        methods: 'GET,POST,PUT,DELETE',
+        methods: 'GET,POST,PUT,DELETE,PATCH',
         preflightContinue: true,
         optionsSuccessStatus: 204,
         credentials: true,
@@ -34,8 +35,9 @@ export default class App {
       }),
     )
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     this.app.use('/api/v1', AppRoutes.routes)
+    this.app.use(AppHandlers.handlers.routeNotFound)
+    this.app.use(AppHandlers.handlers.error)
 
     return this.app
   }

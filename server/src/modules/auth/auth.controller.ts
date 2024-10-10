@@ -1,22 +1,26 @@
-import { Request, Response, NextFunction } from 'express'
 import { AuthService } from './auth.service'
+import { Controller } from '../../types'
 
 export class AuthController {
-  static login(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = AuthService.login(req.body)
-      res.status(200).json({ data })
-    } catch (error) {
-      next(error)
-    }
+  static login: Controller = (req, res, next) => {
+    const data = AuthService.login(req.body)
+    data
+      .then(({ accessToken }) => {
+        res.status(200).json({ accessToken })
+      })
+      .catch((error) => {
+        next(error)
+      })
   }
 
-  static register(req: Request, res: Response, next: NextFunction) {
-    try {
-      const data = AuthService.register(req.body)
-      res.status(200).json({ data })
-    } catch (error) {
-      next(error)
-    }
+  static register: Controller = (req, res, next) => {
+    const data = AuthService.register(req.body)
+    data
+      .then(({ msg }) => {
+        res.status(200).json({ message: msg })
+      })
+      .catch((error) => {
+        next(error)
+      })
   }
 }
