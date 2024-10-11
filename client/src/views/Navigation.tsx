@@ -8,8 +8,8 @@ export default function Navigation() {
         <div className="h-screen flex flex-col bg-[#EEE]">
             <Navbar />
 
-            <div className="flex flex-row flex-grow overflow-auto">
-                <div className="w-80">
+            <div className="flex flex-row flex-grow overflow-hidden">
+                <div className="w-1/5">
                     <SideMenu />
                 </div>
                 <div className="flex-grow overflow-auto">
