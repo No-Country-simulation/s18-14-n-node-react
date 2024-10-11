@@ -12,6 +12,8 @@ import Receps from './components/navigation/Receps'
 import SavedReceps from './components/navigation/SavedReceps'
 import Profile from './components/navigation/Profile'
 import Login from './views/Login'
+import Register from './views/Register'
+
 
 // Auth
 
@@ -45,6 +47,10 @@ function App() {
     {
       path:'/pruebaL',
       element: <Login />
+    },
+    {
+      path:'/pruebaR',
+      element: <Register />
     },
     {
       element: <Navigation />,
