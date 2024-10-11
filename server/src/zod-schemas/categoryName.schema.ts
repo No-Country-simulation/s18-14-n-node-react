@@ -17,3 +17,4 @@ export const categoryNameSchema = z
   .refine((name) => !REGEX.numbers.test(name), {
     message: 'No numbers.',
   })
+  .transform((name) => name.toLowerCase())

@@ -1,5 +1,5 @@
 import { connDb } from '../../db/connDb'
-import { CreateCategory, ReadCategories } from './category.dto'
+import { CreateCategory, ReadCategories, UpdateCategory } from './category.dto'
 
 export class CategoryService {
   static async createCategory(params: CreateCategory) {
@@ -14,5 +14,14 @@ export class CategoryService {
     })
 
     return categories
+  }
+
+  static async updateCategory(cateogoryId: string, data: UpdateCategory) {
+    const category = await connDb.category.update({
+      where: { id: cateogoryId },
+      data,
+    })
+
+    return category
   }
 }
