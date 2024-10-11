@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function Navigation() {
     return (
-        <div className="h-screen flex flex-col bg-[#EEE]">
+        <div className="h-screen max-h-fit flex flex-col bg-[#EEE]">
             <Navbar />
 
             <div className="flex flex-row flex-grow overflow-hidden">
@@ -14,10 +14,11 @@ export default function Navigation() {
                 </div>
                 <div className="flex-grow overflow-auto">
                     <Outlet />
+                    <div className="absolute top-full left-0 w-full bg-white z-10">
+                        <Footer />
+                    </div>
                 </div>
             </div>
-
-            <Footer />
         </div>
     )
 }

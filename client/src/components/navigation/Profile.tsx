@@ -1,10 +1,11 @@
+import { photo } from "@/assets";
 
 export default function Profile() {
 
     return (
         <div className="w-auto h-screen px-8">
             <div className="w-full h-1/3 flex justify-center items-center align-middle py-4">
-                <img src="./profpick.png" className="h-full"></img>
+                <img src={photo} className="h-full"></img>
             </div>
 
             <div className="w-full grid grid-cols-7 gap-8 justify-between">

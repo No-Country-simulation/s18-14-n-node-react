@@ -23,7 +23,7 @@ const menuItems: MenuItem[] = [
 export const SideMenu = () => {
 
   return (
-    <div id="menu" className="bg-white min-h-screen z-10 w-60 py-10 left-0">
+    <div id="menu" className="bg-white min-h-screen flex-col flex-grow z-10 w-60 py-10 left-0">
       
 
       {/* Menu Items */ }
