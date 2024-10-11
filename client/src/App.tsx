@@ -11,6 +11,7 @@ import Navigation from './views/Navigation'
 import Receps from './components/navigation/Receps'
 import SavedReceps from './components/navigation/SavedReceps'
 import Profile from './components/navigation/Profile'
+import Login from './views/Login'
 
 // Auth
 
@@ -40,6 +41,10 @@ function App() {
           element: <SignUp />
         }
       ]
+    },
+    {
+      path:'/pruebaL',
+      element: <Login />
     },
     {
       element: <Navigation />,
