@@ -1,6 +1,6 @@
 
 import { NavLink } from 'react-router-dom';
-// import './SideMenu.css';
+import './SideMenu.css';
 import { SideMenuItem } from './SideMenuItem';
 
 
