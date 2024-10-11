@@ -11,6 +11,7 @@ import Navigation from './views/Navigation'
 import Receps from './components/navigation/Receps'
 import SavedReceps from './components/navigation/SavedReceps'
 import Profile from './components/navigation/Profile'
+import Register from './views/Register'
 
 // Auth
 
@@ -42,32 +43,36 @@ function App() {
       ]
     },
     {
+      path: '/pruebaR',
+      element: <Register />
+    },
+    {
       element: <Navigation />,
-      children:[
+      children: [
         {
           path: '/Profile',
-          element:<Profile />
+          element: <Profile />
         },
         {
           path: '/Receps',
-          element:<Receps />
+          element: <Receps />
         },
         {
           path: '/RecepsSaved',
-          element:<SavedReceps />
+          element: <SavedReceps />
         },
         {
           path: '/Configuration',
-          element:<></>
+          element: <></>
         }
       ]
     },
   ])
 
   return (
-      <ThemeProvider defaultTheme='system' >
-        <RouterProvider router={router} />
-      </ThemeProvider>
+    <ThemeProvider defaultTheme='system' >
+      <RouterProvider router={router} />
+    </ThemeProvider>
   )
 }
 
