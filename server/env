@@ -1,0 +1,10 @@
+# Environment variables declared in this file are automatically made available to Prisma.
+# See the documentation for more detail: https://pris.ly/d/prisma-schema#accessing-environment-variables-from-the-schema
+
+# Prisma supports the native connection string format for PostgreSQL, MySQL, SQLite, SQL Server, MongoDB and CockroachDB.
+# See the documentation for all the connection string options: https://pris.ly/d/connection-strings
+
+DATABASE_URL="postgresql://neondb_owner:Fx3HXDNdAGn5@ep-green-morning-a5l9418t.us-east-2.aws.neon.tech/neondb?sslmode=require"
+
+JWT_ACCESS_SECRET="c499b4574b86dbd43964ac22304754d8f4600e6e499f172402e34f80c0c57ae7fe36914cd96029bad3e07e84e0e55f6f4eedfeeb23ce92f8138dbc0427050780"
+JWT_REFRESH_SECRET="10e5137b779397c828f2cee24e1d3579cb60b79819b93003d41a5195a55559c3ba7d0f657e6abd726bf34e99e92ee25e5c3e33eb3b7d7ccc3dfdf2017b39ce44"
