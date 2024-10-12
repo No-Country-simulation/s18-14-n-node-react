@@ -3,13 +3,7 @@ import Banner from "./Banner";
 import Categories from "./Categories";
 import Recipes from "./Recipes";
 import fake from './dataTemp.json'
-
-export type Recipe = {
-  id: number,
-  title: string,
-  description: string,
-  categoryId: number
-}
+import { Recipe } from "@/types";
 
 export default function HomeMain() {
 
