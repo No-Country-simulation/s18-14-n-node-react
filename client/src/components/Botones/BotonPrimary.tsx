@@ -1,15 +1,20 @@
+import { MouseEventHandler } from "react";
+
 export interface IBotonPrimaryProps {
     className?: string;
     textBtn?: string;
+    action:MouseEventHandler;
   }
   
   export const BotonPrimary = ({
     className,
-    textBtn
+    textBtn,
+    action
   }: IBotonPrimaryProps): JSX.Element => {
   
     return (
-      <div
+      <button
+        type="submit" onClick={action}
         className={
           "rounded-lg pt-[13px] pr-[18px] pb-[13px] pl-[18px] flex flex-row gap-2.5 items-center justify-center w-[184px] h-[50px] relative overflow-hidden " +
           className
@@ -24,7 +29,7 @@ export interface IBotonPrimaryProps {
         >
           {textBtn}
         </div>
-      </div>
+      </button>
     );
   };
   

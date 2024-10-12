@@ -1,15 +1,20 @@
+import { MouseEventHandler } from "react";
+
 export interface IBotonSecondaryProps {
     className?: string;
     btnText: string;
+    action:MouseEventHandler;
   }
   
   export const BotonSecondary = ({
     className,
-    btnText = ""
+    btnText = "",
+    action
   }: IBotonSecondaryProps): JSX.Element => {
   
     return (
-      <div
+      <button
+        type="submit" onClick={action}
         className={
           "rounded-lg pt-[13px] pr-[18px] pb-[13px] pl-[18px] flex flex-row gap-2.5 items-center justify-center w-[184px] h-[50px] relative overflow-hidden " +
           className
@@ -23,7 +28,7 @@ export interface IBotonSecondaryProps {
         >
           {btnText}
         </div>
-      </div>
+      </button>
     );
   };
   
