@@ -23,7 +23,7 @@ function App() {
       element: <Home />,
       children: [
         {
-          path: '/Home',
+          path: '/',
           element: <HomeMain />
         }
       ]
