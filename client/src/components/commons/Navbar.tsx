@@ -29,11 +29,11 @@ export const NavBarWeb = ({
     >
       <div className="shrink-0 w-[291px] h-[95px] static">
         <div className="bg-[#d9d9d9] w-[291px] h-[95px] absolute left-[104px] top-[2.5px]"></div>
-        <SeccionNavBar className="!absolute !left-[158px] !top-[29.5px]" nameSection="LOGO"></SeccionNavBar>
+        <SeccionNavBar className="!absolute !left-[158px] !top-[29.5px]" linkTo="#" nameSection="LOGO"></SeccionNavBar>
       </div>
       <div className="flex flex-row gap-6 items-center justify-start flex-1 relative">
-        <SeccionNavBar className="!shrink-0" nameSection="LOREM IPSUM"></SeccionNavBar>
-        <SeccionNavBar className="!shrink-0" nameSection="LOREM IPSUM"></SeccionNavBar>
+        <SeccionNavBar className="!shrink-0" linkTo="#" nameSection="LOREM IPSUM"></SeccionNavBar>
+        <SeccionNavBar className="!shrink-0" linkTo="#" nameSection="LOREM IPSUM"></SeccionNavBar>
       </div>
       <div className="flex flex-row gap-6 items-center justify-end shrink-0 w-[394px] relative">
         <BotonSecondary
