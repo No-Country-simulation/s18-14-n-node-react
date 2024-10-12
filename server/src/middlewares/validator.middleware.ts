@@ -5,7 +5,6 @@ const schemaValidator = (schema: AnyZodObject | null, paramsSchema: ZodTypeAny |
   return (req: Request, _res: Response, next: NextFunction) => {
     try {
       if (schema) schema.parse(req.body)
-
       if (paramsSchema) paramsSchema.parse(req.params.id)
       return next()
     } catch (error) {
