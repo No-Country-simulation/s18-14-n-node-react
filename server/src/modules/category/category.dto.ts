@@ -9,7 +9,6 @@ export const createCategorySchema = z
     img: urlSchema,
   })
   .strict()
-export type CreateCategory = z.infer<typeof createCategorySchema>
 
 export const readCategoriesSchema = z
   .object({
@@ -17,11 +16,9 @@ export const readCategoriesSchema = z
   })
   .partial()
   .strict()
-export type ReadCategories = z.infer<typeof readCategoriesSchema>
 
 export const updateCategorySchema = createCategorySchema
   .partial()
   .refine((obj) => Object.keys(obj).length > 0, {
     message: 'The object cannot be empty',
   })
-export type UpdateCategory = z.infer<typeof updateCategorySchema>

@@ -1,5 +1,5 @@
 import { connDb } from '../../db/connDb'
-import { CreateCategory, ReadCategories, UpdateCategory } from './category.dto'
+import { CreateCategory, ReadCategories, UpdateCategory } from './category.types'
 
 export class CategoryService {
   static async createCategory(params: CreateCategory) {
