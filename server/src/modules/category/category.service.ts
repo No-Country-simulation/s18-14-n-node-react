@@ -24,4 +24,12 @@ export class CategoryService {
 
     return category
   }
+
+  static async deleteCategory(cateogoryId: string) {
+    const categoryDeleted = await connDb.category.delete({
+      where: { id: cateogoryId },
+    })
+
+    return categoryDeleted
+  }
 }

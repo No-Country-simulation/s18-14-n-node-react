@@ -21,7 +21,13 @@ categoryRouter.get(
 categoryRouter.patch(
   '/update-category/:id',
   verifyDto({ params: paramsWithIdSchema, body: updateCategorySchema }),
-  CategoryController.updateCategy,
+  CategoryController.updateCategory,
+)
+
+categoryRouter.delete(
+  '/delete-category/:id',
+  verifyDto({ params: paramsWithIdSchema }),
+  CategoryController.deleteCategory,
 )
 
 export default categoryRouter
