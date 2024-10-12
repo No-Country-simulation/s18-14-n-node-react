@@ -4,18 +4,15 @@ import { ThemeProvider } from './components/theme-provider'
 // Home
 import Home from './views/Home'
 import HomeMain from './components/home/HomeMain'
-import Auth from './views/Auth'
-import Login from './views/Login'
-import SignUp from './views/Register'
 import Navigation from './views/Navigation'
 import Receps from './components/navigation/Receps'
 import SavedReceps from './components/navigation/SavedReceps'
 import Profile from './components/navigation/Profile'
-import Login from './views/Login'
-import Register from './views/Register'
-
 
 // Auth
+import Auth from './views/Auth'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 function App() {
 
@@ -26,7 +23,7 @@ function App() {
       element: <Home />,
       children: [
         {
-          path: '/Home',
+          path: '/',  // home
           element: <HomeMain />
         }
       ]

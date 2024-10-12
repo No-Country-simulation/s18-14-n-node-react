@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function Banner() {
+
   return (
     <div className="w-screen h-[303px] bg-[#111928]">
       <div className="h-[199px]; ml-[104px] mt-[52px] flex-col justify-center items-start gap-[30px] flex text-white">
@@ -9,7 +10,7 @@ export default function Banner() {
           <div className="text-xs font-normal leading-6 tracking-[0.50px] text-wrap">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel dolor<br />pellentesque, varius elit quis, malesuada quam.</div>
         </div>
         <Link to='/' className="px-7 py-[13px] bg-[#9E9696] rounded-[6px] text-center text-xs font-['Lato'] font-bold leading-6 tracking-[0.50px]">
-          Lorem ipsum
+          Ingresar ingredientes
         </Link>
       </div>
     </div>
