@@ -1,21 +1,20 @@
-import { PrismaClient, Roles } from '@prisma/client'
+import { Roles } from '@prisma/client'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
 import { envs } from '../../config'
 import { IAuth, IChangePassword } from './auth.interface'
 import HttpErr from '../../errors/HttpErr'
 import { IPayload } from '../../user'
-
-const prisma = new PrismaClient()
+import { connDb } from '../../db/connDb'
 
 export class AuthService {
   static async login(data: IAuth): Promise<{ accessToken: string }> {
     let userFound
     const accessSecret = envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'secret'
 
-    if (data.email) userFound = await prisma.user.findUnique({ where: { email: data.email } })
+    if (data.email) userFound = await connDb.user.findUnique({ where: { email: data.email } })
     else if (data.username)
-      userFound = await prisma.user.findUnique({ where: { username: data.username } })
+      userFound = await connDb.user.findUnique({ where: { username: data.username } })
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
 
@@ -34,7 +33,7 @@ export class AuthService {
   }
 
   static async register(data: IAuth): Promise<void> {
-    const userFound = await prisma.user.findUnique({
+    const userFound = await connDb.user.findUnique({
       where: { email: data.email },
     })
 
@@ -42,7 +41,7 @@ export class AuthService {
 
     const hash = await bcrypt.hash(data.password, 10)
 
-    await prisma.user.create({
+    await connDb.user.create({
       data: {
         ...data,
         password: hash,
@@ -52,7 +51,7 @@ export class AuthService {
   }
 
   static async changePassword(id: string, data: IChangePassword): Promise<void> {
-    const userFound = await prisma.user.findUnique({
+    const userFound = await connDb.user.findUnique({
       where: { id: id },
     })
 
@@ -68,7 +67,7 @@ export class AuthService {
 
     const hash = await bcrypt.hash(data.newPassword, 10)
 
-    await prisma.user.update({
+    await connDb.user.update({
       where: { id: userFound.id },
       data: {
         password: hash,

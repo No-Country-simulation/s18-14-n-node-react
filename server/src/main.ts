@@ -1,20 +1,13 @@
-import { PrismaClient } from '@prisma/client'
 import App from './app'
 
 async function main() {
-  const prisma = new PrismaClient()
-
-  await prisma.$connect()
-
   const port = process.env.PORT || 3000
   const app = new App().start()
 
   app.listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log(`Listening on port ${port}`)
+    console.log(`Server running on http://localhost:${port}/api/v1`)
   })
-
-  await prisma.$disconnect()
 }
 
 void main()
