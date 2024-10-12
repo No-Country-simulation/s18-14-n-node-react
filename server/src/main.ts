@@ -6,7 +6,7 @@ async function main() {
 
   app.listen(port, () => {
     // eslint-disable-next-line no-console
-    console.log(`Listening on port ${port}`)
+    console.log(`Server running on http://localhost:${port}/api/v1`)
   })
 }
 

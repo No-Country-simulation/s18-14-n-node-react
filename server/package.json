@@ -8,7 +8,13 @@
     "start": "cross-env NODE_ENV=prod node ./dist/src/main.js",
     "dev": "cross-env NODE_ENV=dev ts-node-dev --respawn --clear ./src/main.ts",
     "lint": "eslint . && prettier --check src/*.ts",
-    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit"
+    "test": "cross-env NODE_ENV=test jest --detectOpenHandles --forceExit",
+    "migrate": "sh ./prisma/migrate.sh",
+    "seed": "sh ./prisma/seed.sh",
+    "studio": "sh ./prisma/studio.sh"
+  },
+  "prisma": {
+    "seed": "ts-node-dev ./prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
