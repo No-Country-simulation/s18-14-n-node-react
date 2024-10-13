@@ -6,7 +6,7 @@ interface targetProps {
 
 export const RecetTarget = (props: targetProps): JSX.Element => {
     return(
-        <article className="bg-white rounded-lg w-[290px] min-h-[485px] max-h-[485px] mt-3">
+        <article className="bg-white rounded-lg w-[290px] min-h-[485px] max-h-[485px]">
             <img className="rounded-t-lg h-1/2 bg-[#9E9696]" src=""></img>
         <div className="p-8 flex-col justify-between text-center px-2 pt-5">
             <h2 className="text-xl font-bold">{props.recetName}</h2>
