@@ -2,7 +2,7 @@ import { useState } from "react"
 import Ingredientbutton from "./Ingredientbutton"
 import { useToast } from "@/hooks/use-toast"
 
-export default function PersonalizedRecipe() {
+export default function Personalized() {
   const { toast } = useToast()
   type Ingredient = {
     id: number,

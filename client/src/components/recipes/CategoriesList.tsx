@@ -10,10 +10,10 @@ type Props = {
   setFilter: (categoryId: number) => void
 }
 
-export default function Categories({ categories, setFilter }: Props) {
+export default function CategoriesList({ categories, setFilter }: Props) {
 
   return (
-    <div className="w-screen justify-center items-center flex">
+    <div className="w-screen justify-center items-center flex pt-8">
       <div className="max-w-[1000px] justify-center items-start flex flex-row flex-wrap">
         {
           categories?.length > 0 && categories.map(({ name, id }) => (

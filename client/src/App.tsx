@@ -19,7 +19,8 @@ import Register from './components/auth/Register'
 
 // Add Ingredients
 import Recipes from './views/Recipes'
-import PersonalizedRecipe from './components/personalizedRecipe/PersonalizedRecipe'
+import Personalized from './components/recipes/Personalized'
+import Categories from './components/recipes/Categories'
 
 function App() {
 
@@ -76,7 +77,15 @@ function App() {
       children: [
         {
           path: '/recipes/personalized',
-          element: <PersonalizedRecipe />
+          element: <Personalized />
+        },
+        {
+          path: '/recipes/categories',
+          element: <Categories />
+        },
+        {
+          path: '/recipes/details/:id',
+          element: <div className='h-[400px]'>Recipe id:{ location.href.split('/')[5] } details</div>
         }
       ]
     }
