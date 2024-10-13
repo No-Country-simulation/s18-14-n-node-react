@@ -1,6 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { ThemeProvider } from './components/theme-provider'
 
+// Alerts Toast
+import { Toaster } from "@/components/ui/toaster"
+
 // Home
 import Home from './views/Home'
 import HomeMain from './components/home/HomeMain'
@@ -13,6 +16,10 @@ import Profile from './components/navigation/Profile'
 import Auth from './views/Auth'
 import Login from './components/auth/Login'
 import Register from './components/auth/Register'
+
+// Add Ingredients
+import AddIngredients from './views/RecipePersonalized'
+import PersonalizedRecipe from './components/personalizedRecipe/PersonalizedRecipe'
 
 function App() {
 
@@ -63,10 +70,21 @@ function App() {
         }
       ]
     },
+    {
+      path: '/recipes',
+      element: <AddIngredients />,
+      children: [
+        {
+          path: '/recipes/personalized',
+          element: <PersonalizedRecipe />
+        }
+      ]
+    }
   ])
 
   return (
-      <ThemeProvider defaultTheme='system' >
+      <ThemeProvider defaultTheme='light' >
+        <Toaster />
         <RouterProvider router={router} />
       </ThemeProvider>
   )
