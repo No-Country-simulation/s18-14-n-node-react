@@ -3,7 +3,7 @@ import { RecetTarget } from "../commons/RecetTarget";
 export default function Receps() {
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 p-10 lg:grid-cols-3 gap-1'>
+    <div className='grid grid-cols-1 md:grid-cols-2 p-10 lg:grid-cols-3 gap-8'>
       <RecetTarget 
         imgSrc="https://dgari.com/wp-content/uploads/2022/02/Flan-de-vainilla-con-caramelo.png"
         recetName="Flan"

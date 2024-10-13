@@ -18,7 +18,7 @@ import Login from './components/auth/Login'
 import Register from './components/auth/Register'
 
 // Add Ingredients
-import AddIngredients from './views/RecipePersonalized'
+import Recipes from './views/Recipes'
 import PersonalizedRecipe from './components/personalizedRecipe/PersonalizedRecipe'
 
 function App() {
@@ -72,7 +72,7 @@ function App() {
     },
     {
       path: '/recipes',
-      element: <AddIngredients />,
+      element: <Recipes />,
       children: [
         {
           path: '/recipes/personalized',
