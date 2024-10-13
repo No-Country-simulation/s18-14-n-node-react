@@ -38,8 +38,8 @@ export const NavBarWeb = ({
         </div>
       </div>
       <div className="flex flex-row gap-5 items-center justify-start flex-1 relative">
-        <SeccionNavBar className="!shrink-0" linkTo="#" nameSection="CATEGORIAS"></SeccionNavBar>
-        <SeccionNavBar className="!shrink-0" linkTo="#" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
+        <SeccionNavBar className="!shrink-0" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
+        <SeccionNavBar className="!shrink-0" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
       </div>
       <div className="flex flex-row gap-3 items-center w-[390px] relative">
         <BotonSecondary
