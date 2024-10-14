@@ -7,6 +7,8 @@ import photo from './img/profpick.png';
 import phone from './Group.svg';
 import house from './house-alt-1.svg';
 import envelope from './envelope.svg';
+import Check from './Check.svg';
+import Star from './Star.svg';
 
 
 export {
@@ -18,5 +20,7 @@ export {
     photo,
     phone,
     house,
-    envelope
+    envelope,
+    Check,
+    Star,
 }
