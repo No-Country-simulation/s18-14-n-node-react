@@ -21,6 +21,7 @@ import Register from './components/auth/Register'
 import Recipes from './views/Recipes'
 import Personalized from './components/recipes/Personalized'
 import Categories from './components/recipes/Categories'
+import Contacto from './components/contacto/Contacto'
 
 function App() {
 
@@ -33,7 +34,11 @@ function App() {
         {
           path: '/',  // home
           element: <HomeMain />
-        }
+        },
+        {
+          path: '/contacto',
+        element: <Contacto />
+      }
       ]
     },
     {
@@ -49,7 +54,7 @@ function App() {
         },
       ]
     },
-    
+  
     {
       element: <Navigation />,
       children:[
