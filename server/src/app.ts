@@ -2,6 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import AppRoutes from './routes'
 import AppHandlers from './handlers'
+import { envs } from './config'
 
 export default class App {
   public readonly app = express()
@@ -10,7 +11,7 @@ export default class App {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: false }))
 
-    const allowedOrigin = ['http://localhost:5173']
+    const allowedOrigin = ['http://localhost:5173', envs.frontendUrl]
 
     this.app.use(
       cors({
