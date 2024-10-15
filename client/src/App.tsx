@@ -22,6 +22,8 @@ import Recipes from './views/Recipes'
 import Personalized from './components/recipes/Personalized'
 import Categories from './components/recipes/Categories'
 import Contacto from './components/contacto/Contacto'
+import Detail from './views/Detail'
+
 
 function App() {
 
@@ -39,6 +41,9 @@ function App() {
           path: '/contacto',
         element: <Contacto />
       }
+          path: '/detail',
+          element: <Detail />
+        }
       ]
     },
     {
@@ -98,8 +103,10 @@ function App() {
 
   return (
       <ThemeProvider defaultTheme='light' >
-        <Toaster />
-        <RouterProvider router={router} />
+        <div className="font-['Lato']">
+          <Toaster />
+          <RouterProvider router={router} />
+        </div>
       </ThemeProvider>
   )
 }
