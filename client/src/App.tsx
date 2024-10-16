@@ -39,11 +39,12 @@ function App() {
         },
         {
           path: '/contacto',
-        element: <Contacto />
-      }
+          element: <Contacto />
+        },
+        {
           path: '/detail',
           element: <Detail />
-        }
+        },
       ]
     },
     {
