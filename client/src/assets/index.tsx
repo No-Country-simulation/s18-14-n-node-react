@@ -9,6 +9,7 @@ import house from './house-alt-1.svg';
 import envelope from './envelope.svg';
 import Check from './Check.svg';
 import Star from './Star.svg';
+import Logo from './Logo.svg';
 
 
 export {
@@ -23,4 +24,5 @@ export {
     envelope,
     Check,
     Star,
+    Logo,
 }
