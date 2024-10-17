@@ -8,7 +8,7 @@ interface IButton {
 
 
 function Button ({ children, type, disabled, onClick, className } : IButton) {
-  let typeStyles = type === "bordered"
+  const typeStyles = type === "bordered"
     ? "border-2 border-black bg-transparent disabled:opacity-60 disabled:border-black disabled:text-black"
     : "disabled:bg-gray-300 disabled:opacity-60 disabled:text-black"
 
