@@ -17,7 +17,7 @@ const Contacto = () => {
                     </p>
                 </div>
                 <div className='flex flex-row w-[571px] h-[56px] mb-[35px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center">
+                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
                         <img src={house} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
                     </div>
                     <div className='flex-col ml-[24px]'>
@@ -26,7 +26,7 @@ const Contacto = () => {
                     </div>
                 </div>
                 <div className='flex flex-row w-[571px] h-[56px] mb-[35px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center">
+                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
                         <img src={phone} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
                     </div>
                     <div className='flex-col ml-[24px]'>
@@ -36,7 +36,7 @@ const Contacto = () => {
                     </div>
                 </div>
                 <div className='flex flex-row w-[571px] h-[56px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center">
+                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
                         <img src={envelope} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
                     </div>
                     <div className='flex-col ml-[24px]'>
@@ -46,21 +46,21 @@ const Contacto = () => {
                 </div>
             </div>
             <div className='ml-[200px] w-[470px] h-[530px] bg-white pr-[154px] flex flex-col flex-shrink-0'>
-                <div className='w-[370px] h-[50px] border-[1px] rounded-[6px] mt-[50px] flex-row mb-[25px] mx-[50px]'>
+                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] mt-[50px] flex-row mb-[25px] mx-[50px]'>
                     <input type='text' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Nombre' />
                 </div>
-                <div className='w-[370px] h-[50px] border-[1px] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
+                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
                     <input type='email' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Correo electrónico' />
                 </div>
-                <div className='w-[370px] h-[50px] border-[1px] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
+                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
                     <input type='tel' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Teléfono' />
                 </div>
-                <div className='w-[370px] h-[130px] border-[1px] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
+                <div className='w-[370px] h-[130px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
                     <textarea className="w-[330px] h-[90px] m-[20px] text-[16px] items-center" placeholder='Escribe tu mensaje'>
 
                     </textarea>
                 </div>
-                    <button className='bg-[#9E9696] w-[370px] text-center py-[13px] px-[28px] mx-[50px] text-white rounded-[6px]'>
+                    <button className='bg-[#005C49] w-[370px] text-center py-[13px] px-[28px] mx-[50px] text-[#FFF5EE] rounded-[6px]'>
                         Enviar
                     </button>
             </div>
