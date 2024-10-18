@@ -53,7 +53,7 @@ const Contacto = () => {
                 <input type='tel' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14  pl-5 py-3 mb-8 text-lg items-center" placeholder='Teléfono' />
                 <input className="w-full h-1/3 border border-[#AA2A66] rounded-lg mx-14 text-start pl-5 py-3 mb-8 text-lg flex-start" placeholder='Escribe tu mensaje' />
                 <BotonPrimary
-                    className="!bg-[#005C49] items-center py-3 px-4 ml-14 text-[#FFF5EE] w-full mb-10"
+                    className="!bg-[#005C49] items-center mx-14 py-3 px-4 text-lg text-[#FFF5EE] h-auto w-full mb-10"
                     textBtn="Enviar"
                     action={() => navigate('/')}
                 />
