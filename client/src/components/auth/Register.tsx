@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { DottedShape, facebook, twitter, google } from '@/assets';
+import { dottedShape, facebook, twitter, google } from '@/assets';
 
 
 const Register = () => {
@@ -7,7 +7,7 @@ const Register = () => {
         <div className="w-screen h-screen items-center m-auto flex bg-slate-200">
             <div className="w-[520px] h-[618px] flex-shrink-0 bg-white m-auto flex-col items-center gap-10">
                 <div className="relative m-0">
-                    <img src={DottedShape} className="absolute top-0 right-1" />
+                    <img src={dottedShape} className="absolute top-0 right-1" />
                 </div>
                 <div className="w-[400px] h-[454px] mx-auto items-center">
                     <div className="w-full mt-[60px] items-center">
@@ -40,7 +40,7 @@ const Register = () => {
                     </div>
                 </div>
                 <div className="relative mt-[100px]">
-                    <img src={DottedShape} className="absolute bottom-1 left-1" />
+                    <img src={dottedShape} className="absolute bottom-1 left-1" />
                 </div>
             </div>
         </div>

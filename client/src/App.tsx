@@ -1,5 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import { ThemeProvider } from './components/theme-provider'
 
 // Alerts Toast
 import { Toaster } from "@/components/ui/toaster"
@@ -103,12 +102,10 @@ function App() {
   ])
 
   return (
-      <ThemeProvider defaultTheme='light' >
-        <div className="font-['Lato']">
-          <Toaster />
-          <RouterProvider router={router} />
-        </div>
-      </ThemeProvider>
+    <div className="font-['Lato']">
+      <Toaster />
+      <RouterProvider router={router} />
+    </div>
   )
 }
 
