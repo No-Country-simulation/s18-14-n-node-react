@@ -1,68 +1,62 @@
-import { phone, house, envelope } from '@/assets';
+import { envelope, house, phone } from '@/assets';
+import { useNavigate } from "react-router-dom";
+import { BotonPrimary } from "../Botones/BotonPrimary";
 
 const Contacto = () => {
+
+    const navigate = useNavigate();
+
     return (
-        <div className="w-[1440px] h-[1024px] bg-white-300 items-center flex flex-row">
-            <div className="flex flex-col mt-[201px] ml-[104px] mb-[353px] items-center">
-                <div className="inline-flex w-[600px] items-start p-0">
-                    <p className="text-[40px] font-bold leading-[56px] justify-start">
+        <div className="w-full h-screen bg-[#FFFCF9] flex flex-row">
+            <div className="flex-col w-1/2 mt-56 ml-48">
+                <div className="w-2/3 items-start">
+                    <h1 className="text-5xl text-[#2C2C2C] font-bold leading-4 mb-8 text-left">
                         Ponte en contacto con nosotros
-                    </p>
-                </div>
-                <div className="w-[571px] mt-[12px] text-[16px] gap-8 mb-[50px]">
-                    <p className="w-full text-justify">
+                    </h1>
+                    <p className="pr-8 text-xl text-[#4D4D4D] text-left mb-16">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eius tempor
                         incididunt ut labore et dolore magna aliqua. Ut enim adiqua minim veniam
                         quis nostrud exercitation ullamco
                     </p>
                 </div>
-                <div className='flex flex-row w-[571px] h-[56px] mb-[35px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
-                        <img src={house} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
+                <div className='flex flex-row w-full mb-8'>
+                    <div className="w-20 h-20 items-center bg-[#003D31] rounded-lg">
+                        <img src={house} className='m-5 w-9 h-9' />
                     </div>
-                    <div className='flex-col ml-[24px]'>
-                        <p className='text-[22px] mb-[10px] text-justify items-center w-[176px] leading-[32px]'>Nuestra ubicación</p>
-                        <p className='tracking-[0.5px] text-[16px] text-gray-500 w-[360px] leading-[24px]'>123, calle sin nombre, Buenos Aires, Argentina</p>
-                    </div>
-                </div>
-                <div className='flex flex-row w-[571px] h-[56px] mb-[35px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
-                        <img src={phone} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
-                    </div>
-                    <div className='flex-col ml-[24px]'>
-                        <p className='text-[22px] mb-[10px] text-justify items-center w-[176px] leading-[32px]'>Teléfono</p>
-                        <p className='tracking-[0.5px] text-[16px] text-gray-500 w-[360px] leading-[24px]'>(+54) 11 1231234
-                        </p>
+                    <div className='flex-col ml-6 items-center w-full'>
+                        <p className='text-2xl mb-3 text-[#333] text-justify w-3/4 leading-8'>Nuestra ubicación</p>
+                        <p className='tracking-[0.5px] text-lg text-[#637381] w-full leading-6'>123, calle sin nombre, Buenos Aires, Argentina</p>
                     </div>
                 </div>
-                <div className='flex flex-row w-[571px] h-[56px]'>
-                    <div className="w-[70px] h-[70px] mb-[35px] items-center bg-[#003D31] rounded-[5px]">
-                        <img src={envelope} className='m-[19px] w-[32px] h-[32px] mr-[24px]' />
+                <div className='flex flex-row w-full mb-8'>
+                    <div className="w-20 h-20 items-center bg-[#003D31] rounded-lg">
+                        <img src={phone} className='m-5 w-9 h-9' />
                     </div>
-                    <div className='flex-col ml-[24px]'>
-                        <p className='text-[22px] mb-[10px] text-justify items-center w-[200px] leading-[32px]'>Correo electrónico</p>
-                        <p className='tracking-[0.5px] text-[16px] text-gray-500 w-[360px] leading-[24px]'>info@recetas.com</p>
+                    <div className='flex-col ml-6 items-center w-full'>
+                        <p className='text-2xl mb-3 text-[#333] text-justify w-3/4 leading-8'>Teléfono</p>
+                        <p className='tracking-[0.5px] text-lg text-[#637381] w-full leading-6'>(+54) 11 1231234</p>
+                    </div>
+                </div>
+                <div className='flex flex-row w-full mb-8'>
+                    <div className="w-20 h-20 items-center bg-[#003D31] rounded-lg">
+                        <img src={envelope} className='m-5 w-9 h-9' />
+                    </div>
+                    <div className='flex-col ml-6 items-center w-full'>
+                        <p className='text-2xl mb-3 text-[#333] text-justify w-3/4 leading-8'>Correo electrónico</p>
+                        <p className='tracking-[0.5px] text-lg text-[#637381] w-full leading-6'>info@recetas.com</p>
                     </div>
                 </div>
             </div>
-            <div className='ml-[200px] w-[470px] h-[530px] bg-white pr-[154px] flex flex-col flex-shrink-0'>
-                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] mt-[50px] flex-row mb-[25px] mx-[50px]'>
-                    <input type='text' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Nombre' />
-                </div>
-                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
-                    <input type='email' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Correo electrónico' />
-                </div>
-                <div className='w-[370px] h-[50px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
-                    <input type='tel' className="w-[334px] h-[26px] my-[12px] ml-[20px] mr-[16px] text-[16px] items-center" placeholder='Teléfono' />
-                </div>
-                <div className='w-[370px] h-[130px] border-[1px] border-[#AA2A66] rounded-[6px] flex-row mb-[25px] mx-[50px]'>
-                    <textarea className="w-[330px] h-[90px] m-[20px] text-[16px] items-center" placeholder='Escribe tu mensaje'>
-
-                    </textarea>
-                </div>
-                    <button className='bg-[#005C49] w-[370px] text-center py-[13px] px-[28px] mx-[50px] text-[#FFF5EE] rounded-[6px]'>
-                        Enviar
-                    </button>
+            <div className='mt-52 ml-14 w-1/4 h-[550px] bg-[#FFFCFA] pr-32 flex flex-col shadow-md'>
+                <input type='text' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14 mt-12 pl-5 py-3 mb-8 text-lg items-center" placeholder='Nombre' />
+                <input type='email' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14  pl-5 py-3 mb-8 text-lg items-center" placeholder='Correo electrónico' />
+                <input type='tel' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14  pl-5 py-3 mb-8 text-lg items-center" placeholder='Teléfono' />
+                <input className="w-full h-1/3 border border-[#AA2A66] rounded-lg mx-14 text-start pl-5 py-3 mb-8 text-lg flex-start" placeholder='Escribe tu mensaje' />
+                <BotonPrimary
+                    className="!bg-[#005C49] items-center py-3 px-4 ml-14 text-[#FFF5EE] w-full mb-10"
+                    textBtn="Enviar"
+                    action={() => navigate('/')}
+                />
             </div>
         </div >
     )
