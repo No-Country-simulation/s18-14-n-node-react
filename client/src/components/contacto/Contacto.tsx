@@ -1,11 +1,11 @@
 import { envelope, house, phone } from '@/assets';
-import { useNavigate } from "react-router-dom";
-import { BotonPrimary } from "../Botones/BotonPrimary";
+import Button from '../Button.tsx';
 
 const Contacto = () => {
 
-    const navigate = useNavigate();
-
+    const handleClick = () => {
+        console.log('Mensaje enviado');
+    }
     return (
         <div className="w-full h-screen bg-[#FFFCF9] flex flex-row">
             <div className="flex-col w-1/2 mt-56 ml-48">
@@ -52,11 +52,14 @@ const Contacto = () => {
                 <input type='email' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14  pl-5 py-3 mb-8 text-lg items-center" placeholder='Correo electrónico' />
                 <input type='tel' className="w-full h-auto border border-[#AA2A66] rounded-lg mx-14  pl-5 py-3 mb-8 text-lg items-center" placeholder='Teléfono' />
                 <input className="w-full h-1/3 border border-[#AA2A66] rounded-lg mx-14 text-start pl-5 py-3 mb-8 text-lg flex-start" placeholder='Escribe tu mensaje' />
-                <BotonPrimary
-                    className="!bg-[#005C49] items-center mx-14 py-3 px-4 text-lg text-[#FFF5EE] h-auto w-full mb-10"
-                    textBtn="Enviar"
-                    action={() => navigate('/')}
-                />
+                <Button
+                    type="filled"
+                    onClick={handleClick}
+                    className="bg-[#005C49] text-white hover:bg-primary-dark mx-14 w-full mb-14"
+                    disabled={false}
+                >
+                    Enviar
+                </Button>
             </div>
         </div >
     )
