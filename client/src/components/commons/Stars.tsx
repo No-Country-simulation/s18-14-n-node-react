@@ -1,10 +1,10 @@
-import {Star} from "@/assets";
+import { star } from "@/assets";
 
 function Stars({ rating }: { rating: number }) {
   return (
     <div className="inline-flex gap-2.5">
       {Array.from({ length: rating }, (_, i) => (
-        <img key={i} src={Star} alt="rating" />
+        <img key={i} src={star} alt="rating" />
       ))}
     </div>
   )

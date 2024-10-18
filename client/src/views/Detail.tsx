@@ -1,14 +1,18 @@
-import { Check, media } from "@/assets";
+import { check, media } from "@/assets";
 import { BotonPrimary } from "@/components/Botones/BotonPrimary";
 import { IRecetData, INutrition, IStats } from "@/models/recet";
 import { data as recetData } from "@/data/recet"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Stars from "@/components/commons/Stars";
 
 
 
 function Detail() {
   const [data, setData] = useState<IRecetData>(recetData);
+
+  useEffect(() => {
+    setData(recetData);
+  }, [])
 
   return (
     <div className="flex flex-col gap-28 box-content">
@@ -69,7 +73,7 @@ function Ingredients({ ingredients }: { ingredients: string[] }) {
         <ul className="inline-grid grid-cols-2 gap-y-3 gap-x-40">
           {ingredients.map((ingredient, i) => (
             <li key={i} className="flex gap-2.5">
-              <img src={Check} width={38} height={38} alt="check" />
+              <img src={check} width={38} height={38} alt="check" />
               <span className="text-2xl text-[#637381]">
                 {ingredient}
               </span>
