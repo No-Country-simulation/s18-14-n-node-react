@@ -1,4 +1,4 @@
-import { Logo } from "@/assets";
+import { logo } from "@/assets";
 import { Link } from "react-router-dom";
 
 
@@ -18,7 +18,7 @@ const footerItems: IFooterItems[] = [
 export default function Footer() {
   return (
     <footer className="bg-[#2C2C2C] w-full py-[5px] px-[105px] flex">
-      <img src={Logo} alt="logo" width={180} height={180} />
+      <img src={logo} alt="logo" width={180} height={180} />
       <div className="grow py-5 ms-7 flex flex-col justify-between">
         <nav className="">
           <ul className="flex justify-end gap-7 text-white">
