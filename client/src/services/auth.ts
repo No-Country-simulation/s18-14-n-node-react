@@ -3,7 +3,7 @@ import { Login, Register } from "@/types";
 
 export const login = async (user: Login) => {
   try {
-    const { data } = await axios.post("/views/Login", user);
+    const { data } = await axios.post("/auth/login", user);
     console.log(data);
   } catch (error) {
     console.log(error);
@@ -12,9 +12,9 @@ export const login = async (user: Login) => {
 
 export const register = async (user: Register) => {
   try {
-    const { data } = await axios.post("/views/Register", user);
-    console.log(data);
-  } catch (error) {
-    console.log(error);
+    const res = await axios.post("/auth/register", user);
+    return res;
+  } catch(error) {
+    throw await error
   }
-};
+}

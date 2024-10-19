@@ -4,7 +4,7 @@ import App from './App.tsx'
 import './index.css'
 
 import axios from 'axios'
-axios.defaults.baseURL = 'http://localhost:3000/api/v1/'
+axios.defaults.baseURL = import.meta.env.VITE_OUR_API_URL || 'http://localhost:3000/api/v1/'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
