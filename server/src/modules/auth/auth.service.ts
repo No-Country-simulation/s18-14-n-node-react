@@ -6,11 +6,16 @@ import { IAuth, IChangePassword } from './auth.interface'
 import HttpErr from '../../errors/HttpErr'
 import { IPayload } from '../../user'
 import { connDb } from '../../db/connDb'
+import MailerSendUtils from '../../utils/mailer-send.utils'
 
 export class AuthService {
-  static async login(data: IAuth): Promise<{ accessToken: string }> {
+  static async login(data: IAuth): Promise<{ accessToken: string; refreshToken: string }> {
     let userFound
-    const accessSecret = envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'secret'
+    const accessSecret =
+      envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'access_secret'
+
+    const refreshSecret =
+      envs.nodeEnv === 'prod' ? (envs.jwtRefreshSecret as string) : 'refresh_secret'
 
     if (data.email) userFound = await connDb.user.findUnique({ where: { email: data.email } })
     else if (data.username)
@@ -28,25 +33,32 @@ export class AuthService {
     }
 
     const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '20m' })
+    const refreshToken = jwt.sign(payload, refreshSecret, { expiresIn: '2h' })
 
-    return { accessToken }
+    return { accessToken, refreshToken }
   }
 
   static async register(data: IAuth): Promise<void> {
-    const userFound = await connDb.user.findUnique({
-      where: { email: data.email },
-    })
+    const users = await connDb.user.findMany()
 
-    if (userFound) throw new HttpErr(409, 'Conflict', 'User already exists!')
+    const emailFound = users.some((user) => user.email === data.email)
+    const usernameFound = users.some((user) => user.username === data.username)
+
+    if (emailFound) throw new HttpErr(409, 'Conflict', 'Email already registered!')
+    if (usernameFound) throw new HttpErr(409, 'Conflict', 'Username already exists!')
 
     const hash = await bcrypt.hash(data.password, 10)
 
-    await connDb.user.create({
+    const newUser = await connDb.user.create({
       data: {
         ...data,
         password: hash,
         role: Roles.CLIENT,
       },
+    })
+
+    await MailerSendUtils.welcomeMail(newUser.email, 'public/views/welcome.hbs', {
+      user: newUser.username,
     })
   }
 
@@ -70,6 +82,67 @@ export class AuthService {
     await connDb.user.update({
       where: { id: userFound.id },
       data: {
+        password: hash,
+      },
+    })
+  }
+
+  static async forgotPassword(email: string): Promise<void> {
+    const recoverySecret = envs.nodeEnv === 'prod' ? (envs.jwtRecoverySecret as string) : 'secret'
+    const expires = Date.now() + 36000000
+
+    const userFound = await connDb.user.findUnique({
+      where: { email: email },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    const payload: IPayload = {
+      id: userFound.id,
+    }
+
+    const recoveryToken = jwt.sign(payload, recoverySecret, { expiresIn: '10m' })
+
+    connDb.user.update({
+      where: {
+        id: userFound.id,
+      },
+      data: {
+        recoveryToken: recoveryToken,
+      },
+    })
+
+    const link = `${envs.frontendUrl}/reset-password?token=${recoveryToken}&expires=${expires}`
+
+    await MailerSendUtils.resetPasswordMail(userFound.email, 'public/views/reset-password.hbs', {
+      user: userFound.username,
+      link: link,
+    })
+  }
+
+  static async getUserForPasswordReset(id: string) {
+    const userFound = await connDb.user.findUnique({
+      where: {
+        id: id,
+      },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+  }
+
+  static async resetPassword(id: string, password: string): Promise<void> {
+    const userFound = await connDb.user.findUnique({
+      where: { id: id },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    const hash = await bcrypt.hash(password, 10)
+
+    await connDb.user.update({
+      where: { id: userFound.id },
+      data: {
+        recoveryToken: null,
         password: hash,
       },
     })

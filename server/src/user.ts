@@ -1,6 +1,6 @@
 export interface IPayload {
   id: string
-  role: string
+  role?: string
 }
 
 declare module 'express' {
