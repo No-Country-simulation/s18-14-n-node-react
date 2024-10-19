@@ -7,6 +7,15 @@ export default {
   ],
   theme: {
   	extend: {
+			backgroundImage: {
+				vegetarian: "url('/assets/vegetarian.svg')",
+				vegan: "url('/assets/vegan.svg')",
+				glutenfree: "url('/assets/gluten-free.svg')",
+				paleo: "url('/assets/paleo.svg')",
+				cetogenica: "url('/assets/cetogenica.svg')",
+				mediterranean: "url('/assets/mediterranean.svg')",
+				raw: "url('/assets/raw.svg')",
+			},
   		borderRadius: {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',

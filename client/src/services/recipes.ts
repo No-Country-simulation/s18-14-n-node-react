@@ -1,4 +1,5 @@
 import axios from "axios";
+import { recipesList } from "./datatemp";
 
 const RECIPES_URL = "/ruta-de-recipes";
 const headers = {
@@ -6,19 +7,12 @@ const headers = {
 };
 
 // obtener todas las recetas del usuario o según busqueda
-export const getUserRecipes = async ({
-  userId,
-  search,
-}: {
-  userId: string;
-  search: string;
-}) => {
+export const getUserRecipes = (page: number | undefined) => {
   try {
-    const { data } = await axios(
-      `${RECIPES_URL}?userId=${userId}&search=${search}`,
-      { headers }
-    );
-    console.log(data);
+    if (page) {
+      const end = 8 + page * 4
+      return recipesList.slice(0, end)
+    } else return recipesList.slice(0, 8)
   } catch (error) {
     console.log(error);
   }
@@ -36,7 +30,7 @@ export const addRecipe = async (recipe: {
   }
 };
 
-export const updateRecipe = async(recipe: {
+export const updateRecipe = async (recipe: {
   recipeId: string
   title: string;
   description: string;
