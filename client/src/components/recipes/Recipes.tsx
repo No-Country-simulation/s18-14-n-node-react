@@ -2,13 +2,13 @@ import { Recipe } from "@/types";
 import Card from "./Card";
 
 export default function Recipes({ recipes }: { recipes: Recipe[] }) {
+
   return (
-    <div className="w-screen flex flex-col p-6">
-      <h1 className="text-[#101010] text-[32px] font-semibold font-['Lato'] leading-[56px] pl-8">Lorem ipsum </h1>
-      <div className="w-full h-[485px] justify-center items-start gap-6 flex flex-row">
+    <div className="w-screen flex flex-col p-6 mb-8">
+      <div className="w-full justify-center items-start gap-8 flex flex-row flex-wrap">
         {
-          recipes?.length > 0 && recipes.map(({ id, title, description }) => (
-            <Card id={id} title={title} description={description} key={id} />
+          recipes?.length > 0 && recipes.map(({id, title, image, description}) => (
+            <Card title={title} image={image} description={description} key={id} />
           ))
         }
       </div>

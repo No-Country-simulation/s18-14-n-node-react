@@ -1,12 +1,16 @@
-import Categories from "@/components/recipes/Categories";
 import Banner from "./Banner";
+import CategoriesList from "../recipes/CategoriesList";
+import BigCard from "./BigCard";
+import Favorites from "./Favorites";
 
 export default function HomeMain() {
 
   return (
-    <div className='flex flex-col gap-8'>
+    <div className='flex flex-col gap-8 pb-8'>
       <Banner />
-      <Categories />
+      <CategoriesList />
+      <BigCard />
+      <Favorites />
     </div>
   )
 }
