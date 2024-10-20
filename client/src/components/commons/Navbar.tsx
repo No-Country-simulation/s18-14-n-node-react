@@ -4,6 +4,7 @@ import { BotonSecondary } from "../Botones/BotonSecondary";
 import { BotonPrimary } from "../Botones/BotonPrimary";
 import { logoWText } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
+import { BtnSesion } from "../Botones/BtnSesion";
 
 
 export default function Navbar() {
@@ -23,11 +24,12 @@ export const NavBarWeb = ({
 }: INavBarWebProps): JSX.Element => {
 
   const navigate = useNavigate();
+  const tkn = localStorage.getItem("tkn");
 
   return (
     <div
       className={
-        "bg-colorprimario px-28 flex flex-grow h-[100px] w-screen" +
+        "bg-colorprimario px-24 flex flex-grow h-[100px] w-screen" +
         className
       }
     >
@@ -40,18 +42,28 @@ export const NavBarWeb = ({
         <SeccionNavBar className="!shrink-0" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
         <SeccionNavBar className="!shrink-0" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
       </div>
-      <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
-        <BotonSecondary
-          className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento"
-          btnText="Registrarse"
-          action={() => navigate('/register')}
-        ></BotonSecondary>
-        <BotonPrimary
-          className="bg-colorprimario !shrink-0 hover:bg-coloracento shadow-custom"
-          textBtn="Iniciar sesión"
-          action={() => navigate('/login')}
+
+      {!tkn?
+        <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
+          <BotonSecondary
+            className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento"
+            btnText="Registrarse"
+            action={() => navigate('/register')}
+          ></BotonSecondary>
+          <BotonPrimary
+            className="bg-colorprimario !shrink-0 hover:bg-coloracento shadow-custom"
+            textBtn="Iniciar sesión"
+            action={() => navigate('/login')}
+          />
+        </div>
+        :
+        <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
+        <BtnSesion 
+          imgSrc="https://via.placeholder.com/40" 
+          action={()=>navigate('/navigation/Profile')}
         />
-      </div>
+        </div>
+      }
     </div>
   );
 };
