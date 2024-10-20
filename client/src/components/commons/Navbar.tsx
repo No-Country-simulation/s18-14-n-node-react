@@ -42,12 +42,12 @@ export const NavBarWeb = ({
       </div>
       <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
         <BotonSecondary
-          className="!shrink-0 border-2 border-colorsecundario hover:bg-accent-foreground"
+          className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento"
           btnText="Registrarse"
           action={() => navigate('/register')}
         ></BotonSecondary>
         <BotonPrimary
-          className="bg-colorprimario !shrink-0 hover:bg-accent-foreground"
+          className="bg-colorprimario !shrink-0 hover:bg-coloracento shadow-custom"
           textBtn="Iniciar sesión"
           action={() => navigate('/login')}
         />

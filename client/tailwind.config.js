@@ -20,12 +20,10 @@ export default {
 				raw: "url('/assets/raw.svg')",
 			},
   		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)',
 			roundTarget:'5rem'
   		},
-  		colors: {			
+  		colors: {
+			colorblancoprincipal:'#FCFCFC',			
 			coloracento:'#2A7767',
 			colorprimario:'#990047',
 			colorsecundario:'#FFF8F4',
