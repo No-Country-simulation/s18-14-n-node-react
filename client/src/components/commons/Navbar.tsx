@@ -2,15 +2,14 @@
 import { SeccionNavBar } from "../SeccionesNavbar/SeccionNavBar";
 import { BotonSecondary } from "../Botones/BotonSecondary";
 import { BotonPrimary } from "../Botones/BotonPrimary";
-import { media } from "@/assets";
+import { logoWText } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Navbar() {
   return (
-    <div className="flex gap-5 border-b">
+    <div className="flex min-w-full border-b">
       <NavBarWeb />
-      {/* <ModeToggle />*/}
     </div>
   )
 }
@@ -28,29 +27,29 @@ export const NavBarWeb = ({
   return (
     <div
       className={
-        "bg-[#c5c5c5] px-20 flex flex-row gap-6 items-center justify-start h-[100px] w-screen relative" +
+        "bg-color-primario px-28 flex flex-grow h-[100px] w-screen" +
         className
       }
     >
-      <div className="shrink-0 w-[280px] h-[95px] static">
-        <div className="bg-[#d9d9d9] w-[280px] h-[95px] absolute left-20 top-[2.5px] flex items-center justify-center">
-        <Link className="max-h-20 flex flex-center" to="/"><img src={media} className="max-h-20 mx-auto"/></Link>
-        </div>
+
+      <div className="bg-color-primario w-1/3 h-full flex items-center justify-center">
+        <Link className="flex h-4/5 w-full" to="/"><img src={logoWText} className="h-auto w-full" /></Link>
       </div>
-      <div className="flex flex-row gap-5 items-center justify-start flex-1 relative">
+
+      <div className="flex flex-row w-3/4 items-center justify-evenly">
         <SeccionNavBar className="!shrink-0" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
         <SeccionNavBar className="!shrink-0" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
       </div>
-      <div className="flex flex-row gap-3 items-center w-[390px] relative">
+      <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
         <BotonSecondary
-          className="!shrink-0"
+          className="!shrink-0 border-2 border-color-secundario hover:bg-color-acento"
           btnText="Registrarse"
-          action={()=>navigate('/register')}
+          action={() => navigate('/register')}
         ></BotonSecondary>
         <BotonPrimary
-          className="!bg-[#9e9696] !shrink-0"
+          className="bg-color-primario !shrink-0 hover:bg-color-acento"
           textBtn="Iniciar sesión"
-          action={()=>navigate('/login')}
+          action={() => navigate('/login')}
         />
       </div>
     </div>

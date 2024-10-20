@@ -1,8 +1,8 @@
 
 #nav a {
-    @apply w-full px-2 inline-flex space-x-2 items-center hover:bg-white/5 transition ease-linear duration-150;
+    @apply w-full px-2 inline-flex space-x-2 items-center text-color-texto-subtitulos transition ease-linear duration-150;
   }
   
   #nav a.active {
-    @apply  bg-[#EEE];
+    @apply  bg-color-acento text-color-secundario;
   }

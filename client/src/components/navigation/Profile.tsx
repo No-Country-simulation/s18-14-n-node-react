@@ -8,7 +8,7 @@ export default function Profile() {
                 <img src={photo} className="h-full"></img>
             </div>
 
-            <div className="w-full grid grid-cols-7 gap-8 justify-between">
+            <div className="w-full grid grid-cols-7 gap-8 justify-between pb-8">
                 <article className="bg-white rounded-3xl col-span-4 mt-3 p-8">
                     <div className="mb-5 w-full h-20">
                         <label
