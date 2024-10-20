@@ -20,11 +20,18 @@ export default {
 				raw: "url('/assets/raw.svg')",
 			},
   		borderRadius: {
-  			lg: 'var(--radius)',
-  			md: 'calc(var(--radius) - 2px)',
-  			sm: 'calc(var(--radius) - 4px)'
+			roundTarget:'5rem'
   		},
   		colors: {
+			colorblancoprincipal:'#FCFCFC',			
+			coloracento:'#2A7767',
+			colorprimario:'#990047',
+			colorsecundario:'#FFF8F4',
+			colortextosubtitulos:'#4D4D4D',
+			colorbeig:'#FFF5EE',
+			colorremolacha:'#66002F',
+			colorencabezados:'#2C2C2C',
+			colorbgtarjetas:'#FFF5EE',			  
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {

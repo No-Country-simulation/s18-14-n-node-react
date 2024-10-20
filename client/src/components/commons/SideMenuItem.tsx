@@ -16,8 +16,8 @@ export const SideMenuItem = ({ href, title}: Props) => {
       to={ href }
       end
     >
-      <div className="flex flex-col py-3 active:bg-[#EEE] px-6">
-        <span className="text-sm font-bold leading-5 text-[#637381]">{ title }</span>
+      <div className="flex flex-col py-3 px-6">
+        <span className="text-sm font-bold leading-5">{ title }</span>
       </div>
     </NavLink>
   );
