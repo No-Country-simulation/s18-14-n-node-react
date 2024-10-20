@@ -27,95 +27,92 @@ import { ProtectedRoute } from './components/auth/ProtectedRoutes'
 
 function App() {
 
-  const router = createBrowserRouter
-    (
-      [
+  const router = createBrowserRouter([
+    {
+      path: '/',
+      errorElement: <h1 className='text-destructive-foreground' >Error</h1>,
+      element: <Home />,
+      children: [
         {
-          path: '/',
-          errorElement: <h1 className='text-destructive-foreground' >Error</h1>,
-          element: <Home />,
-          children: [
-            {
-              path: '/',  // home
-              element: <HomeMain />
-            },
-            {
-              path: '/contacto',
-              element: <Contacto />
-            },
-            {
-              path: '/detail',
-              element: <Detail />
-            },
-          ]
+          path: '/',  // home
+          element: <HomeMain />
         },
         {
-          element: <Auth />,
-          children: [
-            {
-              path: '/login',
-              element: <Login />,
-            },
-            {
-              path: '/register',
-              element: <Register />
-            },
-          ]
+          path: '/contacto',
+          element: <Contacto />
         },
         {
-          element: <ProtectedRoute />,
+          path: '/detail',
+          element: <Detail />
+        },
+      ]
+    },
+    {
+      element: <Auth />,
+      children: [
+        {
+          path: '/login',
+          element: <Login />,
+        },
+        {
+          path: '/register',
+          element: <Register />
+        },
+      ]
+    },
+    {
+      element: <ProtectedRoute />,
+      children: [
+        {
+          path: '/navigation',
+          element: <Navigation />,
           children: [
             {
-              path: '/navigation',
-              element: <Navigation />,
-              children: [
-                {
-                  path: '/navigation/Profile',
-                  element: <Profile />
-                },
-                {
-                  path: '/navigation/Receps',
-                  element: <Receps />
-                },
-                {
-                  path: '/navigation/RecepsSaved',
-                  element: <SavedReceps />
-                },
-                {
-                  path: '/navigation/Configuration',
-                  element: <></>
-                }
-              ]
+              path: '/navigation/Profile',
+              element: <Profile />
             },
             {
-              path: '/recipes',
-              element: <Recipes />,
-              children: [
-                {
-                  path: '/recipes/personalized',
-                  element: <Personalized />
-                },
-                {
-                  path: '/recipes/categories',
-                  element: <Categories />
-                },
-                {
-                  path: '/recipes/details/:id',
-                  element: <div className='h-[400px]'>Recipe id:{location.href.split('/')[5]} details</div>
-                }
-              ]
+              path: '/navigation/Receps',
+              element: <Receps />
+            },
+            {
+              path: '/navigation/RecepsSaved',
+              element: <SavedReceps />
+            },
+            {
+              path: '/navigation/Configuration',
+              element: <></>
             }
           ]
-        }      
-      ]    
-    )
+        },
+        {
+          path: '/recipes',
+          element: <Recipes />,
+          children: [
+            {
+              path: '/recipes/personalized',
+              element: <Personalized />
+            },
+            {
+              path: '/recipes/categories',
+              element: <Categories />
+            },
+            {
+              path: '/recipes/details/:id',
+              element: <div className='h-[400px]'>Recipe id:{location.href.split('/')[5]} details</div>
+            }
+          ]
+        }
+      ]
+    }
+  ])
 
-return (
-  <div className="font-['Lato']">
-    <Toaster />
-    <RouterProvider router={router} />
-  </div>
-)
+  return (
+    <div className="font-['Lato']">
+      <Toaster />
+      <RouterProvider router={router} />
+    </div>
+  )
 }
 
 export default App
