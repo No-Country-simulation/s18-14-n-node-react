@@ -26,11 +26,6 @@ export default function Receps() {
           <RecetTarget key={item.recetName} {...item} />
         ))
       }
-      {/* <RecetTarget
-        imgSrc="https://dgari.com/wp-content/uploads/2022/02/Flan-de-vainilla-con-caramelo.png"
-        recetName="Flan"
-        recetText="Uno de los postres más sencillos y rápidos de preparar es este flan sabor vainilla con caramelo quemado.."
-      /> */}
     </div>
   )
 }

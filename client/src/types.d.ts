@@ -1,13 +1,9 @@
 export type Recipe = {
-  id: number,
+  id?: number,
   title: string,
   description: string,
-  categoryId: number
-}
-
-export type Category = {
-  id: number,
-  name: string
+  image: string,
+  categoryId?: number
 }
 
 export type Login = { 
@@ -19,4 +15,10 @@ export type Register = {
   username: string,
   email: string, 
   password: string 
+}
+
+export type Category = {
+  id: number,
+  name: string,
+  image: string
 }

@@ -22,7 +22,7 @@ const menuItems: MenuItem[] = [
 export const SideMenu = () => {
 
   return (
-    <div id="menu" className="bg-color-beige min-h-screen flex-col flex-grow z-10 w-60 py-10 left-0">
+    <div id="menu" className="bg-colorbeig min-h-screen flex-col flex-grow z-10 w-60 py-10 left-0">
       
 
       {/* Menu Items */ }
@@ -36,7 +36,7 @@ export const SideMenu = () => {
 
         <NavLink to={'/login'}>
           <div className="flex flex-col mt-3 border-t-2  pt-5 w-10/12 mx-auto">
-            <span className="text-lg text-color-texto-subtitulos font-bold leading-5" onClick={()=>localStorage.clear()}>Cerrar sesión</span>
+            <span className="text-lg text-colortextosubtitulos font-bold leading-5" onClick={()=>localStorage.clear()}>Cerrar sesión</span>
           </div>
         </NavLink>
 

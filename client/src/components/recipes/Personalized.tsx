@@ -76,7 +76,7 @@ export default function Personalized() {
         <div className="h-[394px] flex flex-col justify-between relative">
           <input
             list='addIngredient'
-            className="h-[50px] w-[720px] flex text-gray-400 text-base font-normal font-['Inter'] leading-normal outline-none bg-white rounded-md border border-[#dfe4ea] px-4 items-center"
+            className="h-[50px] w-[750px] flex text-gray-400 text-base font-normal font-['Inter'] leading-normal outline-none bg-white rounded-md border border-[#dfe4ea] px-4 items-center"
             placeholder="Ingresa un ingrediente"
             onClick={handleListClick}
           />
@@ -88,7 +88,7 @@ export default function Personalized() {
               suggestedList?.map(({ id, name }) => (
                 <li
                   onClick={() => handleItemListClick(id)}
-                  key={id}
+                  key={name + id}
                   className="h-[50px] w-[720px] flex text-gray-400 text-base font-normal font-['Inter'] leading-normal outline-none bg-white rounded-md border border-[#dfe4ea] px-4 items-center"
                 >
                   {name}

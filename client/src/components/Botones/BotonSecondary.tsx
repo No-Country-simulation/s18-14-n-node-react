@@ -16,12 +16,12 @@ export interface IBotonSecondaryProps {
       <button
         type="submit" onClick={action}
         className={
-          "rounded-lg py-3 px-4 flex flex-row items-center justify-center w-1/2 h-[50px] " +
+          "rounded-xl py-3 px-4 flex flex-row items-center justify-center w-1/2 h-[50px] " +
           className
         }
       >
         <div
-          className="text-color-secundario flex items-center justify-start"
+          className="text-colorsecundario flex items-center justify-start"
         >
           {btnText}
         </div>

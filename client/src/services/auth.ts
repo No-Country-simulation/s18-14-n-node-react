@@ -7,6 +7,7 @@ export const login = async (user: Login) => {
     localStorage.setItem("tkn",JSON.stringify(data.accessToken))
     return data;
   } catch (error) {
+    localStorage.removeItem("tkn")
     console.log(error);
   }
 };

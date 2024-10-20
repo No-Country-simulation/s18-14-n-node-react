@@ -27,12 +27,12 @@ export const NavBarWeb = ({
   return (
     <div
       className={
-        "bg-color-primario px-28 flex flex-grow h-[100px] w-screen" +
+        "bg-colorprimario px-28 flex flex-grow h-[100px] w-screen" +
         className
       }
     >
 
-      <div className="bg-color-primario w-1/3 h-full flex items-center justify-center">
+      <div className="bg-colorprimario w-1/3 h-full flex items-center justify-center">
         <Link className="flex h-4/5 w-full" to="/"><img src={logoWText} className="h-auto w-full" /></Link>
       </div>
 
@@ -42,12 +42,12 @@ export const NavBarWeb = ({
       </div>
       <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
         <BotonSecondary
-          className="!shrink-0 border-2 border-color-secundario hover:bg-color-acento"
+          className="!shrink-0 border-2 border-colorsecundario hover:bg-accent-foreground"
           btnText="Registrarse"
           action={() => navigate('/register')}
         ></BotonSecondary>
         <BotonPrimary
-          className="bg-color-primario !shrink-0 hover:bg-color-acento"
+          className="bg-colorprimario !shrink-0 hover:bg-accent-foreground"
           textBtn="Iniciar sesión"
           action={() => navigate('/login')}
         />
