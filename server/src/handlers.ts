@@ -7,13 +7,13 @@ import HttpErr from './errors/HttpErr'
 export default class AppHandlers {
   static get handlers() {
     const routeNotFound: RNFHandler = (_req, res) => {
-      res.status(404).json({ msg: 'Route not found. Check URL 👀' })
+      res.status(404).json({ message: 'Route not found. Check URL 👀' })
     }
 
     const error: ErrHandler = (error, _req, res, _next) => {
       if (error instanceof RouteErr) {
-        const { status, msg } = error
-        return res.status(status).json({ msg })
+        const { status, message } = error
+        return res.status(status).json({ message })
       }
 
       if (error instanceof ZodError)
@@ -30,8 +30,6 @@ export default class AppHandlers {
           message: error.msg,
           description: error.description,
         })
-
-      return res.status(500).json(error)
     }
 
     return { error, routeNotFound }
