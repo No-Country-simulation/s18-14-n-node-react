@@ -11,13 +11,14 @@ export default {
           custom: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)"
       },
 			backgroundImage: {
+				fondoAuth: "url('/img/fondoAuth.png')",
 				vegetarian: "url('/assets/vegetarian.svg')",
 				vegan: "url('/assets/vegan.svg')",
 				glutenfree: "url('/assets/gluten-free.svg')",
 				paleo: "url('/assets/paleo.svg')",
 				cetogenica: "url('/assets/cetogenica.svg')",
 				mediterranean: "url('/assets/mediterranean.svg')",
-				raw: "url('/assets/raw.svg')",
+				raw: "url('/assets/raw.svg')",				
 			},
   		borderRadius: {
 			roundTarget:'5rem'

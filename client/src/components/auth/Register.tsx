@@ -1,20 +1,18 @@
-import { dottedShape, facebook, twitter, google } from '@/assets';
-import { isEmailValid, isPasswordValid, isUsernameValid } from '@/helpers/format';
-import { useState } from 'react';
-import { register } from '@/services/auth';
-import { ERROR_RESPONSE } from '@/constants';
-import { ResponseErrorMessage, UserRegisterResponse } from '@/models';
-import axios from 'axios';
+import { dottedShape, logoAuth } from '@/assets';
 import Button from "@/components/Button";
-
-
+import { ERROR_RESPONSE } from '@/constants';
+import { isEmailValid, isPasswordValid, isUsernameValid } from '@/helpers/format';
+import { ResponseErrorMessage, UserRegisterResponse } from '@/models';
+import { register } from '@/services/auth';
+import axios from 'axios';
+import { useState } from 'react';
 
 interface InputValues {
     value: string;
     error: string;
 }
 
-type InputTypes = 
+type InputTypes =
     | "username"
     | "email"
     | "password"
@@ -47,13 +45,13 @@ const hasValueError = (value: string, type: InputTypes) => {
     }
 
     if (type === "password" || type === "confirmPassword") {
-        const message = "La contraseña debe tener entre 6 y 30 caracteres" ;
+        const message = "La contraseña debe tener entre 6 y 30 caracteres";
         return !isPasswordValid(value) ? message : "";
     }
 
     return "";
 }
-    
+
 
 const Register = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -74,22 +72,22 @@ const Register = () => {
             [name]: {
                 value: value,
                 error: hasValueError(value, name as InputTypes),
-            } 
+            }
         });
     }
-    
+
     const passwordsAreEqual = () => {
-      if (form.password.value !== form.confirmPassword.value) {
-        setForm({
-          ...form,
-          confirmPassword: {
-            ...form.confirmPassword,
-            error: "Las contraseñas no coinciden"
-          }
-        });
-        return false;
-      }
-      return true;
+        if (form.password.value !== form.confirmPassword.value) {
+            setForm({
+                ...form,
+                confirmPassword: {
+                    ...form.confirmPassword,
+                    error: "Las contraseñas no coinciden"
+                }
+            });
+            return false;
+        }
+        return true;
     }
 
     const onSubmit = async () => {
@@ -103,12 +101,12 @@ const Register = () => {
 
         try {
             setIsLoading(true);
-            const { data }: {data: UserRegisterResponse} = await register(user);
+            const { data }: { data: UserRegisterResponse } = await register(user);
             console.log(data);
             setIsLoading(false);
             alert(data.message);
 
-        } catch(error) {
+        } catch (error) {
             if (axios.isAxiosError(error)) {
                 console.log(error)
                 if (error.response?.status === 409) {
@@ -137,17 +135,15 @@ const Register = () => {
 
 
     return (
-        <div className="w-screen h-screen items-center m-auto flex bg-slate-200">
-            <div className="w-[520px] h-[618px] flex-shrink-0 bg-white m-auto flex-col items-center gap-10">
+        <div className="w-screen h-full items-center flex">
+            <div className="w-1/4 h-9/12 flex-shrink-0 bg-[#FFFCFA] mx-auto mt-4 shadow-md items-center rounded-xl gap-10">
                 <div className="relative m-0">
-                    <img src={dottedShape} className="absolute top-0 right-1" />
+                    <img src={dottedShape} className="absolute w-16 h-16 top-0 right-0 -rotate-90" />
                 </div>
-                <div className="w-[400px] h-[454px] mx-auto items-center">
-                    <div className="w-full mt-[60px] items-center">
-                        <div className="w-[291px] h-[87.1px] mb-[40px] flex mx-auto items-center text-center py-auto bg-slate-300 px-auto" >
-                            <p className="items-center flex-col mx-auto text-black">LOGO</p>
-                        </div>
-                        <div className="flex flex-col gap-5">
+                <div className="w-96 h-108 mt-6 mb-16 mx-auto items-center">
+                    <div className="w-full mt-16 items-center">
+                        <img src={logoAuth} className="w-48 h-32 mb-10 flex mx-auto items-center text-center" />
+                        <div className="flex flex-col gap-5 ">
                             <Input
                                 type="text"
                                 placeholder="Nombre de usuario"
@@ -182,33 +178,17 @@ const Register = () => {
                             />
                             <Button
                                 type="filled"
-                                className="w-full bg-[#005C49] text-white"
+                                className="w-full bg-[#005C49] text-white rounded-sm mb-10"
                                 onClick={() => onSubmit()}
                                 disabled={isSendDisabled || isLoading}
                             >
                                 {isLoading ? "Procesando..." : "Registrarse"}
                             </Button>
                         </div>
-                        <div className="flex items-center mt-[35px]">
-                            <div className="flex-grow border-t border-gray-300"></div>
-                            <span className="mx-4 text-gray-500">O registrarte con</span>
-                            <div className="flex-grow border-t border-gray-300"></div>
-                        </div>
-                        <div className="flex flex-row mt-[25px]">
-                            <button className="w-[120px] h-[40px] mr-[20px] bg-slate-300 rounded-lg">
-                                <img src={facebook} className="mx-auto" />
-                            </button>
-                            <button className="w-[120px] h-[40px] mr-[20px] bg-slate-300 rounded-lg">
-                                <img src={twitter} className="mx-auto" />
-                            </button>
-                            <button className="w-[120px] h-[40px] bg-slate-300 rounded-lg">
-                                <img src={google} className="mx-auto" />
-                            </button>
-                        </div>
                     </div>
                 </div>
-                <div className="relative mt-[100px]">
-                    <img src={dottedShape} className="absolute bottom-1 left-1" />
+                <div className="relative mt-20 ml-0">
+                    <img src={dottedShape} className="absolute w-16 h-16 bottom-0 left-0 rotate-90" />
                 </div>
             </div>
         </div>
@@ -236,9 +216,9 @@ function Input({ type, placeholder, name, onChange, value, error }: InputProps) 
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
-                className="py-[12px] p-5 w-full border border-gray-400 rounded-lg"
+                className="py-3 p-5 w-full border border-[#990047] rounded-sm"
             />
-            {error && 
+            {error &&
                 <p className="text-red-500 text-sm mt-1">{error}</p>
             }
         </div>
