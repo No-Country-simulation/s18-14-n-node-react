@@ -1,3 +1,4 @@
+import * as crypto from 'node:crypto'
 import { Roles } from '@prisma/client'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
@@ -32,7 +33,7 @@ export class AuthService {
       role: userFound.role,
     }
 
-    const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '20m' })
+    const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '15m' })
     const refreshToken = jwt.sign(payload, refreshSecret, { expiresIn: '2h' })
 
     return { accessToken, refreshToken }
@@ -57,8 +58,29 @@ export class AuthService {
       },
     })
 
-    await MailerSendUtils.welcomeMail(newUser.email, 'public/views/welcome.hbs', {
+    await connDb.profile.create({
+      data: {
+        userId: newUser.id,
+      },
+    })
+
+    await MailerSendUtils.welcomeMail(newUser.email, 'views/welcome.hbs', {
       user: newUser.username,
+    })
+  }
+
+  static async deleteRefreshToken(refreshToken: string) {
+    const userFound = await connDb.user.findFirst({
+      where: { refreshToken: { has: refreshToken } },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    const refreshTokenArray = userFound.refreshToken.filter((rt) => rt !== refreshToken)
+
+    await connDb.user.update({
+      where: { id: userFound.id },
+      data: { refreshToken: refreshTokenArray },
     })
   }
 
@@ -88,8 +110,9 @@ export class AuthService {
   }
 
   static async forgotPassword(email: string): Promise<void> {
-    const recoverySecret = envs.nodeEnv === 'prod' ? (envs.jwtRecoverySecret as string) : 'secret'
-    const expires = Date.now() + 36000000
+    const recoveryToken = crypto.randomBytes(32).toString('hex')
+    const expiresIn = new Date()
+    expiresIn.setMinutes(expiresIn.getMinutes() + 10)
 
     const userFound = await connDb.user.findUnique({
       where: { email: email },
@@ -97,45 +120,45 @@ export class AuthService {
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
 
-    const payload: IPayload = {
-      id: userFound.id,
-    }
-
-    const recoveryToken = jwt.sign(payload, recoverySecret, { expiresIn: '10m' })
-
     connDb.user.update({
       where: {
         id: userFound.id,
       },
       data: {
         recoveryToken: recoveryToken,
+        recoveryExpiration: expiresIn,
       },
     })
 
-    const link = `${envs.frontendUrl}/reset-password?token=${recoveryToken}&expires=${expires}`
+    const link = `${envs.frontendUrl}/reset-password?token=${recoveryToken}`
 
-    await MailerSendUtils.resetPasswordMail(userFound.email, 'public/views/reset-password.hbs', {
+    await MailerSendUtils.resetPasswordMail(userFound.email, 'views/reset-password.hbs', {
       user: userFound.username,
       link: link,
     })
   }
 
-  static async getUserForPasswordReset(id: string) {
-    const userFound = await connDb.user.findUnique({
+  static async checkUserForPasswordReset(token: string) {
+    const userFound = await connDb.user.findFirst({
       where: {
-        id: id,
+        recoveryToken: token,
       },
     })
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+    if (userFound.recoveryExpiration && userFound.recoveryExpiration.getMinutes() > 10)
+      throw new HttpErr(403, 'Forbidden', 'Recovery token expired!')
   }
 
-  static async resetPassword(id: string, password: string): Promise<void> {
-    const userFound = await connDb.user.findUnique({
-      where: { id: id },
+  static async resetPassword(token: string, password: string): Promise<void> {
+    const userFound = await connDb.user.findFirst({
+      where: { recoveryToken: token },
     })
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    if (userFound.recoveryExpiration && userFound.recoveryExpiration.getMinutes() > 10)
+      throw new HttpErr(403, 'Forbidden', 'Recovery token expired!')
 
     const hash = await bcrypt.hash(password, 10)
 
@@ -143,8 +166,21 @@ export class AuthService {
       where: { id: userFound.id },
       data: {
         recoveryToken: null,
+        recoveryExpiration: null,
         password: hash,
       },
+    })
+  }
+
+  static async deleteAccount(id: string): Promise<void> {
+    const userFound = await connDb.user.findUnique({
+      where: { id: id },
+    })
+
+    if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    await connDb.user.delete({
+      where: { id: userFound.id },
     })
   }
 }

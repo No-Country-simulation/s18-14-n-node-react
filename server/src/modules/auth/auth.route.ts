@@ -9,13 +9,12 @@ import {
   resetPasswordSchema,
 } from './auth.dto'
 import jwtAuthentication from '../../middlewares/jwt.middleware'
-import jwtRecoveryAuthentication from '../../middlewares/jwt-recovery.middleware'
-import { jwtRefreshAuthentication } from '../../middlewares/jwt-refresh.middleware'
+import jwtRefreshAuthentication from '../../middlewares/jwt-refresh.middleware'
 
 const router = Router()
 
 // GET ROUTES
-router.get('/reset-password/:token', jwtRecoveryAuthentication)
+router.get('/reset-password/:token')
 router.get('/refresh', jwtRefreshAuthentication)
 router.get('/logout', AuthController.logout)
 
@@ -31,7 +30,6 @@ router.post(
 // PUT ROUTES
 router.put(
   '/reset-password/:token',
-  jwtRecoveryAuthentication,
   schemaValidator(resetPasswordSchema, null),
   AuthController.recoveryPassword,
 )
@@ -41,5 +39,8 @@ router.put(
   schemaValidator(changePasswordSchema, null),
   AuthController.changePassword,
 )
+
+// DELETE ROUTES
+router.delete('/delete-account', jwtAuthentication, AuthController.deleteAccount)
 
 export default router

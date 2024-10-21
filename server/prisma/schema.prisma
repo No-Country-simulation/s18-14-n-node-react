@@ -14,16 +14,17 @@ datasource db {
 }
 
 model User {
-  id            String    @id @default(uuid())
-  username      String    @unique
-  email         String    @unique
-  password      String
-  role          Roles
-  refreshToken  String[]
-  recoveryToken String?
-  profile       Profile?
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @default(now())
+  id                  String    @id @default(uuid())
+  username            String    @unique
+  email               String    @unique
+  password            String
+  role                Roles
+  refreshToken        String[]
+  recoveryToken       String?
+  recoveryExpiration  DateTime?
+  profile             Profile?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @default(now())
 }
 
 model Profile {
@@ -31,7 +32,7 @@ model Profile {
   img         String?   @default("image")   
   description String?
   userId      String    @unique
-  user        User      @relation(fields: [userId], references: [id])
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   createdAt   DateTime  @default(now())
   updatedAt   DateTime  @default(now())
 }

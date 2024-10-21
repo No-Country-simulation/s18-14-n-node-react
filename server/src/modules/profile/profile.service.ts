@@ -3,11 +3,9 @@ import HttpErr from '../../errors/HttpErr'
 import CloudinaryUtils from '../../utils/cloudinary.utils'
 
 export class ProfileService {
-  static async getProfile(id: string) {
-    const profileFound = connDb.profile.findUnique({
-      where: {
-        id: id,
-      },
+  static async getProfile(userId: string) {
+    const profileFound = connDb.profile.findFirst({
+      where: { userId },
       select: {
         description: true,
         img: true,
@@ -25,18 +23,11 @@ export class ProfileService {
     return profileFound
   }
 
-  static async createProfile(
-    userId: string,
-    description: string,
-    image: Express.Multer.File | undefined,
-  ) {
-    if (!image) return
-    const uploadImage = await CloudinaryUtils.uploadFile(image, 'profile')
+  static async createProfile(userId: string, description: string) {
     connDb.profile.create({
       data: {
         userId,
         description,
-        img: uploadImage?.public_id ?? 'image',
       },
     })
   }
@@ -46,16 +37,26 @@ export class ProfileService {
     description: string,
     image: Express.Multer.File | undefined,
   ) {
-    if (!image) return
-    await CloudinaryUtils.uploadFile(image, 'profile')
+    const profileFound = await connDb.profile.findFirst({
+      where: { userId },
+    })
+
+    if (!profileFound) throw new HttpErr(404, 'Not found', 'User not found!')
+
+    if (image) {
+      const uploadImage = await CloudinaryUtils.uploadFile(image, 'profile')
+      connDb.profile.update({
+        where: { userId },
+        data: {
+          description,
+          img: uploadImage ? uploadImage.public_id : profileFound.img,
+        },
+      })
+    }
 
     connDb.profile.update({
-      where: {
-        userId,
-      },
-      data: {
-        description,
-      },
+      where: { userId },
+      data: { description },
     })
   }
 }

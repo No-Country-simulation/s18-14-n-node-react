@@ -3,27 +3,14 @@ import { ProfileService } from './profile.service'
 
 export class ProfileController {
   static getProfile: Controller = (req, res, next) => {
-    const id = req.user?.id as string
-    const data = ProfileService.getProfile(id)
+    const userId = req.user?.id as string
 
+    const data = ProfileService.getProfile(userId)
     data
       .then((data) => {
         res.status(200).json(data)
       })
       .then((error) => {
-        next(error)
-      })
-  }
-
-  static createProfile: Controller = (req, res, next) => {
-    const userId = req.user?.id as string
-    const image = req.file
-    const data = ProfileService.createProfile(userId, req.body, image)
-    data
-      .then(() => {
-        res.status(201).json({ message: 'Profile successfully created' })
-      })
-      .catch((error) => {
         next(error)
       })
   }

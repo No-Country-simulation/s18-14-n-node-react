@@ -5,7 +5,7 @@ import { connDb } from '../db/connDb'
 import HttpErr from '../errors/HttpErr'
 import { IPayload } from '../user'
 
-export const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
+const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
   const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
 
   const accessSecret = envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'access_secret'
@@ -71,7 +71,7 @@ export const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
         role: decoded.role,
       }
 
-      const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '20m' })
+      const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '15m' })
       const newRefreshToken = jwt.sign(payload, refreshSecret, { expiresIn: '2h' })
 
       userFound.refreshToken = [...newRefreshTokenArray, newRefreshToken]
@@ -96,3 +96,5 @@ export const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
     next(error)
   }
 }
+
+export default jwtRefreshAuthentication

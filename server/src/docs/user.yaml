@@ -1,0 +1,289 @@
+paths:
+  /api/v1/auth/register:
+    post:
+      summary: User register
+      tags:
+        - Register
+      requestBody: 
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterSchema'
+      responses:
+        '200':
+          description: Successfully registered
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: New user registered!
+        '400': 
+          description: Some fields are not filled out
+        '409':
+          description: Username and/or email already exists
+        '500':
+          description: Unexpected error
+
+  /api/v1/auth/login:
+    post:
+      summary: Login
+      tags:
+        - Login 
+      requestBody: 
+        content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginSchema'
+      responses:
+        '200':
+          description: Successfully logged in
+          content: 
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: 
+        '400': 
+          description: Some fields are not filled out
+        '401':
+          description: Invaiid password
+        '404':
+          description: User not found
+        '500':
+          description: Unexpected error
+
+  /api/v1/auth/refresh/:
+    get:
+      summary: Refresh
+      tags:
+        - Refresh
+      responses:
+        '200':
+          description: Get new access and refresh token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  accessToken:
+                    type: string
+                    example: 
+  
+  /api/v1/auth/logout:
+    get:
+      summary: Logout
+      tags:
+        - Logout
+      responses:
+        '200':
+          description: Successfully logged out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Logout successfully!
+        '400':
+          description: Cookie not found
+        '500':
+          description: Unexpected error
+
+  /api/v1/auth/change-password:
+    put:
+      summary: Change password
+      security:
+        - bearerAuth: []
+      tags:
+        - Change password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChangePasswordSchema'
+      responses:
+        '200':
+          description: Password successfully changed!
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password successfully changed!
+        '400':
+          description: Some fields are not filled out
+        '401':
+          description: Unauthorized
+        '403':
+          description: Current password invalid
+        '404':
+          description: User not found
+        '409':
+          description: The passwords are equal
+        '500':
+          description: Unexpected error
+
+  /api/v1/auth/forgot-password:
+    post:
+      summary: Forgot password
+      tags:
+        - Forgot Password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+      responses:
+        '200':
+          description: Email sent for recovery
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Email sent for recovery!
+        '400':
+          description: Email was not provided
+        '404':
+          description: User not found
+        '500':
+          description: Unexpected error
+        
+  /api/v1/auth/reset-password/{token}:
+    get:
+      summary: Check token for reset password
+      tags:
+        - Reset Password
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully checked
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Successfully checked!
+        '403':
+          description: Token exprired
+        '404':
+          description: User not found
+        '500':
+          description: Unexpected error
+    put: 
+      summary: Reset password
+      tags:
+        - Reset Password
+      parameters:
+        - in: path
+          name: token
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+      responses:
+        '201':
+          description: Password successfully reset
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Password successfully reset!
+        '403':
+          description: Token exprired
+        '404':
+          description: User not found
+        '500':
+          description: Unexpected error
+
+  /api/v1/auth/delete-account:
+    delete:
+      summary: Delete Account
+      security:
+        - bearerAuth: []
+      tags:
+        - Delete Account
+      responses:
+        '200':
+          description: Get user profile
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Account successfully deleted
+        '401':
+          description: Unauthorized
+        '404':
+          description: No user profile found
+        '500':
+          description: Unexpected error
+
+components: 
+  schemas:
+    RegisterSchema:
+      type: object
+      required:
+        - email
+        - username
+        - password
+      properties:
+        email:
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    LoginSchema:
+      type: object
+      required:
+        - password
+      properties:
+        email: 
+          type: string
+        username:
+          type: string
+        password:
+          type: string
+    ChangePasswordSchema:
+      type: object
+      required:
+        - currentPassword
+        - newPassword
+      properties:
+        currentPassword:
+          type: string
+        newPassword:
+          type: string
