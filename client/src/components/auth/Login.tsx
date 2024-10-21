@@ -79,7 +79,7 @@ export const Login = () => {
         <>
             <div className="w-screen flex h-screen items-center">
                 <div className="flex flex-row mx-auto">
-                    <div className="bg-colorAuth flex-shrink-0 items-start gap-10">
+                    <div className="bg-card_background flex-shrink-0 items-start gap-10">
                         <div className="flex-col mx-20 items-start gap-10">
                             <p className="w-full text-4xl font-semibold pt-10 text-colorencabezados">
                                 Iniciar sesión
@@ -110,17 +110,17 @@ export const Login = () => {
                             </input>
                             
                             
-                                <button className='bg-colorbutton w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={()=>onSubmit()}>
+                                <button className='bg-accent w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={()=>onSubmit()}>
                                     {isLoading? "Cargando..." : "Iniciar sesión"}
                                 </button>
                             
 
                             <Link to='/recuperarContraseña' className="w-full">
-                                <p className="text-colortextogeneral text-center mt-10">  Olvidaste tu contraseña?</p>
+                                <p className="text-body_text text-center mt-10">  Olvidaste tu contraseña?</p>
                             </Link>
                             <div className="w-full flex-row mt-4 text-center">
                                 <p className="text-colortextosubtitulos">Aun no eres miembro?
-                                    <Link to='/Register'><span className="text-colorbutton pl-2">Registrate</span></Link></p>
+                                    <Link to='/Register'><span className="text-accent pl-2">Registrate</span></Link></p>
                             </div>
                         </div>
                     </div>
