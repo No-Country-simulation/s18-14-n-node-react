@@ -6,9 +6,9 @@ export type Recipe = {
   categoryId?: number
 }
 
-export type Login = {
-  email: string,
-  password: string
+export type Login = { 
+  email?: string, 
+  password: string 
 }
 
 export type Register = { 

@@ -9,11 +9,12 @@ export default function Navigation() {
             <Navbar />
 
             <div className="flex flex-row flex-grow overflow-hidden">
-                <div className="w-1/5">
+                <div className="w-auto">
                     <SideMenu />
                 </div>
-                <div className="flex-grow overflow-auto">
-                    <Outlet />
+                <div className="flex-grow overflow-auto bg-colorblancoprincipal">
+                    <Outlet 
+                    />
                     <div className="absolute top-full left-0 w-full bg-white z-10">
                         <Footer />
                     </div>

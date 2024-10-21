@@ -22,6 +22,7 @@ import Personalized from './components/recipes/Personalized'
 import Categories from './components/recipes/Categories'
 import Contacto from './components/contacto/Contacto'
 import Detail from './views/Detail'
+import { ProtectedRoute } from './components/auth/ProtectedRoutes'
 
 
 function App() {
@@ -50,52 +51,57 @@ function App() {
       element: <Auth />,
       children: [
         {
-          path:'/login',
-          element: <Login />
+          path: '/login',
+          element: <Login />,
         },
         {
-          path:'/register',
+          path: '/register',
           element: <Register />
         },
       ]
     },
-  
     {
-      element: <Navigation />,
-      children:[
-        {
-          path: '/Profile',
-          element:<Profile />
-        },
-        {
-          path: '/Receps',
-          element:<Receps />
-        },
-        {
-          path: '/RecepsSaved',
-          element:<SavedReceps />
-        },
-        {
-          path: '/Configuration',
-          element:<></>
-        }
-      ]
-    },
-    {
-      path: '/recipes',
-      element: <Recipes />,
+      element: <ProtectedRoute />,
       children: [
         {
-          path: '/recipes/personalized',
-          element: <Personalized />
+          path: '/navigation',
+          element: <Navigation />,
+          children: [
+            {
+              path: '/navigation/Profile',
+              element: <Profile />
+            },
+            {
+              path: '/navigation/Receps',
+              element: <Receps />
+            },
+            {
+              path: '/navigation/RecepsSaved',
+              element: <SavedReceps />
+            },
+            {
+              path: '/navigation/Configuration',
+              element: <></>
+            }
+          ]
         },
         {
-          path: '/recipes/categories',
-          element: <Categories />
-        },
-        {
-          path: '/recipes/details/:id',
-          element: <div className='h-[400px]'>Recipe id:{ location.href.split('/')[5] } details</div>
+          path: '/recipes',
+          element: <Recipes />,
+          children: [
+            {
+              path: '/recipes/personalized',
+              element: <Personalized />
+            },
+            {
+              path: '/recipes/categories',
+              element: <Categories />
+            },
+            {
+              path: '/recipes/details/:id',
+              element: <div className='h-[400px]'>Recipe id:{location.href.split('/')[5]} details</div>
+            }
+          ]
         }
       ]
     }
