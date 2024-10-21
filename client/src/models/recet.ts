@@ -16,4 +16,5 @@ export interface IRecetData {
   nutritionalData: INutrition[];
   ingredients: string[];
   steps: string[];
+  media: string;
 }
