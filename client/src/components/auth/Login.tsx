@@ -4,7 +4,7 @@ import { media } from "@/assets";
 const Login = () => {
     return (
         <>
-            <div className="bg-gray-400 w-screen flex h-screen items-center">
+            <div className=" w-screen flex h-screen items-center">
                 <div className="w-[1232px] h-[550px] bg-white flex flex-row mx-auto">
                     <div className="w-[556px] h-[550px]  flex-shrink-0  items-start gap-10">
                         <div className="flex-col w-[421px] mx-[80px] items-start gap-10">

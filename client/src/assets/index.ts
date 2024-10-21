@@ -1,5 +1,6 @@
 import media from './img/media.png';
 import photo from './img/profpick.png';
+import logoAuth from './img/logoAuth.png';
 
 
 import facebook from './svg/facebook.svg';
@@ -27,4 +28,5 @@ export {
     check,
     star,
     logo,
+    logoAuth,
 }
