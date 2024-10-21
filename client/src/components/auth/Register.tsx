@@ -136,7 +136,7 @@ const Register = () => {
 
     return (
         <div className="w-screen h-full items-center flex">
-            <div className="w-1/4 h-9/12 flex-shrink-0 bg-colorAuth mx-auto mt-4 shadow-md items-center rounded-md gap-10">
+            <div className="w-1/4 h-9/12 flex-shrink-0 bg-card_background mx-auto mt-4 shadow-md items-center rounded-md gap-10">
                 <div className="relative m-0">
                     <img src={dottedShape} className="absolute w-16 h-16 top-0 right-0 -rotate-90" />
                 </div>
@@ -178,7 +178,7 @@ const Register = () => {
                             />
                             <Button
                                 type="filled"
-                                className="w-full bg-colorbutton text-white rounded-md mb-10"
+                                className="w-full bg-accent text-white rounded-md mb-10"
                                 onClick={() => onSubmit()}
                                 disabled={isSendDisabled || isLoading}
                             >
