@@ -2,6 +2,7 @@ import { Router } from 'express'
 import authRoute from './modules/auth/auth.route'
 import welcomeRoute from './modules/welcome/welcome.route'
 import categoryRouter from './modules/category/category.router'
+import ingredientRouter from './modules/ingredient/ingredient.router'
 
 export default class AppRoutes {
   static get routes(): Router {
@@ -10,6 +11,7 @@ export default class AppRoutes {
     router.use('/', welcomeRoute)
     router.use('/auth', authRoute)
     router.use('/category', categoryRouter)
+    router.use('/ingredient', ingredientRouter)
 
     return router
   }
