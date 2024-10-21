@@ -1,5 +1,5 @@
-import { z } from 'zod'
 import { File } from 'node:buffer'
+import { z } from 'zod'
 
 const MAX_UPLOAD_SIZE = 3 * 1024 * 1024
 const ACCEPTED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
