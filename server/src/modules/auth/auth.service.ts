@@ -18,6 +18,9 @@ export class AuthService {
     const refreshSecret =
       envs.nodeEnv === 'prod' ? (envs.jwtRefreshSecret as string) : 'refresh_secret'
 
+    if (data.email && data.username)
+      throw new HttpErr(409, 'Conflict', 'Should login with username or email, but not both!')
+
     if (data.email) userFound = await connDb.user.findUnique({ where: { email: data.email } })
     else if (data.username)
       userFound = await connDb.user.findUnique({ where: { username: data.username } })
@@ -35,6 +38,15 @@ export class AuthService {
 
     const accessToken = jwt.sign(payload, accessSecret, { expiresIn: '15m' })
     const refreshToken = jwt.sign(payload, refreshSecret, { expiresIn: '2h' })
+
+    await connDb.user.update({
+      where: { id: userFound.id },
+      data: {
+        refreshToken: {
+          push: refreshToken,
+        },
+      },
+    })
 
     return { accessToken, refreshToken }
   }
@@ -97,7 +109,7 @@ export class AuthService {
 
     const equal = data.newPassword === data.currentPassword
 
-    if (equal) throw new HttpErr(409, 'Conflict', 'The new password is equal!')
+    if (equal) throw new HttpErr(409, 'Conflict', 'The passwords should not be equal!')
 
     const hash = await bcrypt.hash(data.newPassword, 10)
 

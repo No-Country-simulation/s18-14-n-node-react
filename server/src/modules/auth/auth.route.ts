@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import schemaValidator from '../../middlewares/validator.middleware'
+import jwtAuthentication from '../../middlewares/jwt.middleware'
+import jwtRefreshAuthentication from '../../middlewares/jwt-refresh.middleware'
 import { AuthController } from './auth.controller'
 import {
   changePasswordSchema,
@@ -8,8 +10,6 @@ import {
   registerSchema,
   resetPasswordSchema,
 } from './auth.dto'
-import jwtAuthentication from '../../middlewares/jwt.middleware'
-import jwtRefreshAuthentication from '../../middlewares/jwt-refresh.middleware'
 
 const router = Router()
 

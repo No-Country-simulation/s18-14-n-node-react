@@ -1,20 +1,19 @@
 import { z } from 'zod'
 
-export const updateProfileSchema = z.object({
-  description: z.string().optional(),
-  image: z
-    .custom<File>(
-      (file) => {
-        if (!(file instanceof File)) return false
-        const validTypes = ['image/jpeg', 'image/png', 'image/gif']
-        const maxSize = 5 * 1024 * 1024
-        if (!validTypes.includes(file.type)) return false
-        if (file.size > maxSize) return false
-        return true
-      },
-      {
-        message: 'File not valid. It must be an image and smaller than 5MB',
-      },
-    )
-    .optional(),
-})
+const MAX_UPLOAD_SIZE = 3 * 1024 * 1024
+const ACCEPTED_FILE_TYPES = ['image/jpeg', 'image/png', 'image/gif']
+
+export const updateProfileSchema = z
+  .object({
+    description: z.string().optional(),
+    image: z
+      .instanceof(File)
+      .refine((file) => {
+        return !file || file.size <= MAX_UPLOAD_SIZE
+      }, 'File must be less than 3MB')
+      .refine((file) => {
+        return !file || ACCEPTED_FILE_TYPES.includes(file.type)
+      }, 'File must be a JPEG, PNG, GIF')
+      .optional(),
+  })
+  .strict()

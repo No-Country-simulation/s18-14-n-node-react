@@ -21,7 +21,7 @@ export default class CloudinaryUtils {
     folder: string,
   ): Promise<UploadApiResponse | UploadApiErrorResponse | undefined> {
     const options: UploadApiOptions = {
-      folder: folder,
+      folder: `recetapp/${folder}`,
       use_filename: true,
       unique_filename: true,
       overwrite: true,

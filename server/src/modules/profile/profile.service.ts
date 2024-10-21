@@ -1,6 +1,7 @@
 import { connDb } from '../../db/connDb'
 import HttpErr from '../../errors/HttpErr'
 import CloudinaryUtils from '../../utils/cloudinary.utils'
+import { IProfile } from './profile.interface'
 
 export class ProfileService {
   static async getProfile(userId: string) {
@@ -34,7 +35,7 @@ export class ProfileService {
 
   static async updateProfile(
     userId: string,
-    description: string,
+    data: IProfile,
     image: Express.Multer.File | undefined,
   ) {
     const profileFound = await connDb.profile.findFirst({
@@ -44,19 +45,19 @@ export class ProfileService {
     if (!profileFound) throw new HttpErr(404, 'Not found', 'User not found!')
 
     if (image) {
-      const uploadImage = await CloudinaryUtils.uploadFile(image, 'profile')
-      connDb.profile.update({
+      const uploadImage = await CloudinaryUtils.uploadFile(image, 'profiles')
+      await connDb.profile.update({
         where: { userId },
         data: {
-          description,
+          description: data.description,
           img: uploadImage ? uploadImage.public_id : profileFound.img,
         },
       })
+    } else {
+      await connDb.profile.update({
+        where: { userId },
+        data: { description: data.description },
+      })
     }
-
-    connDb.profile.update({
-      where: { userId },
-      data: { description },
-    })
   }
 }

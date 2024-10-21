@@ -15,7 +15,7 @@ const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
   try {
     const cookie = req.headers.cookie
 
-    if (!cookie) throw new HttpErr(403, 'Forbidden', 'Cookie not found!')
+    if (!cookie) throw new HttpErr(400, 'Bad request', 'Not logged in!')
 
     const refreshToken = cookie.split('=')[1].split(';')[0]
     res.clearCookie(cookieName, {
@@ -39,7 +39,7 @@ const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
           },
         })
       })
-      throw new HttpErr(403, 'Forbidden', 'Token reuse attempt!')
+      throw new HttpErr(403, 'Forbidden', 'Token reuse attempt detected!')
     }
 
     const newRefreshTokenArray = userFound.refreshToken.filter((rt) => rt !== refreshToken)
@@ -63,7 +63,7 @@ const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
             refreshToken: [],
           },
         })
-        throw new HttpErr(403, 'Forbidden', 'Hacked user')
+        throw new HttpErr(403, 'Forbidden', 'The ids do not match')
       }
 
       const payload: IPayload = {

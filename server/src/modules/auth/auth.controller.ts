@@ -26,12 +26,15 @@ export class AuthController {
 
   static login: Controller = (req, res, next) => {
     const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
+    const cookie = req.headers.cookie
+
+    if (cookie) throw new HttpErr(400, 'Bad Request', 'Already logged in!')
+
     const data = AuthService.login(req.body)
     data
       .then(({ accessToken, refreshToken }) => {
-        res.status(200).json({ accessToken })
-        res
         this.setCookie(cookieName, res, refreshToken)
+        res.status(200).json({ accessToken })
       })
       .catch((error) => {
         next(error)
@@ -53,7 +56,7 @@ export class AuthController {
     const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
     const cookie = req.headers.cookie
 
-    if (!cookie) throw new HttpErr(400, 'Bad Request', 'Cookie not found!')
+    if (!cookie) throw new HttpErr(400, 'Bad Request', 'Not logged in!')
 
     const refreshToken = cookie.split('=')[1].split(';')[0]
 
@@ -71,7 +74,7 @@ export class AuthController {
   static changePassword: Controller = (req, res, next) => {
     const id = req.user?.id
 
-    if (!id) throw new HttpErr(400, 'Bad Request', 'User id not found!')
+    if (!id) throw new HttpErr(400, 'Bad Request', 'User not found!')
 
     const data = AuthService.changePassword(id, req.body)
     data

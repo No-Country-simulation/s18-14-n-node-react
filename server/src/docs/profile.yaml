@@ -30,7 +30,7 @@ paths:
         - Profile
       requestBody:
         content:
-          multipart/from-data:
+          multipart/form-data:
             schema:
               $ref: '#/components/schemas/ProfileSchema'
       responses:
