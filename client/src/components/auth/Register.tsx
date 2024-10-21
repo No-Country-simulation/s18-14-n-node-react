@@ -136,7 +136,7 @@ const Register = () => {
 
     return (
         <div className="w-screen h-full items-center flex">
-            <div className="w-1/4 h-9/12 flex-shrink-0 bg-[#FFFCFA] mx-auto mt-4 shadow-md items-center rounded-xl gap-10">
+            <div className="w-1/4 h-9/12 flex-shrink-0 bg-colorAuth mx-auto mt-4 shadow-md items-center rounded-md gap-10">
                 <div className="relative m-0">
                     <img src={dottedShape} className="absolute w-16 h-16 top-0 right-0 -rotate-90" />
                 </div>
@@ -178,7 +178,7 @@ const Register = () => {
                             />
                             <Button
                                 type="filled"
-                                className="w-full bg-[#005C49] text-white rounded-sm mb-10"
+                                className="w-full bg-colorbutton text-white rounded-md mb-10"
                                 onClick={() => onSubmit()}
                                 disabled={isSendDisabled || isLoading}
                             >
@@ -216,10 +216,10 @@ function Input({ type, placeholder, name, onChange, value, error }: InputProps) 
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
-                className="py-3 p-5 w-full border border-[#990047] rounded-sm"
+                className="py-3 p-5 w-full border border-colorprimario rounded-md"
             />
             {error &&
-                <p className="text-red-500 text-sm mt-1">{error}</p>
+                <p className="text-colorprimario text-sm mt-1">{error}</p>
             }
         </div>
     );
