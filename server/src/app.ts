@@ -14,7 +14,7 @@ export default class App {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: false }))
 
-    const allowedOrigin = ['http://localhost:5173', 'http://localhost:3000', envs.frontendUrl]
+    const allowedOrigin = ['http://localhost:5173', envs.backendUrl, envs.frontendUrl]
 
     this.app.use(
       cors({
