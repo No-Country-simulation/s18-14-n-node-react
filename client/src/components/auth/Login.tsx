@@ -78,10 +78,10 @@ export const Login = () => {
     return (
         <>
             <div className="w-screen flex h-screen items-center">
-                <div className="flex flex-row mx-auto md:mx-auto">
-                    <div className="bg-card_background flex-shrink-0 items-start gap-10 md:w-3/4">
-                        <div className="lg:relative lg:mr-0 lg:mt-0 lg:bg-red-500">
-                            <img src={dottedShape} className="lg:absolute lg:mr-0 lg:-rotate-90 lg:w-14" />
+                <div className="flex mx-auto lg:mx-auto">
+                    <div className="bg-card_background flex-shrink-0 items-start gap-10 max-w-[500px] relative">
+                        <div className="absolute end-0 lg:hidden">
+                              <img src={dottedShape} className="" />
                         </div>
                         <img src={logoAuth} className="md:w-40 md:h-40 md:mx-auto" />
                         <div className="flex-col mx-20 md:mx-16 md:mb-6 items-start gap-10">
@@ -117,15 +117,19 @@ export const Login = () => {
                                 <p className="text-body_text text-center mt-10">  Olvidaste tu contraseña?</p>
                             </Link>
                             <div className="w-full flex-row mt-4 text-center mb-16">
-                                <div className="md:relative md:ml-0 md:mb-0">
-                                    <img src={dottedShape} className="md:absolute md:ml-0 md:-rotate-90 md:w-14" />
-                                </div>   <p className="text-colortextosubtitulos">Aun no eres miembro?
-                                    <Link to='/Register'><span className="text-accent pl-2 mb-16">Registrate</span></Link></p>
+                                <p className="text-colortextosubtitulos">Aun no eres miembro?
+                                    <Link to='/Register'>
+                                        <span className="text-accent pl-2 mb-16">Registrate</span>
+                                    </Link>
+                                </p>
+                            </div>
+                            <div className="absolute bottom-[-20px] left-[-20px] lg:hidden">
+                                <img src={dottedShape} className="" />
                             </div>
                         </div>
                     </div>
-                    <div className="flex-shrink-0 lg:hidden">
-                        <img src={verduras} className="w-full h-full rounded-xl hidden lg:block" />
+                    <div className="flex-shrink-0 hidden lg:block">
+                        <img src={verduras} className="w-full h-full rounded-xl" />
                     </div>
                 </div>
             </div>
