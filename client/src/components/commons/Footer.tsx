@@ -17,9 +17,9 @@ const footerItems: IFooterItems[] = [
 
 export default function Footer() {
   return (
-    <footer className="bg-[#2C2C2C] w-full py-[5px] px-[105px] flex">
-      <img src={logo} alt="logo" width={180} height={180} />
-      <div className="grow py-5 ms-7 flex flex-col justify-between">
+    <footer className="bg-head_text w-full py-7 lg:py-1.5 ps-[30px] pe-[60px] lg:px-[104px] flex">
+      <img src={logo} alt="logo" className="w-[130px] h-[130px] lg:w-[180px] lg:h-[180px]" />
+      <div className="grow py-0 lg:py-5 ms-4 lg:ms-7 flex flex-col justify-between">
         <nav className="">
           <ul className="flex justify-end gap-7 text-white">
             {footerItems.map(({to, label}, index) => 
@@ -27,7 +27,7 @@ export default function Footer() {
             )}
           </ul>
         </nav>
-        <div className="border-t-2 border-white flex justify-end text-white">
+        <div className="border-t-2 border-white flex justify-end text-white text-sm lg:text-base pt-3">
           <p>
             © 2024 Retrueque - Todos los derechos reservados / Lorem ipsum - Lorem ipsum - Lorem ipsum
           </p>
@@ -46,7 +46,7 @@ interface IFooterProps {
 
 function FooterItem({ to, label }: IFooterProps) {
   return (
-    <li>
+    <li className="text-sm lg:text-base">
       <Link to={to}>
         {label}
       </Link>
