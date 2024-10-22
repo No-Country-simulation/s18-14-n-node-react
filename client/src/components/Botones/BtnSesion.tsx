@@ -1,3 +1,4 @@
+import useAuthStore from "@/store/authStore";
 import { MouseEventHandler } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -11,8 +12,9 @@ export const BtnSesion = (props: IBtnSesionProps) => {
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
-    const logout = () => {
-        localStorage.removeItem("tkn");
+    const onLogout = () => {
+        const { logout } = useAuthStore.getState();
+        logout();
         navigate('/')
     }
 
@@ -34,7 +36,7 @@ export const BtnSesion = (props: IBtnSesionProps) => {
 
         {isOpen && (
             <div className="absolute right-0 mt-20 w-48 bg-white rounded-lg shadow-custom z-10">
-              <a href="/" onClick={logout} className="block px-4 py-2 rounded-lg text-colorencabezados hover:bg-coloracento">Cerrar sesión</a>
+              <a href="/" onClick={onLogout} className="block px-4 py-2 rounded-lg text-colorencabezados hover:bg-coloracento">Cerrar sesión</a>
             </div>
           )
         }
