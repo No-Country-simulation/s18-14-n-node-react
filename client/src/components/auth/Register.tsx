@@ -135,14 +135,14 @@ const Register = () => {
 
 
     return (
-        <div className="w-screen h-full items-center flex">
-            <div className="w-1/4 h-9/12 flex-shrink-0 bg-card_background mx-auto mt-4 shadow-md items-center rounded-md gap-10">
-                <div className="relative m-0">
-                    <img src={dottedShape} className="absolute w-16 h-16 top-0 right-0 -rotate-90" />
+        <div className="w-screen h-max py-1 items-center flex">
+            <div className="w-1/3 h-auto flex-shrink-0 bg-card_background mx-auto shadow-md items-center rounded-md">
+                <div className="m-0 flex h-min justify-end">
+                    <img src={dottedShape} className="w-16 h-16 top-0 right-0 " />
                 </div>
-                <div className="w-96 h-108 mt-6 mb-16 mx-auto items-center">
-                    <div className="w-full mt-16 items-center">
-                        <img src={logoAuth} className="w-48 h-32 mb-10 flex mx-auto items-center text-center" />
+                <div className="w-full h-min px-12 mx-auto items-center">
+                    <div className="w-full items-center">
+                        <img src={logoAuth} className="w-52 h-32 mb-5 flex mx-auto items-center text-center" />
                         <div className="flex flex-col gap-5 ">
                             <Input
                                 type="text"
@@ -178,7 +178,7 @@ const Register = () => {
                             />
                             <Button
                                 type="filled"
-                                className="w-full bg-accent text-white rounded-md mb-10"
+                                className="w-full bg-accent text-white rounded-md"
                                 onClick={() => onSubmit()}
                                 disabled={isSendDisabled || isLoading}
                             >
@@ -187,8 +187,8 @@ const Register = () => {
                         </div>
                     </div>
                 </div>
-                <div className="relative mt-20 ml-0">
-                    <img src={dottedShape} className="absolute w-16 h-16 bottom-0 left-0 rotate-90" />
+                <div className="flex m-0 justify-start items-end">
+                    <img src={dottedShape} className="w-auto h-auto bottom-0 left-0 rotate-180" />
                 </div>
             </div>
         </div>
