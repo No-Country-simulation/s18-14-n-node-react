@@ -1,13 +1,35 @@
-import { photo } from "@/assets";
+import { useEffect, useState } from "react";
+import { User } from "@/models";
+import configureAxios from "@/services/axios";
+
+const defaultUserImage = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
+
 
 export default function Profile() {
+    const [userData, setUserData] = useState<User | null>(null);
+
+    const getUserData = async () => {
+      const api = configureAxios();
+
+      try {
+        const { data }: { data: User } = await api.get('/profile');
+        setUserData(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    useEffect(() => {
+      getUserData()
+    }, [])
+
 
     return (
         <div className="w-auto grow py-1 px-8 bg-[#FFFCF9]">
             <div className="w-full max-h-48 flex justify-center items-center align-middle py-4">
-                <img src={photo} className="max-h-44"/>
+                <img src={userData?.image || defaultUserImage} className="max-h-44"/>
             </div>
-
+            
             <div className="w-full grid grid-cols-7 gap-8 justify-between pb-8">
                 <article className="bg-white rounded-3xl h-max col-span-4 mt-3 p-8 shadow-custom">
                     <div className="mb-5 w-full h-20">
@@ -21,9 +43,9 @@ export default function Profile() {
                             name=""
                             id=""
                             placeholder="Nombre de usuario"
-                            value={""}
+                            value={userData?.user.username}
                             className="border rounded-lg border-colorprimario h-1/2 w-full px-4 text-base"
-                        /*onChange={}*/
+                            onChange={() => {}}
                         />
                     </div>
 
@@ -38,9 +60,9 @@ export default function Profile() {
                             name=""
                             id=""
                             placeholder="email"
-                            value={""}
+                            value={userData?.user.email}
                             className="border border-colorprimario h-1/2 rounded-md w-full px-4"
-                        /*onChange={}*/
+                            onChange={() => {}}
                         />
                     </div>
 
@@ -57,7 +79,7 @@ export default function Profile() {
                             placeholder="dd/mm/aaaa"
                             value={""}
                             className="border border-colorprimario h-1/2 rounded-md w-full px-4 active:border-none"
-                        /*onChange={}*/
+                            onChange={() => {}}
                         />
                     </div>
 

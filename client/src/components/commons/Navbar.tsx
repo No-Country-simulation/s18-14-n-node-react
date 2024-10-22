@@ -5,6 +5,13 @@ import { BotonPrimary } from "../Botones/BotonPrimary";
 import { logoWText } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { BtnSesion } from "../Botones/BtnSesion";
+import useAuthStore from "@/store/authStore";
+import {useEffect, useState} from "react";
+import {User} from "@/models";
+import useUserStore from "@/store/userStore";
+import configureAxios from "@/services/axios";
+
+const userImage = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
 
 
 export default function Navbar() {
@@ -22,9 +29,29 @@ export interface INavBarWebProps {
 export const NavBarWeb = ({
   className,
 }: INavBarWebProps): JSX.Element => {
+  const [userData, setUserData] = useState<User | null>(null);
 
   const navigate = useNavigate();
-  const tkn = localStorage.getItem("tkn");
+  
+
+  useEffect(() => {
+    const token = useAuthStore.getState().token;
+    const { setUser } = useUserStore.getState();
+
+    const getUser = async () => {
+      const api = configureAxios();
+      try {
+        const res = await api.get('/profile');
+        setUser(res.data);
+        setUserData(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    if (token) getUser();
+  }, []);
+
 
   return (
     <div
@@ -43,7 +70,7 @@ export const NavBarWeb = ({
         <SeccionNavBar className="!shrink-0" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
       </div>
 
-      {!tkn?
+      {!token?
         <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
           <BotonSecondary
             className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento"
@@ -59,7 +86,7 @@ export const NavBarWeb = ({
         :
         <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
         <BtnSesion 
-          imgSrc="https://via.placeholder.com/40" 
+          imgSrc={userData?.image || userImage}
           action={()=>navigate('/navigation/Profile')}
         />
         </div>
