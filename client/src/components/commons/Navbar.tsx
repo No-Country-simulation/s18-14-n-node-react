@@ -32,10 +32,10 @@ export const NavBarWeb = ({
   const [userData, setUserData] = useState<User | null>(null);
 
   const navigate = useNavigate();
+  const token = useAuthStore.getState().token;
   
 
   useEffect(() => {
-    const token = useAuthStore.getState().token;
     const { setUser } = useUserStore.getState();
 
     const getUser = async () => {
@@ -50,7 +50,7 @@ export const NavBarWeb = ({
     }
 
     if (token) getUser();
-  }, []);
+  }, [token]);
 
 
   return (
