@@ -110,7 +110,7 @@ const Register = () => {
             if (axios.isAxiosError(error)) {
                 console.log(error)
                 if (error.response?.status === 409) {
-                    alert("El email ya está en uso");
+                    alert(`${error.response?.data.message} / ${error.response?.data.description}`);
                 }
                 else if (Array.isArray(error.response?.data)) {
                     error.response?.data.forEach(e => {
