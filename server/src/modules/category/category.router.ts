@@ -9,25 +9,25 @@ const categoryRouter = Router()
 categoryRouter.post(
   '/create-category',
   verifyDto({ body: createCategorySchema }),
-  CategoryController.createCategory,
+  CategoryController.createCategory
 )
 
 categoryRouter.get(
   '/read-categories',
   verifyDto({ query: readCategoriesSchema }),
-  CategoryController.readCategories,
+  CategoryController.readCategories
 )
 
 categoryRouter.patch(
   '/update-category/:id',
   verifyDto({ params: paramsWithIdSchema, body: updateCategorySchema }),
-  CategoryController.updateCategory,
+  CategoryController.updateCategory
 )
 
 categoryRouter.delete(
   '/delete-category/:id',
   verifyDto({ params: paramsWithIdSchema }),
-  CategoryController.deleteCategory,
+  CategoryController.deleteCategory
 )
 
 export default categoryRouter

@@ -34,9 +34,9 @@ export default class App {
           'Authorization',
           'Content-Disposition',
           'Access-Control-Allow-Origin',
-          'Access-Control-Allow-Credentials',
-        ],
-      }),
+          'Access-Control-Allow-Credentials'
+        ]
+      })
     )
 
     const specs = swaggerJSDoc(options)

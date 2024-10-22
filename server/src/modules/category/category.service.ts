@@ -19,7 +19,7 @@ export class CategoryService {
   static async updateCategory(cateogoryId: string, data: UpdateCategory) {
     const category = await connDb.category.update({
       where: { id: cateogoryId },
-      data,
+      data
     })
 
     return category
