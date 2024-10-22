@@ -1,5 +1,5 @@
-import { Link, useNavigate} from "react-router-dom";
-import { verduras } from "@/assets";
+import { Link, useNavigate } from "react-router-dom";
+import { verduras, logoAuth, dottedShape } from "@/assets";
 import axios from 'axios';
 import { UserLoginResponse } from "@/models";
 import { login } from "@/services/auth";
@@ -63,7 +63,7 @@ export const Login = () => {
 
         try {
             setIsLoading(true);
-            const data : { data: UserLoginResponse } = await login(user);
+            const data: { data: UserLoginResponse } = await login(user);
             console.log(data);
             setIsLoading(false);
             navigate("/navigation/Profile")
@@ -78,13 +78,17 @@ export const Login = () => {
     return (
         <>
             <div className="w-screen flex h-screen items-center">
-                <div className="flex flex-row mx-auto">
-                    <div className="bg-card_background flex-shrink-0 items-start gap-10">
-                        <div className="flex-col mx-20 items-start gap-10">
-                            <p className="w-full text-4xl font-semibold pt-10 text-colorencabezados">
+                <div className="flex flex-row mx-auto md:mx-auto">
+                    <div className="bg-card_background flex-shrink-0 items-start gap-10 md:w-3/4">
+                        <div className="lg:relative lg:mr-0 lg:mt-0 lg:bg-red-500">
+                            <img src={dottedShape} className="lg:absolute lg:mr-0 lg:-rotate-90 lg:w-14" />
+                        </div>
+                        <img src={logoAuth} className="md:w-40 md:h-40 md:mx-auto" />
+                        <div className="flex-col mx-20 md:mx-16 md:mb-6 items-start gap-10">
+                            <p className="w-full text-4xl font-semibold pt-10 text-colorencabezados md:text-2xl">
                                 Iniciar sesión
                             </p>
-                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 text-xl">
+                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 md:mt-6 text-xl md:text-md">
                                 Email o nombre de usuario
                             </p>
                             <input
@@ -95,11 +99,9 @@ export const Login = () => {
                                 className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-colorprimario mt-2 flex-1 flex-shrink-0 basis-0"
                                 placeholder="Ej: maled o male12@gmail.com">
                             </input>
-
-                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 text-xl">
+                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 md:mt-6 text-xl md:text-lg">
                                 Contraseña
                             </p>
-
                             <input
                                 type='password'
                                 name="password"
@@ -108,24 +110,22 @@ export const Login = () => {
                                 className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-colorprimario mt-2 flex-1 flex-shrink-0 basis-0"
                                 placeholder="Nueva contraseña">
                             </input>
-                            
-                            
-                                <button className='bg-accent w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={()=>onSubmit()}>
-                                    {isLoading? "Cargando..." : "Iniciar sesión"}
-                                </button>
-                            
-
+                            <button className='bg-accent w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={() => onSubmit()}>
+                                {isLoading ? "Cargando..." : "Iniciar sesión"}
+                            </button>
                             <Link to='/recuperarContraseña' className="w-full">
                                 <p className="text-body_text text-center mt-10">  Olvidaste tu contraseña?</p>
                             </Link>
-                            <div className="w-full flex-row mt-4 text-center">
-                                <p className="text-colortextosubtitulos">Aun no eres miembro?
-                                    <Link to='/Register'><span className="text-accent pl-2">Registrate</span></Link></p>
+                            <div className="w-full flex-row mt-4 text-center mb-16">
+                                <div className="md:relative md:ml-0 md:mb-0">
+                                    <img src={dottedShape} className="md:absolute md:ml-0 md:-rotate-90 md:w-14" />
+                                </div>   <p className="text-colortextosubtitulos">Aun no eres miembro?
+                                    <Link to='/Register'><span className="text-accent pl-2 mb-16">Registrate</span></Link></p>
                             </div>
                         </div>
                     </div>
-                    <div className=" flex-shrink-0">
-                        <img src={verduras} className="w-full h-full rounded-xl" />
+                    <div className="flex-shrink-0 lg:hidden">
+                        <img src={verduras} className="w-full h-full rounded-xl hidden lg:block" />
                     </div>
                 </div>
             </div>
