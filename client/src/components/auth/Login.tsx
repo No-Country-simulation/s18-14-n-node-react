@@ -78,17 +78,19 @@ export const Login = () => {
     return (
         <>
             <div className="w-screen flex h-screen items-center">
-                <div className="flex mx-auto lg:mx-auto">
-                    <div className="bg-card_background flex-shrink-0 items-start gap-10 max-w-[500px] relative">
+                <div className="flex mx-auto lg:mx-auto lg:shadow-md">
+                    <div className="bg-card_background flex-shrink-0 items-start gap-10 max-w-[500px] lg:shadow-md relative">
                         <div className="absolute end-0 lg:hidden">
-                              <img src={dottedShape} className="" />
+                            <img src={dottedShape} />
                         </div>
-                        <img src={logoAuth} className="md:w-40 md:h-40 md:mx-auto" />
-                        <div className="flex-col mx-20 md:mx-16 md:mb-6 items-start gap-10">
-                            <p className="w-full text-4xl font-semibold pt-10 text-colorencabezados md:text-2xl">
+                        <div className="lg:items-center lg:hidden">
+                            <img src={logoAuth} className="lg:w-28 lg:h-28 mx-auto" />
+                        </div>
+                        <div className="flex-col mx-20 lg:mx-16 lg:mb-6 items-start gap-10">
+                            <p className="w-full text-4xl font-semibold pt-10 text-head_text lg:text-xl">
                                 Iniciar sesión
                             </p>
-                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 md:mt-6 text-xl md:text-md">
+                            <p className="h-8 w-full gap-2 text-subtitle_text mt-10 lg:mt-6 text-xl lg:text-md">
                                 Email o nombre de usuario
                             </p>
                             <input
@@ -96,10 +98,10 @@ export const Login = () => {
                                 onChange={handleChange}
                                 value={form.email.value}
                                 type="email"
-                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-colorprimario mt-2 flex-1 flex-shrink-0 basis-0"
+                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-primary mt-2 flex-1 flex-shrink-0 basis-0"
                                 placeholder="Ej: maled o male12@gmail.com">
                             </input>
-                            <p className="h-8 w-full gap-2 text-colortextosubtitulos mt-10 md:mt-6 text-xl md:text-lg">
+                            <p className="h-8 w-full gap-2 text- mt-10 md:mt-6 text-xl md:text-lg">
                                 Contraseña
                             </p>
                             <input
@@ -107,7 +109,7 @@ export const Login = () => {
                                 name="password"
                                 onChange={handleChange}
                                 value={form.password.value}
-                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-colorprimario mt-2 flex-1 flex-shrink-0 basis-0"
+                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-primary mt-2 flex-1 flex-shrink-0 basis-0"
                                 placeholder="Nueva contraseña">
                             </input>
                             <button className='bg-accent w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={() => onSubmit()}>
@@ -117,7 +119,7 @@ export const Login = () => {
                                 <p className="text-body_text text-center mt-10">  Olvidaste tu contraseña?</p>
                             </Link>
                             <div className="w-full flex-row mt-4 text-center mb-16">
-                                <p className="text-colortextosubtitulos">Aun no eres miembro?
+                                <p className="text-">Aun no eres miembro?
                                     <Link to='/Register'>
                                         <span className="text-accent pl-2 mb-16">Registrate</span>
                                     </Link>

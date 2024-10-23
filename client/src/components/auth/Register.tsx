@@ -136,7 +136,7 @@ const Register = () => {
 
     return (
         <div className="w-screen h-max py-1 items-center flex">
-            <div className="w-1/3 h-auto flex-shrink-0 bg-card_background mx-auto shadow-md items-center rounded-md">
+            <div className="w-3/4 h-auto flex-shrink-0 bg-card_background mx-auto max-w-[500px] shadow-md items-center rounded-md">
                 <div className="m-0 flex h-min justify-end">
                     <img src={dottedShape} className="w-16 h-16 top-0 right-0 " />
                 </div>
