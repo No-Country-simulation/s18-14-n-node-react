@@ -98,6 +98,9 @@ export default {
                 'lg': '22px',
                 'md': '20px',
                 'sm': '14px',
+            },
+            screens: {
+              'xsm': '360px',
             }
         }
     },

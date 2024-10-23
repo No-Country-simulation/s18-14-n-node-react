@@ -20,6 +20,8 @@ import bookmark from './svg/bookmark_default.svg';
 import bookmarkActive from './svg/bookmark_active.svg';
 import starYellow from './svg/star_yellow.svg';
 import starGray from './svg/star_gray.svg';
+import visibilityOn from './svg/visibility_on.svg';
+import visibilityOff from './svg/visibility_off.svg';
 
 export {
     media,
@@ -43,4 +45,6 @@ export {
     starYellow,
     starGray,
     tortillaEspañola,
+    visibilityOn,
+    visibilityOff,
 }
