@@ -1,13 +1,12 @@
 import * as fs from 'node:fs'
 import { MailerSend, EmailParams, Sender, Recipient } from 'mailersend'
 import Handlebars from 'handlebars'
-import { envs } from '../config'
 
 const mailerSend = new MailerSend({
-  apiKey: envs.mailerSendApiKey as string,
+  apiKey: process.env.MAILERSEND_API_KEY as string,
 })
 
-const sentFrom = new Sender('info@trial-k68zxl2yxzk4j905.mlsender.net', 'Recetapp')
+const sentFrom = new Sender(`info@${process.env.MAILERSEND_DOMAIN}`, 'Recetapp')
 
 export default class MailerSendUtils {
   private static compileTemplate(templatePath: string, variables: object) {

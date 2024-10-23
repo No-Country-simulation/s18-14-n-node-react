@@ -6,12 +6,11 @@ import {
   UploadApiOptions,
   DeleteApiResponse,
 } from 'cloudinary'
-import { envs } from '../config'
 
 cloudinary.config({
-  cloud_name: envs.cloudinaryCloudName,
-  api_key: envs.cloudinaryApiKey,
-  api_secret: envs.cloudinaryApiSecret,
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
   secure: true,
 })
 

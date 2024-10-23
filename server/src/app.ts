@@ -4,7 +4,6 @@ import swaggerJSDoc from 'swagger-jsdoc'
 import swaggerUiExpress from 'swagger-ui-express'
 import AppRoutes from './routes'
 import AppHandlers from './handlers'
-import { envs } from './config'
 import { options } from './utils/swagger.utils'
 
 export default class App {
@@ -14,7 +13,7 @@ export default class App {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: false }))
 
-    const allowedOrigin = ['http://localhost:5173', envs.backendUrl, envs.frontendUrl]
+    const allowedOrigin = [process.env.FRONTEND_URL, process.env.BACKEND_URL]
 
     this.app.use(
       cors({

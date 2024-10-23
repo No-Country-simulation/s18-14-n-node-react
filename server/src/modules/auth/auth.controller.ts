@@ -2,13 +2,12 @@ import { CookieOptions, Response } from 'express'
 import { AuthService } from './auth.service'
 import { Controller } from '../../types'
 import HttpErr from '../../errors/HttpErr'
-import { envs } from '../../config'
 
 export class AuthController {
   private static setCookie(name: string, res: Response, token: string) {
     const options: CookieOptions = {
       httpOnly: true,
-      secure: envs.nodeEnv === 'prod',
+      secure: process.env.NODE_ENV === 'prod',
       sameSite: 'strict',
       maxAge: 1000 * 60 * 60 * 2,
     }
@@ -18,14 +17,15 @@ export class AuthController {
   private static removeCookie(name: string, res: Response) {
     const options: CookieOptions = {
       httpOnly: true,
-      secure: envs.nodeEnv === 'prod',
+      secure: process.env.NODE_ENV === 'prod',
       sameSite: 'strict',
     }
     res.clearCookie(name, options)
   }
 
   static login: Controller = (req, res, next) => {
-    const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
+    const cookieName =
+      process.env.NODE_ENV === 'prod' ? (process.env.COOKIE_NAME as string) : 'recetapp'
     const cookie = req.headers.cookie
 
     if (cookie) throw new HttpErr(400, 'Bad Request', 'Already logged in!')
@@ -53,7 +53,8 @@ export class AuthController {
   }
 
   static logout: Controller = (req, res, next) => {
-    const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
+    const cookieName =
+      process.env.NODE_ENV === 'prod' ? (process.env.COOKIE_NAME as string) : 'recetapp'
     const cookie = req.headers.cookie
 
     if (!cookie) throw new HttpErr(400, 'Bad Request', 'Not logged in!')
