@@ -2,7 +2,6 @@ import * as crypto from 'node:crypto'
 import { Roles } from '@prisma/client'
 import * as jwt from 'jsonwebtoken'
 import * as bcrypt from 'bcrypt'
-import { envs } from '../../config'
 import { IAuth, IChangePassword } from './auth.interface'
 import HttpErr from '../../errors/HttpErr'
 import { IPayload } from '../../user'
@@ -13,10 +12,11 @@ export class AuthService {
   static async login(data: IAuth): Promise<{ accessToken: string; refreshToken: string }> {
     let userFound
     const accessSecret =
-      envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'access_secret'
-
+      process.env.NODE_ENV === 'prod' ? (process.env.JWT_ACCESS_SECRET as string) : 'access_secret'
     const refreshSecret =
-      envs.nodeEnv === 'prod' ? (envs.jwtRefreshSecret as string) : 'refresh_secret'
+      process.env.NODE_ENV === 'prod'
+        ? (process.env.JWT_REFRESH_SECRET as string)
+        : 'refresh_secret'
 
     if (data.email && data.username)
       throw new HttpErr(409, 'Conflict', 'Should login with username or email, but not both!')
@@ -142,7 +142,7 @@ export class AuthService {
       },
     })
 
-    const link = `${envs.frontendUrl}/reset-password?token=${recoveryToken}`
+    const link = `${process.env.FRONTEND_URL}/reset-password?token=${recoveryToken}`
 
     await MailerSendUtils.resetPasswordMail(userFound.email, 'views/reset-password.hbs', {
       user: userFound.username,

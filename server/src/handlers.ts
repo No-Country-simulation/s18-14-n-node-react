@@ -30,6 +30,7 @@ export default class AppHandlers {
           message: error.msg,
           description: error.description,
         })
+      else return res.status(500).json(error)
     }
 
     return { error, routeNotFound }

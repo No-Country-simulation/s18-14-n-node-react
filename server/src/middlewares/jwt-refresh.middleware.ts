@@ -1,26 +1,27 @@
 import * as jwt from 'jsonwebtoken'
-import { envs } from '../config'
 import { Middleware } from '../types'
 import { connDb } from '../db/connDb'
 import HttpErr from '../errors/HttpErr'
 import { IPayload } from '../user'
 
 const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
-  const cookieName = envs.nodeEnv === 'prod' ? (envs.cookieName as string) : 'recetapp'
+  const cookieName =
+    process.env.NODE_ENV === 'prod' ? (process.env.COOKIE_NAME as string) : 'recetapp'
 
-  const accessSecret = envs.nodeEnv === 'prod' ? (envs.jwtAccessSecret as string) : 'access_secret'
+  const accessSecret =
+    process.env.NODE_ENV === 'prod' ? (process.env.JWT_ACCESS_SECRET as string) : 'access_secret'
   const refreshSecret =
-    envs.nodeEnv === 'prod' ? (envs.jwtRefreshSecret as string) : 'refresh_secret'
+    process.env.NODE_ENV === 'prod' ? (process.env.JWT_REFRESH_SECRET as string) : 'refresh_secret'
 
   try {
     const cookie = req.headers.cookie
 
-    if (!cookie) throw new HttpErr(400, 'Bad request', 'Not logged in!')
+    if (!cookie) throw new HttpErr(401, 'Unauthorized', 'Not logged in!')
 
     const refreshToken = cookie.split('=')[1].split(';')[0]
     res.clearCookie(cookieName, {
       httpOnly: true,
-      secure: envs.nodeEnv === 'prod',
+      secure: process.env.NODE_ENV === 'prod',
       sameSite: true,
     })
 
@@ -85,7 +86,7 @@ const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
 
       res.cookie(cookieName, newRefreshToken, {
         httpOnly: true,
-        secure: envs.nodeEnv === 'prod',
+        secure: process.env.NODE_ENV === 'prod',
         sameSite: 'strict',
         maxAge: 1000 * 60 * 60 * 2,
       })

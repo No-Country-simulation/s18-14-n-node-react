@@ -6,7 +6,7 @@ const roleAuthentication = (...roles: (string | Roles[])[]): Middleware => {
   return (req, _res, next) => {
     const role = req.user?.role
     if (roles.includes(role as string)) next()
-    else throw new HttpErr(401, 'Unauthorized', 'Role is wrong!')
+    else throw new HttpErr(403, 'Forbidden', 'Role is wrong!')
   }
 }
 
