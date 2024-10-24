@@ -16,7 +16,7 @@ const jwtRefreshAuthentication: Middleware = async (req, res, next) => {
   try {
     const cookie = req.headers.cookie
 
-    if (!cookie) throw new HttpErr(400, 'Bad request', 'Not logged in!')
+    if (!cookie) throw new HttpErr(401, 'Unauthorized', 'Not logged in!')
 
     const refreshToken = cookie.split('=')[1].split(';')[0]
     res.clearCookie(cookieName, {

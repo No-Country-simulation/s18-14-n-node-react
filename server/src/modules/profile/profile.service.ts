@@ -5,7 +5,7 @@ import { IProfile } from './profile.interface'
 
 export class ProfileService {
   static async getProfile(userId: string) {
-    const profileFound = connDb.profile.findFirst({
+    const profileFound = await connDb.profile.findFirst({
       where: { userId },
       select: {
         description: true,
@@ -45,12 +45,12 @@ export class ProfileService {
     if (!profileFound) throw new HttpErr(404, 'Not found', 'User not found!')
 
     if (image) {
-      const uploadImage = await CloudinaryUtils.uploadFile(image, 'profiles')
+      const uploadImage = await CloudinaryUtils.uploadFile(image, profileFound.id, 'profiles')
       await connDb.profile.update({
         where: { userId },
         data: {
-          description: data.description,
-          img: uploadImage ? uploadImage.public_id : profileFound.img,
+          description: data.description ? data.description : profileFound.description,
+          img: uploadImage ? uploadImage.secure_url : profileFound.img,
         },
       })
     } else {

@@ -14,9 +14,9 @@ import {
 const router = Router()
 
 // GET ROUTES
-router.get('/reset-password/:token')
 router.get('/refresh', jwtRefreshAuthentication)
 router.get('/logout', AuthController.logout)
+router.get('/reset-password/:token')
 
 // POST ROUTES
 router.post('/login', schemaValidator(loginSchema, null), AuthController.login)

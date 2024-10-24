@@ -48,6 +48,8 @@ paths:
           description: Unauthorized
         '404':
           description: No user profile found
+        '415':
+          description: Unsupported file
         '500':
           description: Unexpected error
 

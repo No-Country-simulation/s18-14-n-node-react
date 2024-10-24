@@ -1,4 +1,4 @@
-import * as fs from 'node:fs'
+import * as stream from 'node:stream'
 import {
   v2 as cloudinary,
   UploadApiResponse,
@@ -17,21 +17,27 @@ cloudinary.config({
 export default class CloudinaryUtils {
   static async uploadFile(
     file: Express.Multer.File,
+    name: string,
     folder: string,
   ): Promise<UploadApiResponse | UploadApiErrorResponse | undefined> {
+    const buffer = Buffer.from(file.buffer)
+    const bufferStream = new stream.PassThrough()
+
     const options: UploadApiOptions = {
       folder: `recetapp/${folder}`,
+      public_id: name,
       use_filename: true,
       unique_filename: true,
       overwrite: true,
     }
+
     return new Promise<UploadApiResponse | UploadApiErrorResponse | undefined>(
       (resolve, reject) => {
         const uploadStream = cloudinary.uploader.upload_stream(options, (error, result) => {
           if (error) return reject(error)
           resolve(result)
         })
-        fs.createReadStream(file.buffer).pipe(uploadStream)
+        bufferStream.end(buffer).pipe(uploadStream)
       },
     )
   }
