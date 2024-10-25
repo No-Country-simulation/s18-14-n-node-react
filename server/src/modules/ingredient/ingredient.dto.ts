@@ -18,3 +18,10 @@ export const readIngredientsSchema = z
   })
   .partial()
   .strict()
+
+export const updateIngredientSchema = createIngredientSchema
+  .partial()
+  .strict()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: 'Empty DTO.',
+  })

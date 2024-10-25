@@ -1,0 +1,66 @@
+paths:
+  /api/v1/category/read-categories:
+    get:
+      summary: Get categories
+      tags:
+        - Category
+      responses:
+        '200':
+          description: Get Categories with filters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CategoryResponse'
+        '404':
+          description: No categories found
+        '500':
+          description: Unexpected error
+
+/api/v1/category/create-category:
+  post:
+    summary: Create category
+    tags:
+      - Category
+    security:
+      - bearerAuth: []
+    requestBody:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CategorySchema'
+    responses:
+      '201':
+        description: Create Category
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CategoryResponse'
+      '404':
+        description: No categories found
+      '500':
+        description: Unexpected error
+
+components:
+  schemas:
+    CategoryResponse:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          description:
+            type: string
+          img:
+            type: string
+    CategorySchema:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        img:
+          type: string

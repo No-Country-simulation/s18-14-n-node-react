@@ -1,5 +1,7 @@
+import { UUID } from 'node:crypto'
 import { connDb } from '../../db/connDb'
-import { CreateIngredient, ReadIngredients } from './ingredient.types'
+import { CreateIngredient, ReadIngredients, UpdateIngredient } from './ingredient.types'
+import { NFRecordErr } from '../../errors/NFRecordErr'
 
 export class IngredientService {
   static async createIngredient(params: CreateIngredient) {
@@ -30,5 +32,16 @@ export class IngredientService {
       limit,
       results: ingredients,
     }
+  }
+
+  static async updateIngredient(ingredientId: UUID, params: UpdateIngredient) {
+    const ingredientUpdated = await connDb.ingredient.update({
+      where: { id: ingredientId },
+      data: { ...params },
+    })
+
+    if (!ingredientUpdated) throw new NFRecordErr()
+
+    return ingredientUpdated
   }
 }
