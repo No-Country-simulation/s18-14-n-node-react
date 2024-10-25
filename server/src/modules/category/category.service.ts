@@ -11,6 +11,7 @@ export class CategoryService {
   static async readCategories({ name }: ReadCategories) {
     const categories = await connDb.category.findMany({
       where: { name: { contains: name, mode: 'insensitive' } },
+      select: { id: true, name: true, description: true, img: true },
     })
 
     return categories

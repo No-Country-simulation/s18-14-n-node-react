@@ -24,4 +24,14 @@ export class IngredientController {
       next(error)
     }
   }
+
+  static updateIngredients: Controller = async (_req, _res, next) => {
+    try {
+      // const dto = res.locals?.body as UpdateIngredient
+      // const ingredientUpdated = await IngredientService.updateIngredient(dto)
+      // res.status(200).json(ingredientUpdated)
+    } catch (error) {
+      next(error)
+    }
+  }
 }
