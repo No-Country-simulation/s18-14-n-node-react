@@ -7,7 +7,7 @@ const Contacto = () => {
         console.log('Mensaje enviado');
     }
     return (
-        <div className="lg:w-[1440px] lg:h-[1024px] bg-background flex w-[834px] h-[1252px]">
+        <div className="lg:w-[1440px] lg:h-[1024px] bg-background w-[834px] h-[942px] lg:flex grid grid-rows-1">
             <div className="lg:w-[571px] lg:h-[470px] lg:mt-[202px] lg:ml-[104px] lg:gap-[50px] m-[50px] flex lg:flex-col justify-between">
                 <div className="lg:w-[571px] lg:h-[140px] items-start w-[361px] lg:flex-col">
                     <h1 className="lg:text-5xl text-head_text lg:leading-[56px] text-left font-bold mb-3 text-4xl h:[80px] leading-[40px]">
@@ -49,7 +49,7 @@ const Contacto = () => {
                     </div>
                 </div>
             </div>
-            <div>
+            <div className='grid-rows-2 items-center mx-auto mb-[40px]'>
                 <div className='lg:mt-[202px] w-[470px] h-[530px] bg-card_background shadow-lg rounded-lg'>
                     <input type='text' className="w-[370px] h-[50px] border border-primary50 rounded-lg mt-[50px] mx-[50px] px-4 py-3 mb-[25px] text-[16px] items-center" placeholder='Nombre' />
                     <input type='email' className="w-[370px] h-[50px] border border-primary50 rounded-lg mx-[50px] px-4 py-3 mb-[25px] text-[16px] items-center" placeholder='Correo electrónico' />
