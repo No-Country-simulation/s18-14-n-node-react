@@ -114,12 +114,15 @@ export class AuthController {
 
   static deleteAccount: Controller = (req, res, next) => {
     const id = req.user?.id
+    const cookieName =
+      process.env.NODE_ENV === 'prod' ? (process.env.COOKIE_NAME as string) : 'recetapp'
 
     if (!id) throw new HttpErr(400, 'Bad Request', 'Id not found!')
 
     const data = AuthService.deleteAccount(id)
     data
       .then(() => {
+        this.removeCookie(cookieName, res)
         res.status(201).json({ message: 'Account successfully deleted!' })
       })
       .catch((error) => {

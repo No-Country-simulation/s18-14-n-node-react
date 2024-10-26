@@ -75,10 +75,6 @@ export class AuthService {
         userId: newUser.id,
       },
     })
-
-    await MailerSendUtils.welcomeMail(newUser.email, 'views/welcome.hbs', {
-      user: newUser.username,
-    })
   }
 
   static async deleteRefreshToken(refreshToken: string) {
@@ -126,13 +122,13 @@ export class AuthService {
     const expiresIn = new Date()
     expiresIn.setMinutes(expiresIn.getMinutes() + 10)
 
-    const userFound = await connDb.user.findUnique({
+    const userFound = await connDb.user.findFirst({
       where: { email: email },
     })
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
 
-    connDb.user.update({
+    await connDb.user.update({
       where: {
         id: userFound.id,
       },
@@ -158,8 +154,17 @@ export class AuthService {
     })
 
     if (!userFound) throw new HttpErr(404, 'Not found', 'User not found!')
-    if (userFound.recoveryExpiration && userFound.recoveryExpiration.getMinutes() > 10)
+
+    if (userFound.recoveryExpiration && userFound.recoveryExpiration.getMinutes() > 10) {
+      await connDb.user.update({
+        where: { id: userFound.id },
+        data: {
+          recoveryToken: null,
+          recoveryExpiration: null,
+        },
+      })
       throw new HttpErr(403, 'Forbidden', 'Recovery token expired!')
+    }
   }
 
   static async resetPassword(token: string, password: string): Promise<void> {

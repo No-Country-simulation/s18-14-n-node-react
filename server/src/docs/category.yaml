@@ -35,8 +35,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CategoryResponse'
-      '404':
-        description: No categories found
+      '401':
+        description: Not allowed to created category
       '500':
         description: Unexpected error
 

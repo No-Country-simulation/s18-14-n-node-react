@@ -25,9 +25,8 @@ export default class MailerSendUtils {
       .setReplyTo(sentFrom)
       .setSubject('🎉 Bienvenido a Recetapp!')
       .setHtml(compileHtml)
-      .setText('Te damos la bienvenida')
 
-    await mailerSend.email.send(emailParams)
+    return await mailerSend.email.send(emailParams)
   }
 
   static async resetPasswordMail(email: string, templatePath: string, variables: object) {
@@ -40,8 +39,7 @@ export default class MailerSendUtils {
       .setReplyTo(sentFrom)
       .setSubject('💻 Recuperar contraseña')
       .setHtml(compileHtml)
-      .setText('Vamos a recuperar tu contraseña')
 
-    await mailerSend.email.send(emailParams)
+    return await mailerSend.email.send(emailParams)
   }
 }
