@@ -7,6 +7,8 @@ import { useState } from "react";
 import { isEmailValid } from "@/helpers/format";
 import {ERROR_RESPONSE} from "@/constants";
 import useAuthStore from "@/store/authStore";
+import Input from "../Input";
+import Button from "../Button";
 
 interface InputValues {
     value: string;
@@ -105,34 +107,30 @@ export const Login = () => {
                             <img src={logoAuth} className="lg:w-28 lg:h-28 mx-auto" />
                         </div>
                         <div className="flex-col mx-20 lg:mx-16 lg:mb-6 items-start gap-10">
-                            <p className="w-full text-4xl font-semibold pt-10 text-head_text lg:text-xl">
+                            <h1 className="w-full text-4xl font-semibold pt-10 mb-10 text-head_text lg:text-xl">
                                 Iniciar sesión
-                            </p>
-                            <p className="h-8 w-full gap-2 text-subtitle_text mt-10 lg:mt-6 text-xl lg:text-md">
-                                Email o nombre de usuario
-                            </p>
-                            <input
-                                name="email"
-                                onChange={handleChange}
-                                value={form.email.value}
-                                type="email"
-                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-primary mt-2 flex-1 flex-shrink-0 basis-0"
-                                placeholder="Ej: maled o male12@gmail.com">
-                            </input>
-                            <p className="h-8 w-full gap-2 text- mt-10 md:mt-6 text-xl md:text-lg">
-                                Contraseña
-                            </p>
-                            <input
-                                type='password'
-                                name="password"
-                                onChange={handleChange}
-                                value={form.password.value}
-                                className="h-12 w-full border py-3 pl-5 pr-4 items-center gap-3 rounded-md border-primary mt-2 flex-1 flex-shrink-0 basis-0"
-                                placeholder="Nueva contraseña">
-                            </input>
-                            <button className='bg-accent w-full h-12 text-center py-2 px-20 text-white mt-6 rounded-md' onClick={() => onSubmit()}>
+                            </h1>
+                            <div className="flex flex-col gap-5">
+                              <Input
+                                  type="email"
+                                  name="email"
+                                  placeholder="Ej: maled o male12@gmail.com"
+                                  value={form.email.value}
+                                  onChange={handleChange}
+                                  label="Email o nombre de usuario"
+                              />
+                              <Input
+                                  type="password"
+                                  name="password"
+                                  placeholder="Nueva contraseña"
+                                  value={form.password.value}
+                                  onChange={handleChange}
+                                  label="Contraseña"
+                              />
+                              <Button type="filled" className="bg-accent" onClick={onSubmit} >
                                 {isLoading ? "Cargando..." : "Iniciar sesión"}
-                            </button>
+                              </Button>
+                            </div>
                             <Link to='/recuperarContraseña' className="w-full">
                                 <p className="text-body_text text-center mt-10">  Olvidaste tu contraseña?</p>
                             </Link>
@@ -157,4 +155,4 @@ export const Login = () => {
     )
 }
 
-export default Login;
+export default Login; //160
