@@ -1,10 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import { verduras, logoAuth, dottedShape } from "@/assets";
 import axios from 'axios';
-import { UserLoginResponse } from "@/models";
+import { ResponseErrorMessage, UserLoginResponse } from "@/models";
 import { login } from "@/services/auth";
 import { useState } from "react";
 import { isEmailValid } from "@/helpers/format";
+import {ERROR_RESPONSE} from "@/constants";
+import useAuthStore from "@/store/authStore";
 
 interface InputValues {
     value: string;
@@ -60,17 +62,33 @@ export const Login = () => {
                 password: form.password.value,
             }
 
+        const { setToken, logout } = useAuthStore.getState();
+
 
         try {
             setIsLoading(true);
             const data: { data: UserLoginResponse } = await login(user);
             console.log(data);
             setIsLoading(false);
+            setToken(data.data.accessToken);
             navigate("/navigation/Profile")
         } catch (error) {
             if (axios.isAxiosError(error)) {
-                console.log(error)
+                if (Array.isArray(error.response?.data)) {
+                    error.response?.data.forEach(e => {
+                        setForm(prevForm => ({
+                            ...prevForm,
+                            [e.validation[0]]: {
+                                ...prevForm[e.validation[0] as InputTypes],
+                                error: ERROR_RESPONSE[e.message as ResponseErrorMessage]
+                            }
+                        }));
+                    })
+                }
+                console.log(error.response?.data)
+                alert(ERROR_RESPONSE[error.response?.data.description as ResponseErrorMessage]);
             }
+            logout();
             setIsLoading(false);
         }
     }
