@@ -23,6 +23,7 @@ import Categories from './components/recipes/Categories'
 import Contacto from './components/contacto/Contacto'
 import Detail from './views/Detail'
 import { ProtectedRoute } from './components/auth/ProtectedRoutes'
+import ResetPassword from './components/auth/ResetPassword'
 
 
 function App() {
@@ -57,7 +58,10 @@ function App() {
         {
           path: '/register',
           element: <Register />
-        },
+        },{
+          path: '/reset-password',
+          element: <ResetPassword />
+        }
       ]
     },
     {
