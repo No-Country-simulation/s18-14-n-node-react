@@ -9,16 +9,22 @@ interface InputProps {
     placeholder?: string;
     disabled?: boolean;
     error?: string;
+    label?: string;
 }
 
-function Input({ type = "text", name, value, onChange, placeholder, disabled, error }: InputProps) {
+function Input({ type = "text", name, value, onChange, placeholder, disabled, error, label }: InputProps) {
   const [isVisible, setIsVisible] = useState(false);
 
   const changeVisibility = () => setIsVisible(!isVisible);
 
 
   return (
-    <div>
+    <div className="flex flex-col gap-2 text-subtitle_text">
+      {label && (
+        <label htmlFor={name} className="text-xl md:text-lg">
+          {label}
+        </label>
+      )}
       <div className="border-[1px] border-primary rounded-md px-5 py-3 flex gap-2.5">
         <input
           type={type === "password" ? (isVisible ? "text" : "password") : type}
@@ -36,6 +42,7 @@ function Input({ type = "text", name, value, onChange, placeholder, disabled, er
             height={24}
             width={24}
             onClick={changeVisibility}
+            className="cursor-pointer"
           />
         )}
       </div>
