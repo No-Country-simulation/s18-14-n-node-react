@@ -21,11 +21,11 @@ function Input({ type = "text", name, value, onChange, placeholder, disabled, er
   return (
     <div className="flex flex-col gap-2 text-subtitle_text">
       {label && (
-        <label htmlFor={name} className="text-xl md:text-lg">
+        <label htmlFor={name} className="font-bold text-black">
           {label}
         </label>
       )}
-      <div className="border-[1px] border-primary rounded-md px-5 py-3 flex gap-2.5">
+      <div className={`border-[1px] rounded-md px-5 py-3 flex gap-2.5 ${disabled ? "bg-gray-200 border-gray-500" : "border-primary"}`}>
         <input
           type={type === "password" ? (isVisible ? "text" : "password") : type}
           name={name}
@@ -51,7 +51,6 @@ function Input({ type = "text", name, value, onChange, placeholder, disabled, er
       }
     </div>
   );
-
 }
 
 export default Input;
