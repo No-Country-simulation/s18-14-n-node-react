@@ -21,7 +21,7 @@ function Input({ type = "text", name, value, onChange, placeholder, disabled, er
   return (
     <div className="flex flex-col gap-2 text-subtitle_text">
       {label && (
-        <label htmlFor={name} className="text-xl md:text-lg">
+        <label htmlFor={name} className="font-bold text-black">
           {label}
         </label>
       )}

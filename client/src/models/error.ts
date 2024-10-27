@@ -7,6 +7,7 @@ export type ResponseErrorMessage =
   | "Required"
   | "User not found!"
   | "Already logged in!"
-  | "Password does not match!";
+  | "Password does not match!"
+  | "File too large";
 
 export type ResponseError = Record<ResponseErrorMessage, string>;

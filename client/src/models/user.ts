@@ -1,6 +1,6 @@
 export interface User {
   description: string | null;
-  image: string;
+  img: string;
   user: {
     email: string;
     username: string;
