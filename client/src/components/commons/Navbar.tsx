@@ -80,21 +80,21 @@ export const NavBarWeb = ({
         }
       </div>
 
-      <div className={`lg:flex lg:z-auto items-center z-50 lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
+      <div className={`lg:flex fixed z-50 right-0 lg:right-auto w-full lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
         <div className="lg:flex lg:flex-row lg:w-3/4 md:items-center lg:items-center lg:justify-end lg:pr-20 h-max">
-          <SeccionNavBar className="!shrink-0 py-6 lg:my-0 lg:w-1/2 hover:bg-coloracento" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
-          <SeccionNavBar className="!shrink-0 py-6 lg:my-0 lg:w-1/2 hover:bg-coloracento" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
+          <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-12 lg:px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
+          <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-12 lg:px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
         </div>
 
         {!token ?
-          <div className="lg:flex lg:flex-row gap-3 items-center lg:w-1/3 lg:justify-end">
+          <div className="lg:flex lg:flex-row gap-3 items-center w-full lg:w-1/3 lg:justify-end">
             <BotonSecondary
-              className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento mx-auto"
+              className="lg:!shrink-0 lg:border-2 lg:border-colorsecundario hover:bg-coloracento mx-auto"
               btnText="Registrarse"
               action={() => navigate('/register')}
             ></BotonSecondary>
             <BotonPrimary
-              className="bg-colorprimario !shrink-0 hover:bg-coloracento shadow-custom mx-auto"
+              className="bg-colorprimario lg:!shrink-0 hover:bg-coloracento shadow-custom mx-auto"
               textBtn="Iniciar sesión"
               action={() => navigate('/login')}
             />
