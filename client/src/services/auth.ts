@@ -1,18 +1,13 @@
 import axios from "axios";
 import { Login, Register } from "@/types";
-import useAuthStore from "@/store/authStore";
 
 export const login = async (user: Login) => {
-  const { setToken, logout } = useAuthStore.getState();
 
   try {
-    const {data} = await axios.post("/auth/login", user);
-
-    setToken(data.accessToken)
-    return data;
+    const res = await axios.post("/auth/login", user);
+    return res;
   } catch (error) {
-    logout();
-    console.log(error);
+    throw await error;
   }
 };
 
