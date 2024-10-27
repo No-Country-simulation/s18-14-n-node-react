@@ -80,8 +80,8 @@ export const NavBarWeb = ({
         }
       </div>
 
-      <div className={`lg:flex lg:z-auto z-50 lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
-        <div className="lg:flex lg:flex-row lg:w-3/4 lg:items-center lg:justify-end lg:pr-20 h-max">
+      <div className={`lg:flex lg:z-auto items-center z-50 lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
+        <div className="lg:flex lg:flex-row lg:w-3/4 md:items-center lg:items-center lg:justify-end lg:pr-20 h-max">
           <SeccionNavBar className="!shrink-0 py-6 lg:my-0 lg:w-1/2 hover:bg-coloracento" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
           <SeccionNavBar className="!shrink-0 py-6 lg:my-0 lg:w-1/2 hover:bg-coloracento" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
         </div>
