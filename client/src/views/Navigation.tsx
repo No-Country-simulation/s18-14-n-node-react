@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom'
 
 export default function Navigation() {
     return (
-        <div className="h-screen max-h-fit flex flex-col bg-[#EEE]">
+        <div className="h-screen max-h-fit md:flex md:flex-col bg-[#EEE]">
             <Navbar />
 
             <div className="flex flex-row flex-grow overflow-hidden">

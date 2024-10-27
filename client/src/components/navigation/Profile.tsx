@@ -30,8 +30,8 @@ export default function Profile() {
                 <img src={userData?.image || defaultUserImage} className="max-h-44"/>
             </div>
             
-            <div className="w-full grid grid-cols-7 gap-8 justify-between pb-8">
-                <article className="bg-white rounded-3xl h-max col-span-4 mt-3 p-8 shadow-custom">
+            <div className="w-full grid grid-cols-1 lg:grid-cols-7 gap-8 lg:justify-between pb-8">
+                <article className="bg-white rounded-3xl h-max lg:col-span-4 mt-3 p-8 shadow-custom">
                     <div className="mb-5 w-full h-20">
                         <label
                             className=" block content-center h-1/2 font-bold text-base text-[#11928]"
@@ -96,7 +96,7 @@ export default function Profile() {
                     </div>
 
                 </article>
-                <article className="bg-white rounded-3xl flex-grow text-center col-span-3 mt-3 p-8 h-max min-h-[445px] shadow-custom">
+                <article className="bg-white rounded-3xl flex-grow text-center lg:col-span-3 mt-3 p-8 h-max min-h-[445px] shadow-custom">
                     <div
                         className=" block content-center h-1/6 font-semibold text-2xl text-"
                     >

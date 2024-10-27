@@ -15,7 +15,7 @@ export interface ISeccionesNavbarProps {
     return (  
         <Link
           to={linkTo}
-          className={"text-colorsecundario hover:text-black text-center h-[100%] flex items-center justify-center " + className}
+          className={"text-colorsecundario lg:hover:text-black text-center h-full flex items-center justify-center " + className}
         >
           {nameSection}
         </Link>
