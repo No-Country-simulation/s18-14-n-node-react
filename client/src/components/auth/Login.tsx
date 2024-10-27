@@ -97,7 +97,7 @@ export const Login = () => {
 
     return (
         <>
-            <div className="w-screen flex h-screen items-center">
+            <div className="w-screen flex h-full py-8 items-center">
                 <div className="flex mx-auto lg:mx-auto lg:shadow-md">
                     <div className="bg-card_background flex-shrink-0 items-start gap-10 max-w-[500px] lg:shadow-md relative">
                         <div className="absolute end-0 lg:hidden">
