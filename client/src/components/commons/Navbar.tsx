@@ -58,7 +58,7 @@ export const NavBarWeb = ({
   return (
     <div
       className={
-        "bg-colorprimario lg:px-20 py-5 lg:py-0 sm:block lg:flex lg:flex-grow lg:h-[100px] lg:w-screen w-full" +
+        "bg-colorprimario px-12 lg:px-20 py-5 lg:py-0 sm:block lg:flex lg:flex-grow lg:h-[100px] lg:w-screen w-full" +
         className
       }
     >
@@ -74,7 +74,7 @@ export const NavBarWeb = ({
           </div>
           :
           <div onClick={() => setOpen(!open)} className="lg:hidden text-colorblancoprincipal text-2xl cursor-pointer">
-            <i className="fa-solid fa-bars">
+            <i className={`${open?'fa-solid fa-xmark':'fa-solid fa-bars'}`}>
             </i>
           </div>
         }
