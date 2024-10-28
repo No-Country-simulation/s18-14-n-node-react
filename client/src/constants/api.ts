@@ -11,4 +11,5 @@ export const ERROR_RESPONSE: ResponseError = {
   "User not found!": "Usuario no encontrado",
   "Already logged in!": "Ya estas logueado",
   "Password does not match!": "Contraseña incorrecta",
+  "File too large": "El archivo es demasiado pesado",
 }
