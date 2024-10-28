@@ -28,27 +28,25 @@ const favorites = [
 
 export default function Favorites() {
   return (
-    <div className="flex mx-auto w-screen overflow-scroll lg:overflow-auto">
-      <div className="flex flex-col mx-auto overflow-scroll lg:overflow-auto">
-        <span className="font-semibold text-[32px] leading-[56px] text-[#2c2c2c]">Nuestras recetas favoritas</span>
-        <div className="flex">
-          {
-            favorites?.map(({ id, name, description, image }) => (
-              <div className="h-[523px] w-[300px] flex flex-col justify-center items-center gap-2" key={id}>
-                <img className="size-[260px] rounded-full" src={image} />
-                <div className="w-[290px] flex flex-col items-center gap-7 px-[35px] py-[30px]">
-                  <div className="flex flex-col gap-[15px]">
-                    <span className="font-semibold text-[22px] leading-[32px] text-center text-[#4d4d4d]">
-                      {name}
-                    </span>
-                    <span className="font-normal text-base text-center text-[#637381]">
-                      {description}
-                    </span>
-                  </div>
+    <div className="flex self-center mx-10 lg:mx-40">
+      <div className="flex flex-col">
+        <h3 className="hidden lg:block font-semibold text-4xl text-head_text">Nuestras recetas favoritas</h3>
+        <div className="flex flex-wrap justify-evenly gap-1">
+          {favorites?.map(({ id, name, description, image }) => (
+            <div className="px-1.5 max-w-[300px]" key={id}>
+              <img className="size-[280px] rounded-full object-cover mx-auto" src={image} />
+              <div className="flex flex-col items-center gap-7 px-2 py-7">
+                <div className="flex flex-col gap-[15px]">
+                  <span className="font-semibold text-[22px] leading-[32px] text-center text-[#4d4d4d]">
+                    {name}
+                  </span>
+                  <span className="font-normal text-base text-center text-[#637381]">
+                    {description}
+                  </span>
                 </div>
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,32 +1,31 @@
 export const categoriesList = [
   {
     name: "Vegetariana", id: 1,
-    image: 'size-[125px] rounded-full bg-vegetarian bg-cover'
+    image: '/assets/vegetarian.svg'
   },
   {
     name: "Veganismo", id: 2,
-    image: 'size-[125px] rounded-full bg-vegan bg-cover'
+    image: '/assets/vegan.svg'
   },
   {
     name: "Sin Gluten", id: 3,
-    image: 'size-[125px] rounded-full bg-glutenfree bg-cover'
+    image: '/assets/gluten-free.svg'
   },
   {
     name: "Paleo", id: 4,
-    image: 'size-[125px] rounded-full bg-paleo bg-cover'
+    image: '/assets/paleo.svg'
   },
   {
     name: "Cetogénica (Keto)", id: 5,
-    image: 'size-[125px] rounded-full bg-cetogenica bg-cover'
+    image: '/assets/cetogenica.svg'
   },
-  // { name: "Bajo en Carbohidratos", id: 6, image: 'vegetarian' },
   {
     name: "Mediterránea", id: 7,
-    image: 'size-[125px] rounded-full bg-mediterranean bg-cover'
+    image: '/assets/mediterranean.svg'
   },
   {
     name: "Raw", id: 8,
-    image: 'size-[125px] rounded-full bg-raw bg-cover'
+    image: '/assets/raw.svg'
   },
 ]
 
