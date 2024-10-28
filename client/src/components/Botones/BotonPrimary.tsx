@@ -16,7 +16,7 @@ export interface IBotonPrimaryProps {
       <button
         type="submit" onClick={action}
         className={
-          "rounded-lg py-3 px-5 border border-colorprimario flex flex-row items-center justify-center w-1/2 h-[50px]" +
+          "lg:rounded-lg py-3 lg:px-5 lg:border lg:border-colorprimario flex flex-row items-center justify-center w-full lg:w-1/2 h-[50px]" +
           className
         }
       >

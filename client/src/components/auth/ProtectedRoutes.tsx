@@ -5,5 +5,6 @@ export const ProtectedRoute = () => {
   const { token } = useAuthStore.getState();
   const isLoggedIn = token !== "";
 
-  return isLoggedIn?  <Outlet/> : <Navigate to="/login" />              
+  return isLoggedIn ? <Outlet /> : <Navigate to="/login" />
+
 } 

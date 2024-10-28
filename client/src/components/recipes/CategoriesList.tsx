@@ -25,7 +25,7 @@ export default function CategoriesList() {
   }
 
   return (
-    <div className="w-screen justify-center items-center flex pt-8">
+    <div className="w-full justify-center items-center flex pt-8 overflow-scroll lg:overflow-auto">
       <div className="w-full justify-center items-start flex flex-row flex-wrap">
         {
           categories?.length > 0 && categories.map(({ name, id, image }) => (

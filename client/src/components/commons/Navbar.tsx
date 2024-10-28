@@ -6,8 +6,8 @@ import { logoWText } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { BtnSesion } from "../Botones/BtnSesion";
 import useAuthStore from "@/store/authStore";
-import {useEffect, useState} from "react";
-import {User} from "@/models";
+import { useEffect, useState } from "react";
+import { User } from "@/models";
 import useUserStore from "@/store/userStore";
 import configureAxios from "@/services/axios";
 
@@ -16,7 +16,7 @@ const userImage = "https://static.vecteezy.com/system/resources/thumbnails/009/2
 
 export default function Navbar() {
   return (
-    <div className="flex min-w-full border-b">
+    <div className="lg:flex min-w-full border-b">
       <NavBarWeb />
     </div>
   )
@@ -31,9 +31,11 @@ export const NavBarWeb = ({
 }: INavBarWebProps): JSX.Element => {
   const [userData, setUserData] = useState<User | null>(null);
 
+  const [open, setOpen] = useState(false);
+
   const navigate = useNavigate();
   const token = useAuthStore.getState().token;
-  
+
 
   useEffect(() => {
     const { setUser } = useUserStore.getState();
@@ -56,41 +58,58 @@ export const NavBarWeb = ({
   return (
     <div
       className={
-        "bg-colorprimario px-24 flex flex-grow h-[100px] w-screen" +
+        "bg-colorprimario px-2 lg:px-20 py-5 lg:py-0 sm:block lg:flex lg:flex-grow lg:h-[100px] lg:w-screen w-full" +
         className
       }
     >
 
-      <div className="bg-colorprimario w-1/3 h-full flex items-center justify-center">
-        <Link className="flex h-4/5 w-full" to="/"><img src={logoWText} className="h-auto w-full" /></Link>
+      <div className="bg-colorprimario lg:w-1/4 w-full h-full flex items-center lg:justify-center justify-between pr-3 lg:pr-0">
+        <Link className="flex lg:h-4/5 h-full lg:w-full w-1/2" to="/"><img src={logoWText} className="h-auto w-full" /></Link>
+        {token ?
+          <div className="lg:hidden gap-3 items-center w-1/3 justify-end">
+            <BtnSesion
+              imgSrc={userData?.img || userImage}
+              action={() => navigate('/navigation/Profile')}
+            />
+          </div>
+          :
+          <div onClick={() => setOpen(!open)} className="lg:hidden text-colorblancoprincipal text-2xl cursor-pointer">
+            <i className={`rigth-0 ${open?'fa-solid fa-xmark':'fa-solid fa-bars'}`}>
+            </i>
+          </div>
+        }
       </div>
 
-      <div className="flex flex-row w-3/4 items-center justify-evenly">
-        <SeccionNavBar className="!shrink-0" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
-        <SeccionNavBar className="!shrink-0" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
-      </div>
+      <div className={`lg:flex fixed z-50 right-0 left-0 lg:right-8 w-screen lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
+        <div className="lg:flex lg:flex-row px-0 lg:w-3/4 md:items-center lg:items-center lg:justify-end lg:pr-20 h-max">
+          <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
+          <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
+        </div>
 
-      {!token?
-        <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
-          <BotonSecondary
-            className="!shrink-0 border-2 border-colorsecundario hover:bg-coloracento"
-            btnText="Registrarse"
-            action={() => navigate('/register')}
-          ></BotonSecondary>
-          <BotonPrimary
-            className="bg-colorprimario !shrink-0 hover:bg-coloracento shadow-custom"
-            textBtn="Iniciar sesión"
-            action={() => navigate('/login')}
-          />
-        </div>
-        :
-        <div className="flex flex-row gap-3 items-center w-1/3 justify-end">
-        <BtnSesion 
-          imgSrc={userData?.image || userImage}
-          action={()=>navigate('/navigation/Profile')}
-        />
-        </div>
-      }
+        {!token ?
+          <div className="lg:flex lg:flex-row gap-3 items-center w-full lg:w-1/3 lg:justify-end">
+            <BotonSecondary
+              className="lg:!shrink-0 lg:border-2 lg:border-colorsecundario hover:bg-coloracento mx-auto"
+              btnText="Registrarse"
+              action={() => navigate('/register')}
+            ></BotonSecondary>
+            <BotonPrimary
+              className="bg-colorprimario lg:!shrink-0 hover:bg-coloracento shadow-custom mx-auto"
+              textBtn="Iniciar sesión"
+              action={() => navigate('/login')}
+            />
+          </div>
+          :
+          <div className="hidden lg:flex lg:flex-row gap-3 items-center w-1/3 justify-end">
+            <BtnSesion
+              imgSrc={userData?.img || userImage}
+              action={() => navigate('/navigation/Profile')}
+            />
+          </div>
+        }
+
+      </div>
     </div>
+
   );
 };
