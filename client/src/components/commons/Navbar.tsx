@@ -68,7 +68,7 @@ export const NavBarWeb = ({
         {token ?
           <div className="lg:hidden gap-3 items-center w-1/3 justify-end">
             <BtnSesion
-              imgSrc={userData?.image || userImage}
+              imgSrc={userData?.img || userImage}
               action={() => navigate('/navigation/Profile')}
             />
           </div>
@@ -102,7 +102,7 @@ export const NavBarWeb = ({
           :
           <div className="hidden lg:flex lg:flex-row gap-3 items-center w-1/3 justify-end">
             <BtnSesion
-              imgSrc={userData?.image || userImage}
+              imgSrc={userData?.img || userImage}
               action={() => navigate('/navigation/Profile')}
             />
           </div>
