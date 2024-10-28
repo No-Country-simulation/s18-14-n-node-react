@@ -28,10 +28,10 @@ const favorites = [
 
 export default function Favorites() {
   return (
-    <div className="flex self-center">
-      <div className="flex flex-col">
+    <div className="flex mx-auto w-screen overflow-scroll lg:overflow-auto">
+      <div className="flex flex-col mx-auto overflow-scroll lg:overflow-auto">
         <span className="font-semibold text-[32px] leading-[56px] text-[#2c2c2c]">Nuestras recetas favoritas</span>
-        <div className="flex ">
+        <div className="flex">
           {
             favorites?.map(({ id, name, description, image }) => (
               <div className="h-[523px] w-[300px] flex flex-col justify-center items-center gap-2" key={id}>

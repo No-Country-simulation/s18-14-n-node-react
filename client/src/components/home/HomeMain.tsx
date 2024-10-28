@@ -6,7 +6,7 @@ import Favorites from "./Favorites";
 export default function HomeMain() {
 
   return (
-    <div className='flex flex-col gap-8 pb-8'>
+    <div className='flex flex-col gap-8 pb-8 w-screen'>
       <Banner />
       <CategoriesList />
       <BigCard />

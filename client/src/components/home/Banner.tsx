@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 export default function Banner() {
 
   return (
-    <div className="w-screen h-[280px] bg-[#111928] relative">
-      <img src="/assets/banner-image.png" alt="banner" className="w-screen h-auto" />
+    <div className="w-full h-[280px] bg-[#111928] relative">
+      <img src="/assets/banner-image.png" alt="banner" className="w-full h-auto" />
       <div className="h-[199px]; left-[104px] top-[52px] absolute flex-col justify-center items-start gap-[30px] flex text-white">
         <div className=" font-['Lato'] flex-col justify-start items-start gap-[15px] flex">
           <h1 className="text-5xl font-extrabold leading-[56px]">¡Te ayudamos a cocinar!</h1>
