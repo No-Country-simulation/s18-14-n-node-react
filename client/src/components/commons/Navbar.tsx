@@ -58,15 +58,15 @@ export const NavBarWeb = ({
   return (
     <div
       className={
-        "bg-colorprimario px-12 lg:px-20 py-5 lg:py-0 sm:block lg:flex lg:flex-grow lg:h-[100px] lg:w-screen w-full" +
+        "bg-colorprimario px-2 lg:px-20 py-5 lg:py-0 sm:block lg:flex lg:flex-grow lg:h-[100px] lg:w-screen w-full" +
         className
       }
     >
 
-      <div className="bg-colorprimario lg:w-1/4 w-full h-full flex items-center lg:justify-center justify-between pr-10  lg:pr-0">
+      <div className="bg-colorprimario lg:w-1/4 w-full h-full flex items-center lg:justify-center justify-between pr-3 lg:pr-0">
         <Link className="flex lg:h-4/5 h-full lg:w-full w-1/2" to="/"><img src={logoWText} className="h-auto w-full" /></Link>
         {token ?
-          <div className="lg:flex lg:flex-row gap-3 items-center w-1/3 justify-end">
+          <div className="lg:hidden gap-3 items-center w-1/3 justify-end">
             <BtnSesion
               imgSrc={userData?.image || userImage}
               action={() => navigate('/navigation/Profile')}
@@ -74,13 +74,13 @@ export const NavBarWeb = ({
           </div>
           :
           <div onClick={() => setOpen(!open)} className="lg:hidden text-colorblancoprincipal text-2xl cursor-pointer">
-            <i className={`${open?'fa-solid fa-xmark':'fa-solid fa-bars'}`}>
+            <i className={`rigth-0 ${open?'fa-solid fa-xmark':'fa-solid fa-bars'}`}>
             </i>
           </div>
         }
       </div>
 
-      <div className={`lg:flex fixed z-50 right-0 lg:right-8 w-screen lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
+      <div className={`lg:flex fixed z-50 right-0 left-0 lg:right-8 w-screen lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
         <div className="lg:flex lg:flex-row px-0 lg:w-3/4 md:items-center lg:items-center lg:justify-end lg:pr-20 h-max">
           <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
           <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
