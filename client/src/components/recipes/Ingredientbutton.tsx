@@ -1,8 +1,8 @@
 type Props = {
-  id: number,
+  id: string,
   name: string,
-  handleItemListClick?: undefined | ((id: number) => void),
-  handleRemoveIngredient?: undefined | ((id: number) => void)
+  handleItemListClick?: undefined | ((id: string) => void),
+  handleRemoveIngredient?: undefined | ((id: string) => void)
 }
 
 export default function Ingredientbutton({ id, name, handleItemListClick, handleRemoveIngredient }: Props) {

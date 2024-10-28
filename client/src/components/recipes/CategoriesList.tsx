@@ -16,8 +16,11 @@ export default function CategoriesList() {
     if(result) setCategories(result)
   }, [])
 
-  const handleSelectedCategory = (id: number) => {
-    setSelected(id)
+  const handleSelectedCategory = (name: string) => {
+    if (name === "Todas") {
+      setSelected(null)
+    }
+    else setSelected(name)
     if(isHome) navigate('/recipes/categories')
   }
 
@@ -27,13 +30,13 @@ export default function CategoriesList() {
         {
           categories?.length > 0 && categories.map(({ name, id, image }) => (
             <button 
-              onClick={() => handleSelectedCategory(id)}
+              onClick={() => handleSelectedCategory(name)}
               className="min-h-[173px] flex flex-col items-center px-[7px]" 
               key={id}
             >
               <div className={image} style={selected === id ? {opacity: '0.6'} : {opacity: '1'}} />
               <span className="max-w-[125px] text-[#5A5858] text-[22px] font-['Lato'] font-semibold leading-8 text-wrap text-center">
-                {name}
+                {name ? name : 'Todas'}
               </span>
             </button>
           ))

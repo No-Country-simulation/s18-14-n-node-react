@@ -1,8 +1,8 @@
 import { create } from 'zustand'
 
 type Store = {
-  selected: number | null
-  setSelected: (newSelected: number | null) => void
+  selected: string | null
+  setSelected: (newSelected: string | null) => void
 }
 
 const useStore = create<Store>()((set) => ({

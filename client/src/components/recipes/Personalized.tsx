@@ -1,27 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Ingredientbutton from "./Ingredientbutton"
 import { useToast } from "@/hooks/use-toast"
+import { getIngredients } from "@/services/ingredients"
 
 export default function Personalized() {
   const { toast } = useToast()
-  type Ingredient = {
-    id: number,
-    name: string
-  }
 
-  const suggestedListInitial = [
-    { id: 1, name: 'Ingrediente 1' },
-    { id: 2, name: 'Ingrediente 2' },
-    { id: 3, name: 'Ingrediente 3' },
-    { id: 4, name: 'Ingrediente 4' },
-    { id: 5, name: 'Ingrediente 5' },
-    { id: 6, name: 'Ingrediente 6' },
-    { id: 7, name: 'Ingrediente 7' },
-    { id: 8, name: 'Ingrediente 8' }
-  ]
+  const [selectedList, setSelectedList] = useState<string[] | []>([])
+  const [suggestedList, setSuggestedList] = useState<string[] | []>([])
 
-  const [selectedList, setSelectedList] = useState<Ingredient[] | []>([])
-  const [suggestedList, setSuggestedList] = useState<Ingredient[] | []>(suggestedListInitial)
+  useEffect(() => {
+    const ingredients = getIngredients()
+    if (ingredients) setSuggestedList(ingredients)
+  }, [])
 
   const handleListClick = () => {
     const $list = document.getElementById('addIngredient')
@@ -29,25 +20,25 @@ export default function Personalized() {
     $list?.classList.add('flex')
   }
 
-  const handleItemListClick = (id: number) => {
+  const handleItemListClick = (name: string) => {
     const $list = document.getElementById('addIngredient')
     $list?.classList.remove('flex')
     $list?.classList.add('hidden')
-    const ingredientFound = selectedList.find(ingredient => ingredient.id === id)
+    const ingredientFound = selectedList.find(ingredient => ingredient === name)
     if (ingredientFound) return
-    const addIngredient = suggestedList.find(ingredient => ingredient.id === id)
+    const addIngredient = suggestedList.find(ingredient => ingredient === name)
     if (addIngredient) {
       setSelectedList([...selectedList, addIngredient])
-      const filteredIngredients = suggestedList.filter(ingredient => ingredient.id !== id)
+      const filteredIngredients = suggestedList.filter(ingredient => ingredient !== name)
       setSuggestedList(filteredIngredients)
     }
   }
 
-  const handleRemoveIngredient = (id: number) => {
-    const addIngredient = selectedList.find(ingredient => ingredient.id === id)
+  const handleRemoveIngredient = (name: string) => {
+    const addIngredient = selectedList.find(ingredient => ingredient === name)
     if (addIngredient) {
       setSuggestedList([...suggestedList, addIngredient])
-      const filteredIngredients = selectedList.filter(ingredient => ingredient.id !== id)
+      const filteredIngredients = selectedList.filter(ingredient => ingredient !== name)
       setSelectedList(filteredIngredients)
     }
   }
@@ -57,7 +48,7 @@ export default function Personalized() {
     else {
       let description = ''
       for (const ingredient of selectedList) {
-        description += ` ${ingredient.name}`
+        description += ` ${ingredient}`
       }
       toast({
         title: 'Ingredients',
@@ -85,13 +76,13 @@ export default function Personalized() {
             className="hidden flex-col absolute top-[51px] left-0 overflow-auto z-10"
           >
             {
-              suggestedList?.map(({ id, name }) => (
+              suggestedList?.map(ingredient => (
                 <li
-                  onClick={() => handleItemListClick(id)}
-                  key={name + id}
+                  onClick={() => handleItemListClick(ingredient)}
+                  key={ingredient}
                   className="h-[50px] w-[720px] flex text-gray-400 text-base font-normal font-['Inter'] leading-normal outline-none bg-white rounded-md border border-[#dfe4ea] px-4 items-center"
                 >
-                  {name}
+                  {ingredient}
                 </li>
               ))
             }
@@ -102,13 +93,13 @@ export default function Personalized() {
               <div className="text-center text-black text-base font-normal font-['Lato'] leading-normal tracking-wide">Ingredientes<br />sugeridos</div>
             </div>
             <div
-              className="h-[108px] px-5 py-4 justify-center items-start gap-2 flex flex-wrap overflow-auto scrollbar-none"
+              className="h-[108px] px-5 py-4 justify-center items-start gap-2 flex flex-wrap overflow-auto scrollbar-hide"
             >
               {
-                suggestedList?.map(({ id, name }) => (
+                suggestedList?.map(ingredient => (
                   <Ingredientbutton
-                    id={id}
-                    name={name}
+                    id={ingredient}
+                    name={ingredient}
                     handleItemListClick={handleItemListClick}
                   />
                 ))
@@ -120,11 +111,12 @@ export default function Personalized() {
         <div className="w-[396px] h-[394px] rounded-lg flex-col justify-between items-center inline-flex bg-white py-4">
           <div className="w-full p-2  justify-center items-start gap-2 flex flex-wrap">
             {
-              selectedList?.length > 0 && selectedList.map(({ id, name }) => (
+              selectedList?.length > 0 && selectedList.map(ingredient => (
                 <Ingredientbutton
-                  id={id}
-                  name={name}
+                  id={ingredient}
+                  name={ingredient}
                   handleRemoveIngredient={handleRemoveIngredient}
+                  key={ingredient}
                 />
               ))
             }

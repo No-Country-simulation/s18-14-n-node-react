@@ -13,12 +13,18 @@ export default function Categories() {
   console.log(selected);
  
   const [recipes, setRecipes] = useState<Recipe[] | []>([])
+
   useEffect(() => {
     loadRecipes(1)
   }, [])
 
-  const loadRecipes = (page: number) => {
-    const result = getUserRecipes(page)
+  useEffect(() => {
+    if (selected) loadRecipes(1, selected)
+    else loadRecipes()
+  }, [selected])
+
+  const loadRecipes = (page?: number, keyword?: string) => {
+    const result = getUserRecipes(page, keyword)
     if (result) {
       setRecipes(result)
     }
