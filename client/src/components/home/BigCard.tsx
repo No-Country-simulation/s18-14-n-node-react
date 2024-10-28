@@ -1,18 +1,18 @@
-import { Link } from "react-router-dom";
+import Button from "../Button";
 
 export default function BigCard() {
   return (
-    <div className="flex flex-col sm:flex-row self-center shadow-sm shadow-gray-700">
-      <img src="/assets/bigcard-image.png" alt="bigcard image" className="w-screen sm:size-[500px]" />
-      <div className="h-[500px] w-screen sm:w-[616px] flex flex-col justify-center gap-6 px-16">
-        <span className="font-extrabold text-[40px] leading-[56px] text-[#2c2c2c]">Titulo Receta</span>
-        <span className="font-normal text-base text-[#4d4d4d]">
+    <div className="flex flex-col-reverse sm:flex-row mx-10 lg:mx-40 shadow-custom bg-secondary50">
+      <img src="/assets/bigcard-image.png" alt="bigcard image" className="size-[280px] lg:size-[350px] min-[1300px]:size-[500px] mx-auto" />
+      <div className="flex flex-col justify-center items-center sm:items-start gap-4 lg:gap-6 px-8 lg:px-12">
+        <h2 className="font-extrabold text-4xl lg:text-5xl text-head_text">Titulo Receta</h2>
+        <p className="text-subtitle_text text-center sm:text-left">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel dolor
           pellentesque, varius elit quis, malesuada quam.
-        </span>
-        <Link to='/' className="w-[184px] h-[50px] flex justify-center items-center gap-2.5 bg-[#990047] px-[18px] py-[13px] rounded-lg">
-          <span className="font-bold text-base text-[#fff6e9]">Hacer receta</span>
-        </Link>
+        </p>
+        <Button type="filled" className="bg-primary" onClick={() => {}}>
+          Hacer receta
+        </Button>
       </div>
     </div>
   )
