@@ -4,7 +4,7 @@ export default function Banner() {
   return (
     <div className="w-screen h-[280px] relative">
       <img src="/assets/banner-image.png" alt="banner" className="w-full h-full object-cover" />
-      <div className="h-full absolute z-50 top-0 flex flex-col justify-center items-start px-10 lg:px-[100px] max-w-[800px]">
+      <div className="h-full absolute z-20 top-0 flex flex-col justify-center items-start px-10 lg:px-[100px] max-w-[800px]">
         <div className="mb-8">
           <h1 className="text-2xl lg:text-6xl font-extrabold text-secondary50">¡Te ayudamos a cocinar!</h1>
           <p className="tracking-[0.50px] text-secondary50">

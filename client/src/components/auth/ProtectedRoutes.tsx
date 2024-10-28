@@ -6,5 +6,6 @@ export const ProtectedRoute = () => {
   const isLoggedIn = token !== "";
 
   return isLoggedIn ? <Outlet /> : <Navigate to="/login" />
+  
 
 } 
