@@ -62,6 +62,10 @@ export class AuthService {
 
     const hash = await bcrypt.hash(data.password, 10)
 
+    await MailerSendUtils.welcomeMail(data.email, 'views/welcome.hbs', {
+      user: data.username,
+    })
+
     const newUser = await connDb.user.create({
       data: {
         ...data,
