@@ -1,3 +1,4 @@
+import RecipeCard from "../recipes/RecipeCard"
 
 const favorites = [
   {
@@ -33,19 +34,7 @@ export default function Favorites() {
         <h3 className="hidden lg:block font-semibold text-4xl text-head_text">Nuestras recetas favoritas</h3>
         <div className="flex flex-wrap justify-evenly gap-1">
           {favorites?.map(({ id, name, description, image }) => (
-            <div className="px-1.5 max-w-[300px]" key={id}>
-              <img className="size-[280px] rounded-full object-cover mx-auto" src={image} />
-              <div className="flex flex-col items-center gap-7 px-2 py-7">
-                <div className="flex flex-col gap-[15px]">
-                  <span className="font-semibold text-[22px] leading-[32px] text-center text-[#4d4d4d]">
-                    {name}
-                  </span>
-                  <span className="font-normal text-base text-center text-[#637381]">
-                    {description}
-                  </span>
-                </div>
-              </div>
-            </div>
+            <RecipeCard key={id} title={name} description={description} image={image} />
           ))}
         </div>
       </div>
