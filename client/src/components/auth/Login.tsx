@@ -127,7 +127,7 @@ export const Login = () => {
                                   onChange={handleChange}
                                   label="Contraseña"
                               />
-                              <Button type="filled" className="bg-accent" onClick={onSubmit} >
+                              <Button variant="filled-secondary" onClick={onSubmit} >
                                 {isLoading ? "Cargando..." : "Iniciar sesión"}
                               </Button>
                             </div>

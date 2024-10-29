@@ -15,7 +15,7 @@ export default function Banner() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel dolor pellentesque, varius elit quis, malesuada quam.
           </p>
         </div>
-        <Button type="filled" className="bg-accent" onClick={() => navigate("/recipes/personalized")}>Ingresar ingredientes</Button>
+        <Button variant="filled-secondary" onClick={() => navigate("/recipes/personalized")}>Ingresar ingredientes</Button>
       </div>
       <div className="bg-[#4F5663] opacity-50 w-full h-full absolute top-0"></div>
     </div>

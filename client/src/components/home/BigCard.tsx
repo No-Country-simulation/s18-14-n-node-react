@@ -14,7 +14,7 @@ export default function BigCard() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel dolor
           pellentesque, varius elit quis, malesuada quam.
         </p>
-        <Button type="filled" className="bg-primary" onClick={() => navigate("/recipes/personalized")}>
+        <Button variant="filled-primary" onClick={() => navigate("/recipes/personalized")}>
           Hacer receta
         </Button>
       </div>
