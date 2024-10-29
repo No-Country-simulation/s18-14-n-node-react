@@ -177,8 +177,7 @@ const Register = () => {
                                 error={form.confirmPassword.error}
                             />
                             <Button
-                                type="filled"
-                                className="w-full bg-accent text-white rounded-md"
+                                variant="filled-secondary"
                                 onClick={() => onSubmit()}
                                 disabled={isSendDisabled || isLoading}
                             >
