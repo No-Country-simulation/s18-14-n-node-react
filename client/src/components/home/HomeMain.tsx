@@ -8,9 +8,11 @@ export default function HomeMain() {
   return (
     <div className="flex flex-col gap-10 pb-8 bg-background">
       <Banner />
-      <CategoriesList />
-      <BigCard />
-      <Favorites />
+      <div className="max-w-[1500px] mx-auto flex flex-col gap-10">
+        <CategoriesList />
+        <BigCard />
+        <Favorites />
+      </div>
     </div>
   )
 }

@@ -23,7 +23,7 @@ export default function CategoriesList() {
   }
 
   return (
-    <div className="w-screen flex justify-center items-center flex-wrap gap-6 mx-auto px-10 lg:px-40">
+    <div className="w-full flex justify-center items-center flex-wrap gap-6 mx-auto px-10 lg:px-40">
       {categories?.length > 0 && categories.map(({ name, id, image }) => (
         <button 
           onClick={() => handleSelectedCategory(id)}
