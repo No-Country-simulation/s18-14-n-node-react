@@ -10,7 +10,7 @@ export default function BigCard() {
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vel dolor
           pellentesque, varius elit quis, malesuada quam.
         </p>
-        <Button type="filled" className="bg-primary" onClick={() => {}}>
+        <Button variant="filled-primary" onClick={() => {}}>
           Hacer receta
         </Button>
       </div>

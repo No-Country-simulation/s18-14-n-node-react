@@ -141,7 +141,7 @@ export default function Profile() {
                         {areChanges && (
                             <p className="text-primary70 text-center">Tienes cambios sin guardar</p>
                         )}
-                        <Button type="filled" className="bg-primary" onClick={() => sendNewData()} disabled={!areChanges}>Editar</Button>
+                        <Button variant="filled-primary" onClick={() => sendNewData()} disabled={!areChanges}>Editar</Button>
                     </div>
                 </article>
                 <article className="bg-white rounded-3xl flex-grow text-center lg:col-span-3 mt-3 p-8 h-max min-h-[445px] shadow-custom">
@@ -161,7 +161,7 @@ export default function Profile() {
                     </div>
 
                     <div className="w-full text-center content-end h-20 flex flex-col pt-5 px-6">
-                        <Button type="bordered" className="!border-primary70 !text-primary" onClick={() => {}}>
+                        <Button variant="bordered-primary" onClick={() => {}}>
                           Ver planes
                         </Button>
                     </div>
