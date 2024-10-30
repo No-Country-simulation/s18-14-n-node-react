@@ -17,7 +17,7 @@ export default function CategoriesList() {
   }, [])
 
   const handleSelectedCategory = (name: string) => {
-    if (name === "Todas") {
+    if (name === selected) {
       setSelected(null)
     }
     else setSelected(name)

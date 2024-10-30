@@ -1,39 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 import Recipes from "./Recipes";
 import CategoriesList from "./CategoriesList";
 
-import { Recipe } from "@/types";
 import CategoriesStore from '@/store/categoriesStore'
-import { getUserRecipes } from "@/services/recipes";
+import allRecipes from "@/utils/retrieveRecipes";
+import recipesStore from "@/store/recipesStore";
 
 export default function Categories() {
 
   const { selected } = CategoriesStore()
-  console.log(selected);
- 
-  const [recipes, setRecipes] = useState<Recipe[] | []>([])
+  const { recipes } = recipesStore()
 
-  useEffect(() => {
-    loadRecipes(1)
-  }, [])
+  useEffect(() => { allRecipes() }, [])
 
-  useEffect(() => {
-    if (selected) loadRecipes(1, selected)
-    else loadRecipes()
-  }, [selected])
-
-  const loadRecipes = (page?: number, keyword?: string) => {
-    const result = getUserRecipes(page, keyword)
-    if (result) {
-      setRecipes(result)
-    }
-  }
+  const filteredRecipes =  !selected ? recipes : recipes.filter(recipe => {
+    return recipe.description.includes(selected) || recipe.categories?.includes(selected)
+  })
 
   return (
     <div className='flex flex-col gap-8 pb-8'>
       <CategoriesList />
-      <Recipes recipes={recipes} />
+      <Recipes recipes={filteredRecipes} />
     </div>
   )
 }

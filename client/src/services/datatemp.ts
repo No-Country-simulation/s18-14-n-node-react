@@ -28,10 +28,6 @@ export const categoriesList: Category[] = [
   {
     name: "Raw", id: "7",
     image: 'size-[125px] rounded-full bg-raw bg-cover'
-  },
-  {
-    name: "Todas", id: "8",
-    image: 'size-[125px] rounded-full bg-cover'
   }
 ]
 

@@ -1,6 +1,7 @@
 import axios from "axios";
 // import { recipesList } from "./datatemp";
 import { recipes } from "./datatemp";
+import { Recipe } from "@/types";
 
 const RECIPES_URL = "/recipes";
 const headers = {
@@ -8,36 +9,31 @@ const headers = {
 };
 
 // obtener todas las recetas del usuario o según busqueda
-export const getUserRecipes = (page?: number | undefined, keyword?: string | undefined) => {
-  try {
-    console.log(recipes?.length);
-    let collectedRecipes
-    if (keyword) {
-      collectedRecipes = recipes.filter(recipe => {
-        if(recipe.title.includes(keyword)) return true
-        else if(recipe.description.includes(keyword)) return true
-        else if(recipe.categories.includes(keyword)) return true
-        else if(recipe.ingredients?.length > 0) {
-          for(const ingredient of recipe.ingredients) {
-            if (ingredient.name.includes(keyword)) return true
-            else if (ingredient.description.includes(keyword)) return true
-          }
-        } 
-        else return false
-      })
-    } else collectedRecipes = recipes
+export const getUserRecipes =
+  (page?: number | undefined): 
+    { recipes: Recipe[], totalPages: number, currentPage: number } | undefined => {
+    try {
+      if (page) {
+        const limit = 8 * page + 8
+        const totalPages = Math.ceil(recipes.length / limit)
+        const offset = 8 * page
 
-    if (page) {
-      const limit = 8 * page + 8
-      const offset = 8 * page
-      return collectedRecipes.slice(offset, limit)
-    } else return collectedRecipes.slice(0, 8)
+        return {
+          recipes: recipes.slice(offset, limit) as Recipe[],
+          totalPages: totalPages,
+          currentPage: page,
+        }
+      } else return {
+        recipes: recipes.slice(0, 8),
+        totalPages: Math.ceil(recipes.length / 8),
+        currentPage: 1,
+      }
 
-    
-  } catch (error) {
-    console.log(error);
-  }
-};
+
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
 export const addRecipe = async (recipe: {
   title: string;
