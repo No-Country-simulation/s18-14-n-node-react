@@ -1,7 +1,5 @@
 
 import { SeccionNavBar } from "../SeccionesNavbar/SeccionNavBar";
-import { BotonSecondary } from "../Botones/BotonSecondary";
-import { BotonPrimary } from "../Botones/BotonPrimary";
 import { logoWText } from "@/assets";
 import { Link, useNavigate } from "react-router-dom";
 import { BtnSesion } from "../Botones/BtnSesion";
@@ -10,6 +8,7 @@ import { useEffect, useState } from "react";
 import { User } from "@/models";
 import useUserStore from "@/store/userStore";
 import configureAxios from "@/services/axios";
+import Button from "../Button";
 
 const userImage = "https://static.vecteezy.com/system/resources/thumbnails/009/292/244/small/default-avatar-icon-of-social-media-user-vector.jpg";
 
@@ -80,7 +79,7 @@ export const NavBarWeb = ({
         }
       </div>
 
-      <div className={`lg:flex fixed z-50 right-0 left-0 lg:right-8 w-screen lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
+      <div className={`lg:flex fixed z-30 right-0 left-0 lg:right-8 w-screen lg:static lg:z-auto items-center bg-colorprimario lg:w-3/4 ${open ? 'items-center' : 'hidden'} `}>
         <div className="lg:flex lg:flex-row px-0 lg:w-3/4 md:items-center lg:items-center lg:justify-end lg:pr-20 h-max">
           <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/categories" nameSection="CATEGORIAS"></SeccionNavBar>
           <SeccionNavBar className="!shrink-0 py-4 lg:my-0 px-0 lg:w-1/2 hover:bg-coloracento lg:hover:bg-transparent" linkTo="/recipes/personalized" nameSection="RECETA PERSONALIZADA"></SeccionNavBar>
@@ -88,16 +87,8 @@ export const NavBarWeb = ({
 
         {!token ?
           <div className="lg:flex lg:flex-row gap-3 items-center w-full lg:w-1/3 lg:justify-end">
-            <BotonSecondary
-              className="lg:!shrink-0 lg:border-2 lg:border-colorsecundario hover:bg-coloracento mx-auto"
-              btnText="Registrarse"
-              action={() => navigate('/register')}
-            ></BotonSecondary>
-            <BotonPrimary
-              className="bg-colorprimario lg:!shrink-0 hover:bg-coloracento shadow-custom mx-auto"
-              textBtn="Iniciar sesión"
-              action={() => navigate('/login')}
-            />
+            <Button variant="bordered-white" onClick={() => navigate('/registrarse')}>Registrarse</Button>
+            <Button variant="filled-primary" onClick={() => navigate('/login')}>Iniciar sesión</Button>
           </div>
           :
           <div className="hidden lg:flex lg:flex-row gap-3 items-center w-1/3 justify-end">
