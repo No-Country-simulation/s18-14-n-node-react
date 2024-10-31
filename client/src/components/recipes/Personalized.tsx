@@ -191,7 +191,7 @@ export default function Personalized() {
         <Recipes recipes={foundRecipes} />
       }
       {
-        notFound && <span>No se a encontrado receta con lo pedido</span>
+        notFound && <span className="mt-6 text-md text-red-600">No se a encontrado receta con lo pedido</span>
       }
     </div>
   )
