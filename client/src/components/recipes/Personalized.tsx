@@ -1,13 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChangeEvent, useEffect, useState } from "react"
 import Ingredientbutton from "./Ingredientbutton"
+import Recipes from "./Recipes";
 import { getIngredients } from "@/services/ingredients"
 import { Recipe } from "@/types"
 import recipesStore from "@/store/recipesStore"
-import allRecipes from "@/utils/retrieveRecipes"
+import { getUserRecipes } from "@/services/recipes";
 
 export default function Personalized() {
-  const { recipes } = recipesStore()
+  const { recipesGlobal, setRecipes } = recipesStore()
   // todos los ingredientes
   const [allIngredients, setAllIngredients] = useState<string[] | []>([])
   // estado para búsqueda de ingredientes
@@ -20,15 +21,12 @@ export default function Personalized() {
   const [ingredientsList, setIngredientsList] = useState<string[] | []>([])
   // estado para todas las recetas
   const [foundRecipes, setFoundRecipes] = useState<Recipe[] | []>([])
+  const [notFound, setNotfound] = useState<boolean>(false)
 
   useEffect(() => {
-    console.log(recipes?.length);
-    if (recipes?.length === 0){
-      const result = allRecipes()
-      console.log(result);
-    }
-  }, [recipes])
-
+    console.log(notFound)
+  }, [notFound])
+  
 
   useEffect(() => {
     const ingredients = getIngredients()
@@ -41,6 +39,13 @@ export default function Personalized() {
         setSuggestedList(elementosAleatorios)
       }
       else setSuggestedList(ingredients)
+    }
+
+    if (recipesGlobal?.length === 0) {
+      const result = getUserRecipes()
+      if (result && result.recipes) {
+        setRecipes(result.recipes)
+      }
     }
   }, [])
 
@@ -78,9 +83,8 @@ export default function Personalized() {
   }
 
   const handleSearchButton = () => {
-    console.log(recipes.length);
     if (ingredientsList?.length === 0) return
-    const recipesFound = recipes.filter(recipe => {
+    const recipesFiltered = recipesGlobal.filter(recipe => {
 
       for (const ingredient of ingredientsList) {
         if (recipe.ingredients?.find(element => element.name === ingredient)) {
@@ -89,9 +93,11 @@ export default function Personalized() {
       }
       return false
     })
-    if (recipesFound) {
-      setFoundRecipes(recipesFound)
+    if (recipesFiltered && recipesFiltered.length > 0) {
+      setFoundRecipes(recipesFiltered)
+      setNotfound(false)
     }
+    else setNotfound(true)
   }
 
   return (
@@ -180,6 +186,13 @@ export default function Personalized() {
           </button>
         </div>
       </div>
+      {
+        foundRecipes?.length > 0 && !notFound &&
+        <Recipes recipes={foundRecipes} />
+      }
+      {
+        notFound && <span>No se a encontrado receta con lo pedido</span>
+      }
     </div>
   )
 }

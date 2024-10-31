@@ -1,20 +1,15 @@
-import { useEffect } from "react";
-
 import Recipes from "./Recipes";
 import CategoriesList from "./CategoriesList";
 
 import CategoriesStore from '@/store/categoriesStore'
-import allRecipes from "@/utils/retrieveRecipes";
 import recipesStore from "@/store/recipesStore";
 
 export default function Categories() {
 
   const { selected } = CategoriesStore()
-  const { recipes } = recipesStore()
+  const { recipesGlobal } = recipesStore()
 
-  useEffect(() => { allRecipes() }, [])
-
-  const filteredRecipes =  !selected ? recipes : recipes.filter(recipe => {
+  const filteredRecipes =  !selected ? recipesGlobal : recipesGlobal.filter(recipe => {
     return recipe.description.includes(selected) || recipe.categories?.includes(selected)
   })
 

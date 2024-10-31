@@ -14,9 +14,9 @@ export const getUserRecipes =
     { recipes: Recipe[], totalPages: number, currentPage: number } | undefined => {
     try {
       if (page) {
-        const limit = 8 * page + 8
+        const limit = 8 * (page - 1) + 8
         const totalPages = Math.ceil(recipes.length / limit)
-        const offset = 8 * page
+        const offset = 8 * (page - 1)
 
         return {
           recipes: recipes.slice(offset, limit) as Recipe[],
@@ -24,8 +24,8 @@ export const getUserRecipes =
           currentPage: page,
         }
       } else return {
-        recipes: recipes.slice(0, 8),
-        totalPages: Math.ceil(recipes.length / 8),
+        recipes: recipes,
+        totalPages: 1,
         currentPage: 1,
       }
 

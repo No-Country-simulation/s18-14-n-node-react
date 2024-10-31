@@ -2,13 +2,13 @@ import { Recipe } from '@/types'
 import { create } from 'zustand'
 
 type Store = {
-  recipes: Recipe[] | [],
+  recipesGlobal: Recipe[] | [],
   setRecipes: (recipes: Recipe[] | []) => void
 }
 
 const recipesStore = create<Store>()((set) => ({
-  recipes: [],
-  setRecipes: (recipes) => set({recipes})
+  recipesGlobal: [],
+  setRecipes: (recipes) => set({ recipesGlobal: recipes })
 }))
 
 export default recipesStore
